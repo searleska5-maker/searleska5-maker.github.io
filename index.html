@@ -19,11 +19,6 @@
   <meta property="og:url" content="https://searleska5-maker.github.io/">
   <meta property="og:site_name" content="詐騙觀察筆記">
 
-  <!-- 🐦 Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="詐騙觀察筆記 - 最新反詐騙情報">
-  <meta name="twitter:description" content="揭露最新黑平台套路，提供受害自救與防詐情境指南。">
-
   <!-- 🔍 Google 結構化數據 -->
   <script type="application/ld+json">
   {
@@ -195,6 +190,140 @@
       box-sizing: border-box;
     }
 
+    /* ===================================================
+       🎯 核心修復：強制覆蓋文章標題與內文字體大小與行距
+       =================================================== */
+
+    /* 醒目霸氣的文章主標題 */
+    .blog-post-title,
+    .markdown-section h1 {
+      font-size: 2.3rem !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+      line-height: 1.4 !important;
+      margin: 0 0 16px 0 !important;
+      border: none !important;
+      letter-spacing: -0.02em !important;
+    }
+
+    /* 文章副標題 (h2, h3) */
+    .markdown-section h2 {
+      font-size: 1.7rem !important;
+      font-weight: 800 !important;
+      margin: 2.6rem 0 1.2rem 0 !important;
+      border-bottom: 2px solid #f1f5f9 !important;
+      padding-bottom: 0.6rem !important;
+      color: #1e293b !important;
+    }
+
+    .markdown-section h3 {
+      font-size: 1.45rem !important;
+      font-weight: 700 !important;
+      margin: 2.2rem 0 1rem 0 !important;
+      color: #1e293b !important;
+    }
+
+    /* 🚀 強力穿透：覆蓋痞客邦的所有小字體與密密麻麻排版 */
+    .markdown-section p,
+    .markdown-section p span,
+    .markdown-section p font,
+    .markdown-section li,
+    .markdown-section li font,
+    .markdown-section li span,
+    .markdown-section blockquote,
+    .markdown-section blockquote font,
+    .markdown-section blockquote span {
+      font-size: 1.22rem !important; /* 清晰舒服的黃金大字體（約 20px） */
+      line-height: 2.1 !important;   /* 呼吸感拉滿的寬鬆行距 */
+      color: #1e293b !important;
+      letter-spacing: 0.02em !important;
+    }
+
+    /* 段落間距拉開，告別密密麻麻 */
+    .markdown-section p {
+      margin-top: 1.6rem !important;
+      margin-bottom: 1.6rem !important;
+    }
+
+    .markdown-section ul, 
+    .markdown-section ol {
+      padding-left: 2rem !important;
+      margin: 1.5rem 0 !important;
+    }
+
+    .markdown-section li {
+      margin: 10px 0 !important;
+    }
+
+    /* 引言框美化 */
+    .markdown-section blockquote {
+      border-left: 5px solid #2563eb !important;
+      background: #eff6ff !important;
+      padding: 18px 24px !important;
+      border-radius: 0 12px 12px 0 !important;
+      margin: 1.8rem 0 !important;
+    }
+
+    /* 社群分享按鈕樣式 */
+    .article-share-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 26px 0;
+      padding: 12px 18px;
+      background: #f8fafc;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+    .article-share-bar .share-label {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #475569;
+      margin-right: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none !important;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+    }
+    .share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .share-btn svg { width: 16px; height: 16px; fill: currentColor; }
+    .share-btn.btn-copy { background: #ffffff; color: #1e293b; border: 1px solid #cbd5e1; }
+    .share-btn.btn-fb { background: #1877f2; color: #ffffff !important; }
+    .share-btn.btn-x { background: #000000; color: #ffffff !important; }
+    .share-btn.btn-line { background: #06c755; color: #ffffff !important; }
+
+    .copy-toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.9);
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      z-index: 10000;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
     /* 首頁動態流光橫幅 */
     .hero-banner {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
@@ -287,137 +416,26 @@
       gap: 6px;
     }
 
-    /* ===================================================
-       🚀 全新社群分享按鈕樣式（FB, X, LINE, 複製連結）
-       =================================================== */
-    .article-share-bar {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 18px 0 24px 0;
-      padding: 12px 18px;
-      background: #f8fafc;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
-    }
-    .article-share-bar .share-label {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: #475569;
-      margin-right: 6px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .share-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      text-decoration: none !important;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
-    }
-    .share-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    .share-btn svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
-    /* 複製連結 */
-    .share-btn.btn-copy {
-      background: #ffffff;
-      color: #1e293b;
-      border: 1px solid #cbd5e1;
-    }
-    /* Facebook */
-    .share-btn.btn-fb {
-      background: #1877f2;
-      color: #ffffff !important;
-    }
-    /* X (Twitter) */
-    .share-btn.btn-x {
-      background: #000000;
-      color: #ffffff !important;
-    }
-    /* LINE */
-    .share-btn.btn-line {
-      background: #06c755;
-      color: #ffffff !important;
-    }
-
-    /* 複製成功浮動提示 */
-    .copy-toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(15, 23, 42, 0.9);
-      color: #ffffff;
-      padding: 10px 22px;
-      border-radius: 30px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      z-index: 10000;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-      animation: fadeInOut 2.5s forwards;
-    }
-    @keyframes fadeInOut {
-      0% { opacity: 0; transform: translate(-50%, 15px); }
-      15% { opacity: 1; transform: translate(-50%, 0); }
-      85% { opacity: 1; transform: translate(-50%, 0); }
-      100% { opacity: 0; transform: translate(-50%, -10px); }
-    }
-
     /* 手機端適應 */
     @media (max-width: 900px) {
-      .content {
-        left: 0 !important;
-        padding-top: 10px !important;
-      }
+      .content { left: 0 !important; padding-top: 10px !important; }
       .markdown-section {
         width: 96% !important;
         padding: 24px 18px 40px 18px !important;
         margin: 10px auto !important;
         border-radius: 14px;
       }
-      .hero-banner {
-        padding: 2.2rem 1.2rem;
-        margin-bottom: 1.5rem;
-      }
-      .hero-banner h1 {
-        font-size: 1.8rem !important;
-      }
-      .hero-banner p {
-        font-size: 1.05rem !important;
-      }
-      .dashboard-grid {
-        grid-template-columns: 1fr !important;
-        gap: 16px;
-      }
-      .article-share-bar {
-        padding: 10px 12px;
-      }
-      .share-btn {
-        padding: 5px 10px;
-        font-size: 0.82rem;
-      }
+      .blog-post-title, .markdown-section h1 { font-size: 1.75rem !important; }
+      .markdown-section p, .markdown-section li { font-size: 1.1rem !important; line-height: 1.85 !important; }
+      .dashboard-grid { grid-template-columns: 1fr !important; gap: 16px; }
+      .article-share-bar { padding: 10px 12px; }
+      .share-btn { padding: 5px 10px; font-size: 0.82rem; }
     }
   </style>
 </head>
 <body>
   <div class="reading-progress-bar" id="readingProgress"></div>
   
-  <!-- SEO 強制預載入區塊 -->
   <div id="app">
     <noscript>
       <h1>詐騙觀察筆記 - 全方位民間反詐騙情報站</h1>
@@ -430,10 +448,8 @@
   </div>
   
   <script>
-    // 全域複製分享連結函數
     window.copyPostLink = function() {
-      var url = window.location.href;
-      navigator.clipboard.writeText(url).then(function() {
+      navigator.clipboard.writeText(window.location.href).then(function() {
         var toast = document.createElement('div');
         toast.className = 'copy-toast';
         toast.innerText = '✅ 文章連結已複製到剪貼簿！';
@@ -473,7 +489,6 @@
 
       plugins: [
         function(hook, vm) {
-          // 左側側邊欄底部掛載 165 緊急通報
           hook.ready(function() {
             var sidebar = document.querySelector('.sidebar');
             if (sidebar && !document.querySelector('.sidebar-helper-card')) {
@@ -489,19 +504,24 @@
             }
           });
 
-          // 文章閱讀數據統計 + 分享按鈕注入
+          // 核心修復：正確保留並美化文章標題
           hook.afterEach(function(html, next) {
-            // 首頁不注入文章資訊與分享按鈕
-            if (vm.route.file !== 'README.md') {
+            // 首頁、分類頁（investment.md 等）不注入單篇文章專屬資訊
+            var isCategoryOrHome = vm.route.file === 'README.md' || 
+                                   vm.route.file === 'investment.md' || 
+                                   vm.route.file === 'crypto.md' || 
+                                   vm.route.file === 'network.md' || 
+                                   vm.route.file === 'info.md';
+
+            if (!isCategoryOrHome) {
               var headerRegex = /<h1[^>]*>([\s\S]*?)<\/h1>/i;
               var match = html.match(headerRegex);
 
-              var rawTitle = match ? match[1].replace(/<a[^>]*>.*?<\/a>/g, '').trim() : '詐騙觀察筆記';
+              var rawTitle = match ? match[1].replace(/<a[^>]*>.*?<\/a>/g, '').trim() : '案例解析';
               var plainText = html.replace(/<[^>]+>/g, '').replace(/\s+/g, '');
               var charCount = plainText.length;
               var readMinutes = Math.max(1, Math.ceil(charCount / 350));
               
-              // 構建純 HTML/SVG 社群分享組件
               var shareBarHtml = `
                 <div class="article-share-bar">
                   <span class="share-label">
@@ -527,30 +547,31 @@
                 </div>
               `;
 
-              if (match) {
-                var blogHeaderHtml = `
-                  <div class="blog-post-header" style="margin-bottom:1.5rem;padding-bottom:1.2rem;border-bottom:2px solid #f1f5f9;">
-                    <h1 style="font-size:2.2rem;font-weight:800;color:#0f172a;margin:0 0 10px 0;border:none;">${rawTitle}</h1>
-                    <div style="display:flex;align-items:center;gap:12px;font-size:0.92rem;color:#64748b;">
-                      <span style="background:#eff6ff;color:#2563eb;padding:3px 10px;border-radius:6px;font-weight:600;">專題剖析</span>
-                      <span>•</span>
-                      <span>約 ${charCount} 字</span>
-                      <span>•</span>
-                      <span>預計閱讀 ${readMinutes} 分鐘</span>
-                    </div>
+              var blogHeaderHtml = `
+                <div style="margin-bottom: 2rem; padding-bottom: 1.2rem; border-bottom: 2px solid #eef2f5;">
+                  <h1 class="blog-post-title">${rawTitle}</h1>
+                  <div style="display:flex; align-items:center; gap:12px; font-size:0.95rem; color:#64748b;">
+                    <span style="background:#eff6ff; color:#2563eb; padding:4px 12px; border-radius:6px; font-weight:700;">專題剖析</span>
+                    <span>•</span>
+                    <span>約 ${charCount} 字</span>
+                    <span>•</span>
+                    <span>預計閱讀 ${readMinutes} 分鐘</span>
                   </div>
-                  ${shareBarHtml}
-                `;
+                </div>
+                ${shareBarHtml}
+              `;
+
+              if (match) {
                 html = html.replace(match[0], blogHeaderHtml);
+              } else {
+                html = blogHeaderHtml + html;
               }
 
-              // 在文章最底部（上一篇/下一篇上方）再附加上分享條，方便讀者讀完後直接轉發
-              html += `<div style="margin-top: 3rem; border-top: 1px dashed #e2e8f0; padding-top: 1.5rem;">${shareBarHtml}</div>`;
+              html += `<div style="margin-top: 3.5rem; border-top: 1.5px dashed #cbd5e1; padding-top: 2rem;">${shareBarHtml}</div>`;
             }
             next(html);
           });
 
-          // 頁面滾動進度條
           hook.doneEach(function() {
             var progressBar = document.getElementById('readingProgress');
             window.onscroll = function() {
@@ -567,7 +588,6 @@
     };
   </script>
 
-  <!-- 核心 Docsify JS 與必要外掛 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
