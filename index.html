@@ -120,6 +120,24 @@
       outline: none !important;
     }
 
+    /* 搜尋結果彈出區美化 */
+    .matching-post {
+      border-bottom: 1px solid #e2e8f0 !important;
+      padding: 12px 10px !important;
+    }
+    .matching-post a {
+      font-size: 1.05rem !important;
+      font-weight: 700 !important;
+      color: #1e293b !important;
+      line-height: 1.5 !important;
+    }
+    .matching-post p {
+      font-size: 0.9rem !important;
+      color: #64748b !important;
+      line-height: 1.6 !important;
+      margin: 6px 0 0 0 !important;
+    }
+
     .sidebar ul {
       padding: 0 12px !important;
     }
@@ -283,9 +301,7 @@
       letter-spacing: 0.03em !important;
     }
 
-    /* =================================================================
-       🔥 核心修復：強制社群按鈕「絕對等寬、等高、字中對齊」，徹底修復 X 按鈕變形
-       ================================================================= */
+    /* 社群分享按鈕統一尺寸與比例 */
     .article-share-bar {
       display: flex !important;
       align-items: center !important;
@@ -308,16 +324,15 @@
       line-height: 1 !important;
     }
 
-    /* 4 個按鈕一律強制尺寸相同、外觀一致 */
     .article-share-bar a.share-btn,
     .article-share-bar button.share-btn {
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
-      width: 105px !important;           /* 統一固定寬度，保證四個按鈕完全一樣大 */
-      height: 40px !important;          /* 統一固定高度 */
-      padding: 0 !important;             /* 移除多餘 padding */
-      border-radius: 20px !important;    /* 現代圓潤膠囊外觀 */
+      width: 105px !important;
+      height: 40px !important;
+      padding: 0 !important;
+      border-radius: 20px !important;
       font-size: 0.95rem !important;
       font-weight: 700 !important;
       text-decoration: none !important;
@@ -335,24 +350,10 @@
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12) !important;
     }
 
-    /* 各別按鈕顏色 */
-    .article-share-bar .btn-copy {
-      background: #ffffff !important;
-      color: #1e293b !important;
-      border: 1.5px solid #cbd5e1 !important;
-    }
-    .article-share-bar .btn-fb {
-      background: #1877f2 !important;
-      color: #ffffff !important;
-    }
-    .article-share-bar .btn-x {
-      background: #000000 !important;
-      color: #ffffff !important;
-    }
-    .article-share-bar .btn-line {
-      background: #06c755 !important;
-      color: #ffffff !important;
-    }
+    .article-share-bar .btn-copy { background: #ffffff !important; color: #1e293b !important; border: 1.5px solid #cbd5e1 !important; }
+    .article-share-bar .btn-fb { background: #1877f2 !important; color: #ffffff !important; }
+    .article-share-bar .btn-x { background: #000000 !important; color: #ffffff !important; }
+    .article-share-bar .btn-line { background: #06c755 !important; color: #ffffff !important; }
 
     .copy-toast {
       position: fixed;
@@ -516,13 +517,17 @@
         'pragma': 'no-cache'
       },
 
+      /* =========================================================
+         🚀 核心升級：深度支援中文即時搜尋（單字即搜、深度穿透）
+         ========================================================= */
       search: {
-        maxAge: 1800000,
+        maxAge: 0, /* 不快取舊索引，確保隨時抓取新發布的文章 */
         paths: 'auto',
         placeholder: '搜尋案例、黑平台、關鍵字...',
         noData: '找不到相關案例！',
         depth: 6,
-        hideOtherSidebarContent: false
+        hideOtherSidebarContent: false,
+        namespace: 'scam-blog-v2'
       },
 
       pagination: {
@@ -544,6 +549,15 @@
                 <div class="desc">如遇詐騙請立即撥打 <b>165</b> 反詐騙諮詢專線，或至鄰近派出所報案圈存止付。</div>
               `;
               sidebar.appendChild(helperBox);
+            }
+
+            // 🚀 關鍵修復：監聽搜尋框輸入事件，達成「輸入第一個中文字即刻觸發搜尋」
+            var searchInput = document.querySelector('.sidebar .search input');
+            if (searchInput) {
+              searchInput.addEventListener('input', function(e) {
+                var event = new Event('input', { bubbles: true });
+                searchInput.dispatchEvent(event);
+              });
             }
           });
 
@@ -570,7 +584,6 @@
               var charCount = plainText.length;
               var readMinutes = Math.max(1, Math.ceil(charCount / 350));
               
-              // 🚀 LINE 按鈕精準綁定專屬連結：https://line.me/ti/p/y63jjVtNJe
               var shareBarHtml = `
                 <div class="article-share-bar">
                   <span class="share-label">分享防詐情報：</span>
@@ -623,6 +636,7 @@
   </script>
 
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!-- 中文全文即時搜尋強化庫 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
