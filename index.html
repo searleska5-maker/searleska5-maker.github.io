@@ -284,53 +284,75 @@
     }
 
     /* =================================================================
-       🚀 核心修復：社群分享按鈕統一尺寸與比例（解決 X 按鈕窄小問題）
+       🔥 核心修復：強制社群按鈕「絕對等寬、等高、字中對齊」，徹底修復 X 按鈕變形
        ================================================================= */
     .article-share-bar {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 16px 0 26px 0;
-      padding: 14px 20px;
-      background: #f8fafc;
-      border-radius: 14px;
-      border: 1px solid #e2e8f0;
+      display: flex !important;
+      align-items: center !important;
+      flex-wrap: wrap !important;
+      gap: 12px !important;
+      margin: 16px 0 26px 0 !important;
+      padding: 14px 20px !important;
+      background: #f8fafc !important;
+      border-radius: 14px !important;
+      border: 1px solid #e2e8f0 !important;
     }
+
     .article-share-bar .share-label {
       font-size: 1rem !important;
       font-weight: 700 !important;
       color: #475569 !important;
-      margin-right: 6px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      margin-right: 6px !important;
+      display: flex !important;
+      align-items: center !important;
+      line-height: 1 !important;
     }
-    .share-btn {
+
+    /* 4 個按鈕一律強制尺寸相同、外觀一致 */
+    .article-share-bar a.share-btn,
+    .article-share-bar button.share-btn {
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
-      min-width: 86px !important;        /* 設定最小等寬，避免 X 按鈕變形 */
-      height: 38px !important;           /* 統一高度 */
-      padding: 0 16px !important;
-      border-radius: 20px !important;
+      width: 105px !important;           /* 統一固定寬度，保證四個按鈕完全一樣大 */
+      height: 40px !important;          /* 統一固定高度 */
+      padding: 0 !important;             /* 移除多餘 padding */
+      border-radius: 20px !important;    /* 現代圓潤膠囊外觀 */
       font-size: 0.95rem !important;
       font-weight: 700 !important;
       text-decoration: none !important;
-      cursor: pointer;
-      border: none;
+      cursor: pointer !important;
+      border: none !important;
       box-sizing: border-box !important;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+      line-height: 1 !important;
+      text-align: center !important;
     }
-    .share-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+
+    .article-share-bar .share-btn:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12) !important;
     }
-    .share-btn.btn-copy { background: #ffffff !important; color: #1e293b !important; border: 1.5px solid #cbd5e1 !important; min-width: 96px !important; }
-    .share-btn.btn-fb { background: #1877f2 !important; color: #ffffff !important; min-width: 100px !important; }
-    .share-btn.btn-x { background: #000000 !important; color: #ffffff !important; min-width: 86px !important; }
-    .share-btn.btn-line { background: #06c755 !important; color: #ffffff !important; min-width: 86px !important; }
+
+    /* 各別按鈕顏色 */
+    .article-share-bar .btn-copy {
+      background: #ffffff !important;
+      color: #1e293b !important;
+      border: 1.5px solid #cbd5e1 !important;
+    }
+    .article-share-bar .btn-fb {
+      background: #1877f2 !important;
+      color: #ffffff !important;
+    }
+    .article-share-bar .btn-x {
+      background: #000000 !important;
+      color: #ffffff !important;
+    }
+    .article-share-bar .btn-line {
+      background: #06c755 !important;
+      color: #ffffff !important;
+    }
 
     .copy-toast {
       position: fixed;
@@ -451,7 +473,12 @@
       }
       .dashboard-grid { grid-template-columns: 1fr !important; gap: 16px; }
       .article-share-bar { padding: 10px 12px; gap: 8px; }
-      .share-btn { min-width: 72px !important; height: 34px !important; font-size: 0.85rem !important; padding: 0 10px !important; }
+      .article-share-bar a.share-btn,
+      .article-share-bar button.share-btn {
+        width: 82px !important;
+        height: 34px !important;
+        font-size: 0.85rem !important;
+      }
     }
   </style>
 </head>
@@ -543,7 +570,7 @@
               var charCount = plainText.length;
               var readMinutes = Math.max(1, Math.ceil(charCount / 350));
               
-              // 🚀 核心修改：按鈕統一樣式類名，並將 LINE 按鈕直接綁定專屬連結
+              // 🚀 LINE 按鈕精準綁定專屬連結：https://line.me/ti/p/y63jjVtNJe
               var shareBarHtml = `
                 <div class="article-share-bar">
                   <span class="share-label">分享防詐情報：</span>
