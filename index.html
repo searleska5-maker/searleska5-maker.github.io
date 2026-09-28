@@ -206,7 +206,7 @@
       letter-spacing: -0.02em !important;
     }
 
-    /* 強制覆蓋所有內文標籤，全面放大與寬鬆行距 */
+    /* 內文文字與行距（大字體與寬鬆行距） */
     .markdown-section,
     .markdown-section p,
     .markdown-section p *,
@@ -283,49 +283,54 @@
       letter-spacing: 0.03em !important;
     }
 
-    /* 社群分享按鈕 */
+    /* =================================================================
+       🚀 核心修復：社群分享按鈕統一尺寸與比例（解決 X 按鈕窄小問題）
+       ================================================================= */
     .article-share-bar {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       margin: 16px 0 26px 0;
-      padding: 12px 18px;
+      padding: 14px 20px;
       background: #f8fafc;
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid #e2e8f0;
     }
     .article-share-bar .share-label {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #475569;
+      font-size: 1rem !important;
+      font-weight: 700 !important;
+      color: #475569 !important;
       margin-right: 6px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
     .share-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 15px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-width: 86px !important;        /* 設定最小等寬，避免 X 按鈕變形 */
+      height: 38px !important;           /* 統一高度 */
+      padding: 0 16px !important;
+      border-radius: 20px !important;
+      font-size: 0.95rem !important;
+      font-weight: 700 !important;
       text-decoration: none !important;
       cursor: pointer;
       border: none;
-      transition: all 0.2s ease;
+      box-sizing: border-box !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
     .share-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
     }
-    .share-btn svg { width: 16px; height: 16px; fill: currentColor; }
-    .share-btn.btn-copy { background: #ffffff; color: #1e293b; border: 1px solid #cbd5e1; }
-    .share-btn.btn-fb { background: #1877f2; color: #ffffff !important; }
-    .share-btn.btn-x { background: #000000; color: #ffffff !important; }
-    .share-btn.btn-line { background: #06c755; color: #ffffff !important; }
+    .share-btn.btn-copy { background: #ffffff !important; color: #1e293b !important; border: 1.5px solid #cbd5e1 !important; min-width: 96px !important; }
+    .share-btn.btn-fb { background: #1877f2 !important; color: #ffffff !important; min-width: 100px !important; }
+    .share-btn.btn-x { background: #000000 !important; color: #ffffff !important; min-width: 86px !important; }
+    .share-btn.btn-line { background: #06c755 !important; color: #ffffff !important; min-width: 86px !important; }
 
     .copy-toast {
       position: fixed;
@@ -445,8 +450,8 @@
         line-height: 1.9 !important;
       }
       .dashboard-grid { grid-template-columns: 1fr !important; gap: 16px; }
-      .article-share-bar { padding: 10px 12px; }
-      .share-btn { padding: 5px 10px; font-size: 0.82rem; }
+      .article-share-bar { padding: 10px 12px; gap: 8px; }
+      .share-btn { min-width: 72px !important; height: 34px !important; font-size: 0.85rem !important; padding: 0 10px !important; }
     }
   </style>
 </head>
@@ -538,7 +543,7 @@
               var charCount = plainText.length;
               var readMinutes = Math.max(1, Math.ceil(charCount / 350));
               
-              // 🚀 此處已將 LINE 按鈕直接綁定至您的專屬連結：https://line.me/ti/p/y63jjVtNJe
+              // 🚀 核心修改：按鈕統一樣式類名，並將 LINE 按鈕直接綁定專屬連結
               var shareBarHtml = `
                 <div class="article-share-bar">
                   <span class="share-label">分享防詐情報：</span>
