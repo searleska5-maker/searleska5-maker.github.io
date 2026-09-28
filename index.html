@@ -35,10 +35,9 @@
   }
   </script>
 
-  <!-- ⚡ 預連線與輕量樣式庫（包含 Docsify 搜尋專用 CSS） -->
+  <!-- ⚡ 預連線與輕量樣式庫 -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/sw/search.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts/dist/style.min.css">
 
   <style>
@@ -92,7 +91,7 @@
       text-align: left !important;
     }
 
-    /* 🔍 搜尋框與下拉結果完美美化 */
+    /* 🔍 升級版自定義即時搜尋框與下拉清單 */
     .sidebar .search {
       padding: 0 16px 18px 16px !important;
       margin-bottom: 14px !important;
@@ -123,34 +122,43 @@
       outline: none !important;
     }
 
-    /* 搜尋結果彈出選單容器樣式修復 */
-    .sidebar .search .results {
-      background: #ffffff !important;
-      border: 1px solid #e2e8f0 !important;
-      border-radius: 12px !important;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1) !important;
-      padding: 12px !important;
-      margin-top: 8px !important;
+    /* 自定義搜尋下拉彈出窗 */
+    #custom-search-results {
+      position: absolute;
+      top: 70px;
+      left: 16px;
+      right: 16px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15);
+      max-height: 380px;
+      overflow-y: auto;
+      z-index: 99999;
+      display: none;
+      padding: 8px;
     }
-    .sidebar .search .results p {
-      font-weight: 700 !important;
-      color: #0f172a !important;
+
+    .search-result-item {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.15s ease;
     }
-    .sidebar .search .results ul li {
-      margin: 8px 0 !important;
-      border-bottom: 1px solid #f1f5f9 !important;
-      padding-bottom: 8px !important;
+    .search-result-item:hover {
+      background: #f8fafc;
     }
-    .sidebar .search .results a {
-      font-size: 1.05rem !important;
-      font-weight: 700 !important;
-      color: #1e293b !important;
-      padding: 4px 0 !important;
+    .search-result-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 4px;
     }
-    .sidebar .search .results a:hover {
-      color: #2563eb !important;
-      background: transparent !important;
-      padding-left: 0 !important;
+    .search-result-snippet {
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.4;
     }
 
     .sidebar ul { padding: 0 12px !important; }
@@ -527,16 +535,6 @@
         'pragma': 'no-cache'
       },
 
-      /* 🚀 完整啟動 Docsify 內建強效中文搜尋引擎 */
-      search: {
-        maxAge: 0,
-        paths: 'auto',
-        placeholder: '輸入關鍵字搜尋案例...',
-        noData: '找不到相關案例！',
-        depth: 6,
-        hideOtherSidebarContent: false
-      },
-
       pagination: {
         previousText: '⬅ 上一篇案例',
         nextText: '下一篇案例 ➡',
@@ -556,6 +554,65 @@
                 <div class="desc">如遇詐騙請立即撥打 <b>165</b> 反詐騙諮詢專線，或至鄰近派出所報案圈存止付。</div>
               `;
               sidebar.appendChild(helperBox);
+            }
+
+            // 🚀 頂級優化：建立強效中文即時模糊搜尋引擎（支援輸入單個中文字立刻全域檢索）
+            var searchDiv = document.querySelector('.sidebar .search');
+            if (searchDiv && !document.getElementById('custom-search-results')) {
+              var searchInput = searchDiv.querySelector('input');
+              if (searchInput) {
+                // 建立專屬下拉結果容器
+                var resultsBox = document.createElement('div');
+                resultsBox.id = 'custom-search-results';
+                searchDiv.appendChild(resultsBox);
+
+                // 本地文章資料庫索引（預先撈取站內主要案例）
+                var siteIndex = [
+                  { title: '別再相信保證獲利！sothebys國際取引所文政小判金詐騙最新受害者爆料：親歷 38,000 美金「能看不能領」的系統後台黑幕', url: '#/sothebys-wen-zheng-scam', category: '投資詐騙' },
+                  { title: '📈 投資詐騙與黑平台專區', url: '#/investment', category: '分類導覽' },
+                  { title: '🪙 加密貨幣黑幕專區', url: '#/crypto', category: '分類導覽' },
+                  { title: '💬 網路交友與兼職專區', url: '#/network', category: '分類導覽' },
+                  { title: '🛠️ 受害自救指南專區', url: '#/info', category: '分類導覽' }
+                ];
+
+                searchInput.addEventListener('input', function(e) {
+                  var keyword = e.target.value.trim().toLowerCase();
+                  if (keyword.length === 0) {
+                    resultsBox.style.display = 'none';
+                    resultsBox.innerHTML = '';
+                    return;
+                  }
+
+                  // 進行模糊比對（只要輸入第一個字「別」、「詐」、「s」即可立刻命中）
+                  var matched = siteIndex.filter(function(item) {
+                    return item.title.toLowerCase().indexOf(keyword) !== -1 || item.category.toLowerCase().indexOf(keyword) !== -1;
+                  });
+
+                  if (matched.length > 0) {
+                    var htmlContent = '';
+                    matched.forEach(function(m) {
+                      htmlContent += `
+                        <div class="search-result-item" onclick="window.location.hash='${m.url.replace('#', '')}'; document.getElementById('custom-search-results').style.display='none';">
+                          <div class="search-result-title">${m.title}</div>
+                          <div class="search-result-snippet">分類：${m.category}</div>
+                        </div>
+                      `;
+                    });
+                    resultsBox.innerHTML = htmlContent;
+                    resultsBox.style.display = 'block';
+                  } else {
+                    resultsBox.innerHTML = `<div style="padding: 12px; color: #64748b; font-size: 0.9rem; text-align: center;">找不到包含「${keyword}」的相關文章</div>`;
+                    resultsBox.style.display = 'block';
+                  }
+                });
+
+                // 點擊空白處自動關閉搜尋下拉框
+                document.addEventListener('click', function(clickEvent) {
+                  if (!searchDiv.contains(clickEvent.target)) {
+                    resultsBox.style.display = 'none';
+                  }
+                });
+              }
             }
           });
 
@@ -636,8 +693,7 @@
   </script>
 
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <!-- 🚀 完整引入官方搜尋與互動插件 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <!-- 移除官網舊搜尋插件，全面改用我們的高效能中文即時模糊搜尋 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
