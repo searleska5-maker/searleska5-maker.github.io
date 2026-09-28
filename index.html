@@ -19,6 +19,11 @@
   <meta property="og:url" content="https://searleska5-maker.github.io/">
   <meta property="og:site_name" content="詐騙觀察筆記">
 
+  <!-- 🐦 Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="詐騙觀察筆記 - 最新反詐騙情報">
+  <meta name="twitter:description" content="揭露最新黑平台套路，提供受害自救與防詐情境指南。">
+
   <!-- 🔍 Google 結構化數據 -->
   <script type="application/ld+json">
   {
@@ -54,7 +59,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* 頂部彩色閱讀進度條 */
+    /* 頂部閱讀進度條 */
     .reading-progress-bar {
       position: fixed;
       top: 0;
@@ -190,81 +195,88 @@
       box-sizing: border-box;
     }
 
-    /* ===================================================
-       🎯 核心修復：強制覆蓋文章標題與內文字體大小與行距
-       =================================================== */
-
-    /* 醒目霸氣的文章主標題 */
+    /* 醒目文章主標題 (單篇文章頂部) */
     .blog-post-title,
     .markdown-section h1 {
       font-size: 2.3rem !important;
       font-weight: 800 !important;
       color: #0f172a !important;
       line-height: 1.4 !important;
-      margin: 0 0 16px 0 !important;
+      margin: 0 0 18px 0 !important;
       border: none !important;
       letter-spacing: -0.02em !important;
     }
 
-    /* 文章副標題 (h2, h3) */
-    .markdown-section h2 {
-      font-size: 1.7rem !important;
-      font-weight: 800 !important;
-      margin: 2.6rem 0 1.2rem 0 !important;
-      border-bottom: 2px solid #f1f5f9 !important;
-      padding-bottom: 0.6rem !important;
-      color: #1e293b !important;
+    /* =================================================================
+       🔥 終極核心修復：強制將分類清單項目（`* [標題](連結)`）
+       全面重構為「高質感醒目大標題新聞卡片」，徹底消滅細小綠色文字！
+       ================================================================= */
+    .markdown-section > ul {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 28px 0 !important;
     }
 
-    .markdown-section h3 {
-      font-size: 1.45rem !important;
+    .markdown-section > ul > li {
+      list-style: none !important;
+      margin: 20px 0 !important;
+      padding: 0 !important;
+    }
+
+    /* 真正的大標題實體：卡片外框 + 大粗體 + 箭頭 */
+    .markdown-section > ul > li > a {
+      display: block !important;
+      font-size: 1.45rem !important;       /* 大器震撼的 24px 大字體 */
+      font-weight: 800 !important;        /* 滿級特粗字重 */
+      color: #0f172a !important;          /* 質感深墨黑，不再是刺眼小綠字 */
+      line-height: 1.55 !important;
+      text-decoration: none !important;   /* 去除雜亂底線 */
+      border-bottom: none !important;
+      background: #ffffff !important;
+      border: 2px solid #e2e8f0 !important;
+      padding: 24px 28px 24px 32px !important;
+      border-radius: 16px !important;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04) !important;
+      position: relative !important;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      border-left: 6px solid #2563eb !important; /* 左側專屬藍色情報條 */
+    }
+
+    /* 滑鼠懸停效果：整張卡片平滑浮起、微藍發光 */
+    .markdown-section > ul > li > a:hover {
+      color: #1d4ed8 !important;
+      border-color: #93c5fd !important;
+      border-left-color: #1d4ed8 !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 14px 26px -4px rgba(37, 99, 235, 0.14) !important;
+      background: #f8fafc !important;
+    }
+
+    /* 卡片末端自動追加精緻提示箭頭 */
+    .markdown-section > ul > li > a::after {
+      content: " ➔ 點擊閱讀調查詳情" !important;
+      display: block !important;
+      font-size: 0.92rem !important;
       font-weight: 700 !important;
-      margin: 2.2rem 0 1rem 0 !important;
-      color: #1e293b !important;
-    }
-
-    /* 🚀 強力穿透：覆蓋痞客邦的所有小字體與密密麻麻排版 */
-    .markdown-section p,
-    .markdown-section p span,
-    .markdown-section p font,
-    .markdown-section li,
-    .markdown-section li font,
-    .markdown-section li span,
-    .markdown-section blockquote,
-    .markdown-section blockquote font,
-    .markdown-section blockquote span {
-      font-size: 1.22rem !important; /* 清晰舒服的黃金大字體（約 20px） */
-      line-height: 2.1 !important;   /* 呼吸感拉滿的寬鬆行距 */
-      color: #1e293b !important;
+      color: #2563eb !important;
+      margin-top: 10px !important;
       letter-spacing: 0.02em !important;
     }
 
-    /* 段落間距拉開，告別密密麻麻 */
+    /* 內文文字與行距 */
+    .markdown-section p,
+    .markdown-section blockquote {
+      font-size: 1.22rem !important;
+      line-height: 2.1 !important;
+      color: #1e293b !important;
+    }
+
     .markdown-section p {
       margin-top: 1.6rem !important;
       margin-bottom: 1.6rem !important;
     }
 
-    .markdown-section ul, 
-    .markdown-section ol {
-      padding-left: 2rem !important;
-      margin: 1.5rem 0 !important;
-    }
-
-    .markdown-section li {
-      margin: 10px 0 !important;
-    }
-
-    /* 引言框美化 */
-    .markdown-section blockquote {
-      border-left: 5px solid #2563eb !important;
-      background: #eff6ff !important;
-      padding: 18px 24px !important;
-      border-radius: 0 12px 12px 0 !important;
-      margin: 1.8rem 0 !important;
-    }
-
-    /* 社群分享按鈕樣式 */
+    /* 社群分享按鈕 */
     .article-share-bar {
       display: flex;
       align-items: center;
@@ -297,7 +309,6 @@
       cursor: pointer;
       border: none;
       transition: all 0.2s ease;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
     }
     .share-btn:hover {
       transform: translateY(-2px);
@@ -321,7 +332,6 @@
       font-size: 0.95rem;
       font-weight: 600;
       z-index: 10000;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     }
 
     /* 首頁動態流光橫幅 */
@@ -416,17 +426,18 @@
       gap: 6px;
     }
 
-    /* 手機端適應 */
+    /* 手機端極限適應 */
     @media (max-width: 900px) {
       .content { left: 0 !important; padding-top: 10px !important; }
       .markdown-section {
         width: 96% !important;
         padding: 24px 18px 40px 18px !important;
         margin: 10px auto !important;
-        border-radius: 14px;
       }
-      .blog-post-title, .markdown-section h1 { font-size: 1.75rem !important; }
-      .markdown-section p, .markdown-section li { font-size: 1.1rem !important; line-height: 1.85 !important; }
+      .markdown-section > ul > li > a {
+        font-size: 1.2rem !important;
+        padding: 18px 20px !important;
+      }
       .dashboard-grid { grid-template-columns: 1fr !important; gap: 16px; }
       .article-share-bar { padding: 10px 12px; }
       .share-btn { padding: 5px 10px; font-size: 0.82rem; }
@@ -437,13 +448,9 @@
   <div class="reading-progress-bar" id="readingProgress"></div>
   
   <div id="app">
-    <noscript>
-      <h1>詐騙觀察筆記 - 全方位民間反詐騙情報站</h1>
-      <p>專業拆解投資詐騙、假虛擬貨幣交易所、網路交友殺豬盤與海外求職騙局，提供第一時間受害自救與止付指南。</p>
-    </noscript>
     <div style="text-align: center; padding: 60px 20px; color: #64748b;">
       <h2>🛡️ 詐騙觀察筆記載入中...</h2>
-      <p>正在為您調取最新反詐安全情報</p>
+      <p>正在調取最新反詐安全情報</p>
     </div>
   </div>
   
@@ -496,17 +503,13 @@
               helperBox.className = 'sidebar-helper-card';
               helperBox.innerHTML = `
                 <div class="title">🚨 緊急通報管道</div>
-                <div class="desc">
-                  如遇詐騙請立即撥打 <b>165</b> 反詐騙諮詢專線，或至鄰近派出所報案圈存止付。
-                </div>
+                <div class="desc">如遇詐騙請立即撥打 <b>165</b> 反詐騙諮詢專線，或至鄰近派出所報案圈存止付。</div>
               `;
               sidebar.appendChild(helperBox);
             }
           });
 
-          // 核心修復：正確保留並美化文章標題
           hook.afterEach(function(html, next) {
-            // 首頁、分類頁（investment.md 等）不注入單篇文章專屬資訊
             var isCategoryOrHome = vm.route.file === 'README.md' || 
                                    vm.route.file === 'investment.md' || 
                                    vm.route.file === 'crypto.md' || 
@@ -524,26 +527,11 @@
               
               var shareBarHtml = `
                 <div class="article-share-bar">
-                  <span class="share-label">
-                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-                    分享防詐情報：
-                  </span>
-                  <button class="share-btn btn-copy" onclick="window.copyPostLink()">
-                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    複製連結
-                  </button>
-                  <a class="share-btn btn-fb" href="https://www.facebook.com/sharer/sharer.php?u=" onclick="this.href='https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href); return true;" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    Facebook
-                  </a>
-                  <a class="share-btn btn-x" href="https://twitter.com/intent/tweet?text=" onclick="this.href='https://twitter.com/intent/tweet?text=' + encodeURIComponent('${rawTitle} - 詐騙觀察筆記') + '&url=' + encodeURIComponent(window.location.href); return true;" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    X
-                  </a>
-                  <a class="share-btn btn-line" href="https://social-plugins.line.me/lineit/share?url=" onclick="this.href='https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(window.location.href); return true;" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.49.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .626.285.626.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-                    LINE
-                  </a>
+                  <span class="share-label">分享防詐情報：</span>
+                  <button class="share-btn btn-copy" onclick="window.copyPostLink()">複製連結</button>
+                  <a class="share-btn btn-fb" href="https://www.facebook.com/sharer/sharer.php?u=" onclick="this.href='https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href); return true;" target="_blank">Facebook</a>
+                  <a class="share-btn btn-x" href="https://twitter.com/intent/tweet?text=" onclick="this.href='https://twitter.com/intent/tweet?text=' + encodeURIComponent('${rawTitle} - 詐騙觀察筆記') + '&url=' + encodeURIComponent(window.location.href); return true;" target="_blank">X</a>
+                  <a class="share-btn btn-line" href="https://social-plugins.line.me/lineit/share?url=" onclick="this.href='https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(window.location.href); return true;" target="_blank">LINE</a>
                 </div>
               `;
 
