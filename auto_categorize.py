@@ -4,7 +4,7 @@ import datetime
 
 BASE_URL = "https://searleska5-maker.github.io/#/"
 
-# 4 大專區分類配置與關鍵字庫
+# 4 大專區分類配置
 CATEGORIES = {
     'investment.md': {
         'title': '# 📈 投資詐騙與黑平台',
@@ -28,24 +28,48 @@ CATEGORIES = {
     }
 }
 
-EXCLUDE_FILES = {'README.md', 'SUMMARY.md', '_sidebar.md', 'investment.md', 'crypto.md', 'network.md', 'info.md'}
+# 🚀 嚴格排除系統保留檔、導覽頁與雜頁（絕不進入文章清單）
+EXCLUDE_FILES = {
+    'README.md', 'SUMMARY.md', '_sidebar.md', 
+    'investment.md', 'crypto.md', 'network.md', 'info.md',
+    'about.md', 'cases.md', 'experience.md', 'contact.md', 'help.md'
+}
+
+# 🚀 標題黑名單：如果抓出來的標題是這些導覽字樣，直接過濾掉
+EXCLUDE_TITLES = {
+    '關於本站', '關於詐騙觀察筆記', '最新案例', '受害者經驗交流與心得', 
+    '無法出金與平台失聯案例', '常見問題', '免責聲明', '首頁'
+}
 
 def get_post_info(filepath):
-    """精準提取文章一級標題與全文內容"""
+    """四重智慧適配標題"""
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
     
+    # 規則 1：標準 # 標題
     title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
     if title_match:
-        title = title_match.group(1).strip()
-    else:
-        # 若未找到 # 大標題，搜尋引號開頭標題或檔名
-        quote_match = re.search(r'「([^」]+)」', content)
-        title = quote_match.group(1).strip() if quote_match else os.path.splitext(os.path.basename(filepath))[0]
-    return title, content
+        return title_match.group(1).strip(), content
+
+    # 規則 2：引號標題「暴雷#被...」
+    quote_match = re.search(r'「([^」\n]+)」', content)
+    if quote_match:
+        clean_title = re.sub(r'<[^>]+>', '', quote_match.group(1)).strip()
+        if len(clean_title) > 5:
+            return clean_title, content
+
+    # 規則 3：案例名稱
+    case_match = re.search(r'案例名稱[：:]\s*([^\n<]+)', content)
+    if case_match:
+        clean_title = re.sub(r'<[^>]+>', '', case_match.group(1)).strip()
+        if len(clean_title) > 3:
+            return clean_title, content
+
+    # 規則 4：檔案名稱
+    clean_name = os.path.splitext(os.path.basename(filepath))[0].replace('-', ' ').replace('_', ' ')
+    return clean_name, content
 
 def generate_sitemap(all_posts):
-    """為 Google SEO 生成專屬 sitemap.xml"""
     today = datetime.datetime.now().strftime("%Y-%m-%d")
     sitemap_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>\n',
@@ -62,32 +86,37 @@ def generate_sitemap(all_posts):
     
     with open('sitemap.xml', 'w', encoding='utf-8') as f:
         f.writelines(sitemap_lines)
-    print("✅ sitemap.xml 已同步生成！")
 
 def generate_robots():
-    """生成利於 Googlebot 抓取的 robots.txt"""
     content = "User-agent: *\nAllow: /\nSitemap: https://searleska5-maker.github.io/sitemap.xml\n"
     with open('robots.txt', 'w', encoding='utf-8') as f:
         f.write(content)
-    print("✅ robots.txt 已同步生成！")
 
 def categorize():
     all_files = [f for f in os.listdir('.') if f.endswith('.md') and f not in EXCLUDE_FILES]
     category_posts = {cat: [] for cat in CATEGORIES}
+    valid_articles = []
 
     for filename in all_files:
         title, content = get_post_info(filename)
+        
+        # 🚀 如果標題在黑名單中，直接跳過，不當作文章收錄
+        if title in EXCLUDE_TITLES:
+            continue
+
         matched = False
+        # 依照專區關鍵字精準歸類
         for cat, data in CATEGORIES.items():
             for kw in data['keywords']:
                 if kw.lower() in content.lower():
                     category_posts[cat].append((title, filename))
+                    valid_articles.append(filename)
                     matched = True
                     break
             if matched:
                 break
-        if not matched:
-            category_posts['investment.md'].append((title, filename))
+        
+        # 🚀 移除先前的「未命中全部丟進投資」的流氓邏輯！未命中文章不再亂塞
 
     # 生成各專區 Markdown 頁面
     for cat, posts in category_posts.items():
@@ -102,14 +131,14 @@ def categorize():
             for title, filename in posts:
                 lines.append(f"* [{title}]({filename})\n")
         else:
-            lines.append("> 💡 目前本專區暫無案例，情報持續更新中...\n")
+            lines.append("> 💡 本專區案例持續彙整收錄中，即將更新...\n")
             
         with open(cat, 'w', encoding='utf-8') as f:
             f.writelines(lines)
             
-    generate_sitemap(all_files)
+    generate_sitemap(valid_articles)
     generate_robots()
-    print("✅ 全部分類專區、Sitemap 與 SEO 配置已自動更新完成！")
+    print("✅ 雜頁與範本已徹底過濾，各專區現在只呈現真正對應的案例！")
 
 if __name__ == '__main__':
     categorize()
