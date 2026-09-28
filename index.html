@@ -6,57 +6,45 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   
-  <!-- 🚀 核心 SEO 搜尋引擎優化標籤 -->
+  <!-- 🚀 SEO 搜尋引擎核心標籤 -->
   <meta name="description" content="全方位民間反詐騙知識庫與情報觀察站。深度解析虛擬貨幣交易所出金陷阱、假投資股票群組、網路交友殺豬盤，並提供第一時間證據保存與報案自救流程。">
   <meta name="keywords" content="詐騙, 投資詐騙, 加密貨幣詐騙, 殺豬盤, 無法出金, 假交易所, 165反詐騙, 詐騙名單, 詐騙觀察筆記, 資金追回">
   <meta name="author" content="詐騙觀察筆記團隊">
   <meta name="robots" content="index, follow">
   
-  <!-- 📱 社群分享 Open Graph / Facebook / LINE 卡片 -->
+  <!-- 📱 社群分享 Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="詐騙觀察筆記 - 反詐騙情境教育與真實案例解析">
   <meta property="og:description" content="深度拆解各類假投資、加密貨幣黑幕與網路交友騙局，守護您的財產安全。">
   <meta property="og:url" content="https://searleska5-maker.github.io/">
   <meta property="og:site_name" content="詐騙觀察筆記">
-  
-  <!-- 🐦 Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="詐騙觀察筆記 - 最新反詐騙情報">
-  <meta name="twitter:description" content="揭露最新黑平台套路，提供受害自救與防詐情境指南。">
 
-  <!-- 🔍 Google 結構化數據（JSON-LD 強化搜尋索引與收錄） -->
+  <!-- 🔍 Google 結構化數據 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "詐騙觀察筆記",
     "url": "https://searleska5-maker.github.io/",
-    "description": "全方位民間反詐騙知識庫與情報觀察站",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://searleska5-maker.github.io/#/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "description": "全方位民間反詐騙知識庫與情報觀察站"
   }
   </script>
 
-  <!-- ⚡ 極速載入優化：預先連線 CDN -->
+  <!-- ⚡ 預連線與樣式加載 -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts/dist/style.min.css">
 
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
+      --primary: #1d4ed8;
+      --primary-hover: #1e40af;
       --primary-light: #eff6ff;
       --surface: #ffffff;
-      --bg-page: #f8fafc;
-      --border: #e2e8f0;
+      --bg-page: #f1f5f9;
+      --border: #cbd5e1;
       --text-main: #0f172a;
-      --text-muted: #64748b;
-      --accent-red: #ef4444;
-      --accent-amber: #f59e0b;
+      --text-muted: #475569;
     }
 
     body {
@@ -66,7 +54,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* 頂部平滑漸層閱讀進度條 */
+    /* 頂部彩色閱讀進度條 */
     .reading-progress-bar {
       position: fixed;
       top: 0;
@@ -78,88 +66,121 @@
       transition: width 0.15s ease-out;
     }
 
-    /* 📌 左側側邊欄終極調校：大字體、加寬舒適版型、大點擊區 */
+    /* =========================================
+       1. 左側側邊欄深度重構（超清晰大字體 + 寬敞版型）
+       ========================================= */
     .sidebar {
-      background: #f1f5f9 !important;
-      border-right: 1px solid var(--border) !important;
+      background: #f8fafc !important;
+      border-right: 1.5px solid #e2e8f0 !important;
       padding-top: 1.5rem !important;
-      width: 280px !important;
+      width: 300px !important; /* 寬度加寬，視覺穩重 */
     }
 
+    /* 網站大標題 */
     .sidebar .app-name {
-      font-size: 1.4rem !important;
+      font-size: 1.5rem !important;
       font-weight: 800 !important;
-      color: var(--text-main) !important;
+      color: #0f172a !important;
       letter-spacing: -0.02em;
-      padding: 0 16px !important;
+      padding: 0 20px !important;
       margin-bottom: 1.2rem !important;
+      text-align: left !important;
+    }
+
+    /* 🔍 解決問題 1：重新打造醒目、大尺寸搜尋框 */
+    .sidebar .search {
+      padding: 0 16px 16px 16px !important;
+      margin-bottom: 12px !important;
+      border-bottom: 1px solid #e2e8f0 !important;
     }
 
     .sidebar .search input {
-      font-size: 1rem !important;
-      padding: 10px 14px !important;
-      border-radius: 8px !important;
-      border: 1px solid var(--border) !important;
+      font-size: 1.05rem !important;
+      height: 46px !important;
+      padding: 0 16px 0 42px !important;
+      border-radius: 12px !important;
+      border: 2px solid #cbd5e1 !important;
+      background: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06) !important;
+      color: #0f172a !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      transition: all 0.2s ease !important;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%2364748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>') !important;
+      background-repeat: no-repeat !important;
+      background-position: 14px center !important;
+    }
+
+    .sidebar .search input:focus {
+      border-color: #2563eb !important;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15) !important;
+      outline: none !important;
+    }
+
+    /* 🎯 解決問題 3：分類欄字體真正放大、飽滿醒目 */
+    .sidebar ul {
+      padding: 0 12px !important;
     }
 
     .sidebar ul li {
-      margin: 6px 0 !important;
+      margin: 8px 0 !important;
     }
 
     .sidebar ul li a {
-      font-size: 1.15rem !important; /* 合適大字體，清晰不費力 */
-      font-weight: 600 !important;
+      font-size: 1.22rem !important; /* 顯著放大的黃金大字體 */
+      font-weight: 700 !important;
       color: #334155 !important;
-      padding: 11px 18px !important; /* 擴大手機點擊熱區 */
-      border-radius: 10px !important;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      padding: 12px 20px !important; /* 加大手指與滑鼠點擊區間 */
+      border-radius: 12px !important;
+      transition: all 0.2s ease !important;
       display: flex !important;
       align-items: center;
       border-bottom: none !important;
-      letter-spacing: 0.01em;
+      line-height: 1.4 !important;
     }
 
     .sidebar ul li a:hover {
       background: #e2e8f0 !important;
-      color: var(--primary) !important;
-      padding-left: 22px !important;
+      color: #1d4ed8 !important;
+      padding-left: 26px !important;
     }
 
     .sidebar ul li.active > a {
-      background: var(--primary-light) !important;
-      color: var(--primary) !important;
-      font-weight: 700 !important;
-      border-right: none !important;
+      background: #dbeafe !important;
+      color: #1d4ed8 !important;
+      font-weight: 800 !important;
     }
 
-    /* 主閱讀區卡片板塊（閱讀沉浸感與質感） */
+    /* =========================================
+       2. 中間內容板塊優化（解決問題 2：比例過窄）
+       ========================================= */
     .content {
-      padding-top: 20px !important;
+      padding-top: 24px !important;
+      left: 300px !important;
     }
 
     .markdown-section {
-      max-width: 880px !important;
-      padding: 36px 48px 60px 48px !important;
-      background: var(--surface);
-      border-radius: 16px;
-      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+      max-width: 1180px !important; /* 從原本 880px 擴展至 1180px，不再窄小 */
+      padding: 40px 55px 70px 55px !important;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
       margin: 20px auto 40px auto;
-      border: 1px solid var(--border);
+      border: 1px solid #e2e8f0;
+      box-sizing: border-box;
     }
 
-    /* 純 CSS 動態深藍流光英雄橫幅（0 KB 負載、極速載入） */
+    /* 首頁英雄橫幅（動態流光，兼顧大螢幕比例） */
     .hero-banner {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
       background-size: 200% 200%;
       animation: bannerGlow 8s ease infinite;
       color: #ffffff;
-      padding: 3rem 2rem;
-      border-radius: 16px;
+      padding: 3.5rem 2.5rem;
+      border-radius: 18px;
       text-align: center;
-      margin-bottom: 2rem;
-      box-shadow: 0 12px 30px -10px rgba(37, 99, 235, 0.45);
-      position: relative;
-      overflow: hidden;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 14px 35px -8px rgba(37, 99, 235, 0.35);
     }
     @keyframes bannerGlow {
       0% { background-position: 0% 50%; }
@@ -168,130 +189,120 @@
     }
     .hero-banner h1 {
       color: #ffffff !important;
-      font-size: 2.3rem !important;
+      font-size: 2.6rem !important;
       font-weight: 800 !important;
-      margin: 0 0 12px 0 !important;
-      letter-spacing: -0.03em;
+      margin: 0 0 14px 0 !important;
       border: none !important;
     }
     .hero-banner p {
       color: #cbd5e1 !important;
-      font-size: 1.1rem !important;
+      font-size: 1.25rem !important;
       margin: 0 auto !important;
-      max-width: 600px;
     }
 
-    /* 部落格專題文章標頭卡片 */
-    .blog-post-header {
-      margin-bottom: 2.2rem;
-      padding-bottom: 1.4rem;
-      border-bottom: 2px solid #f1f5f9;
-    }
-    .blog-post-header h1.blog-post-title {
-      font-size: 2.1rem !important;
-      font-weight: 800 !important;
-      color: var(--text-main) !important;
-      line-height: 1.35 !important;
-      margin: 0 0 10px 0 !important;
-      border: none !important;
-    }
-    .blog-post-meta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-    .blog-post-meta .badge {
-      background-color: var(--primary-light);
-      color: var(--primary);
-      padding: 3px 10px;
-      border-radius: 6px;
-      font-weight: 600;
-    }
-
-    /* 首頁快速分類卡片（SVG 圖標支援） */
+    /* 4 大核心專區導覽卡片（兩欄飽滿佈局） */
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin: 24px 0 32px 0;
+      gap: 24px;
+      margin: 28px 0 36px 0;
     }
     .dashboard-card {
       background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 22px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 26px;
       text-decoration: none !important;
       color: inherit !important;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.25s ease;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
+      min-height: 150px;
     }
     .dashboard-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px -4px rgba(37, 99, 235, 0.12);
-      border-color: #93c5fd;
+      transform: translateY(-5px);
+      box-shadow: 0 14px 28px -4px rgba(37, 99, 235, 0.15);
+      border-color: #60a5fa;
     }
     .card-header-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
+      gap: 14px;
+      margin-bottom: 10px;
     }
     .card-svg-icon {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--primary);
+      color: #2563eb;
       flex-shrink: 0;
     }
     .dashboard-card h3 {
-      font-size: 1.22rem !important;
+      font-size: 1.35rem !important;
       font-weight: 700 !important;
-      color: var(--text-main) !important;
+      color: #0f172a !important;
       margin: 0 !important;
       border: none !important;
     }
     .dashboard-card p {
-      font-size: 0.94rem !important;
-      color: var(--text-muted) !important;
-      line-height: 1.6 !important;
-      margin: 0 0 12px 0 !important;
+      font-size: 1.02rem !important;
+      color: #475569 !important;
+      line-height: 1.65 !important;
+      margin: 0 0 16px 0 !important;
     }
     .card-arrow {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--primary);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #2563eb;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
     }
 
-    /* 手機端 RWD 適應 */
-    @media (max-width: 768px) {
+    /* 內文標題與段落 */
+    .markdown-section h2 {
+      font-size: 1.7rem !important;
+      font-weight: 800 !important;
+      margin: 2rem 0 1rem 0 !important;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.6rem;
+    }
+    .markdown-section p {
+      font-size: 1.1rem !important;
+      line-height: 1.9 !important;
+      color: #334155 !important;
+    }
+
+    /* =========================================
+       3. 📱 手機端極限適應（完美排版與快速直達）
+       ========================================= */
+    @media (max-width: 900px) {
+      .content {
+        left: 0 !important;
+        padding-top: 10px !important;
+      }
       .markdown-section {
-        padding: 20px 18px !important;
-        margin: 10px !important;
-        border-radius: 12px;
+        max-width: 100% !important;
+        padding: 24px 18px 40px 18px !important;
+        margin: 10px 8px !important;
+        border-radius: 14px;
       }
       .hero-banner {
         padding: 2.2rem 1.2rem;
+        margin-bottom: 1.5rem;
       }
       .hero-banner h1 {
-        font-size: 1.65rem !important;
+        font-size: 1.75rem !important;
+      }
+      .hero-banner p {
+        font-size: 1.05rem !important;
       }
       .dashboard-grid {
-        grid-template-columns: 1fr !important;
-        gap: 14px;
-      }
-      .sidebar {
-        width: 260px !important;
+        grid-template-columns: 1fr !important; /* 手機端自動轉為大單欄，手指秒點 */
+        gap: 16px;
       }
     }
   </style>
@@ -305,9 +316,9 @@
       <h1>詐騙觀察筆記 - 全方位民間反詐騙情報站</h1>
       <p>專業拆解投資詐騙、假虛擬貨幣交易所、網路交友殺豬盤與海外求職騙局，提供第一時間受害自救與止付指南。</p>
     </noscript>
-    <div style="text-align: center; padding: 50px; color: #64748b;">
+    <div style="text-align: center; padding: 60px 20px; color: #64748b;">
       <h2>🛡️ 詐騙觀察筆記載入中...</h2>
-      <p>正在為您調取最新安全情報</p>
+      <p>正在為您調取最新反詐安全情報</p>
     </div>
   </div>
   
@@ -318,7 +329,6 @@
       loadSidebar: true,
       auto2top: true,
       
-      // 🚀 徹底告別快取死鎖：強制每次請求最新內容
       requestHeaders: {
         'cache-control': 'no-cache, no-store, must-revalidate',
         'pragma': 'no-cache'
@@ -327,8 +337,8 @@
       search: {
         maxAge: 1800000,
         paths: 'auto',
-        placeholder: '🔍 搜尋案例、平台或防詐關鍵字...',
-        noData: '找不到相關案例！建議嘗試其他關鍵字。',
+        placeholder: '搜尋案例、黑平台、關鍵字...',
+        noData: '找不到相關案例！',
         depth: 6,
         hideOtherSidebarContent: false
       },
@@ -342,6 +352,7 @@
 
       plugins: [
         function(hook, vm) {
+          // 文章閱讀數據統計與美化標頭
           hook.afterEach(function(html, next) {
             if (vm.route.file !== 'README.md') {
               var headerRegex = /<h1[^>]*>([\s\S]*?)<\/h1>/i;
@@ -354,10 +365,10 @@
                 var readMinutes = Math.max(1, Math.ceil(charCount / 350));
                 
                 var blogHeaderHtml = `
-                  <div class="blog-post-header">
-                    <h1 class="blog-post-title">${rawTitle}</h1>
-                    <div class="blog-post-meta">
-                      <span class="badge">專題剖析</span>
+                  <div class="blog-post-header" style="margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:2px solid #f1f5f9;">
+                    <h1 style="font-size:2.1rem;font-weight:800;color:#0f172a;margin:0 0 10px 0;border:none;">${rawTitle}</h1>
+                    <div style="display:flex;align-items:center;gap:12px;font-size:0.9rem;color:#64748b;">
+                      <span style="background:#eff6ff;color:#2563eb;padding:3px 10px;border-radius:6px;font-weight:600;">專題剖析</span>
                       <span>•</span>
                       <span>約 ${charCount} 字</span>
                       <span>•</span>
@@ -371,6 +382,7 @@
             next(html);
           });
 
+          // 頁面滾動進度條
           hook.doneEach(function() {
             var progressBar = document.getElementById('readingProgress');
             window.onscroll = function() {
