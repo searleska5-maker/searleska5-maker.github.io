@@ -206,9 +206,7 @@
       letter-spacing: -0.02em !important;
     }
 
-    /* =================================================================
-       🔥 核心修復：強制覆蓋痞客邦所有小字體標籤，全面放大與寬鬆行距
-       ================================================================= */
+    /* 強制覆蓋所有內文標籤，全面放大與寬鬆行距 */
     .markdown-section,
     .markdown-section p,
     .markdown-section p *,
@@ -218,12 +216,11 @@
     .markdown-section blockquote *,
     .markdown-section div,
     .markdown-section div * {
-      font-size: 1.28rem !important;      /* 放大至約 21px 舒適大字 */
-      line-height: 2.2 !important;        /* 寬鬆呼吸感行距，徹底告別密密麻麻 */
+      font-size: 1.28rem !important;
+      line-height: 2.2 !important;
       letter-spacing: 0.02em !important;
     }
 
-    /* 段落與段落之間強制拉開間距 */
     .markdown-section p,
     .markdown-section blockquote,
     .markdown-section div {
@@ -231,7 +228,6 @@
       margin-bottom: 1.8rem !important;
     }
 
-    /* 引言段落微調（包含痞客邦的 blockquote） */
     .markdown-section blockquote {
       border-left: 4px solid #2563eb !important;
       background: #f8fafc !important;
@@ -530,12 +526,10 @@
               var headerRegex = /<h1[^>]*>([\s\S]*?)<\/h1>/i;
               var match = html.match(headerRegex);
 
-              // 自動提取文章主題作為大標題
               var rawTitle = '';
               if (match) {
                 rawTitle = match[1].replace(/<a[^>]*>.*?<\/a>/g, '').trim();
               } else {
-                // 如果文章沒寫 h1，從第一段抓取或使用檔名
                 var fallbackMatch = html.match(/「([\s\S]*?)」/);
                 rawTitle = fallbackMatch ? fallbackMatch[1].trim() : '案例深度調查與解析';
               }
@@ -544,13 +538,14 @@
               var charCount = plainText.length;
               var readMinutes = Math.max(1, Math.ceil(charCount / 350));
               
+              // 🚀 此處已將 LINE 按鈕直接綁定至您的專屬連結：https://line.me/ti/p/y63jjVtNJe
               var shareBarHtml = `
                 <div class="article-share-bar">
                   <span class="share-label">分享防詐情報：</span>
                   <button class="share-btn btn-copy" onclick="window.copyPostLink()">複製連結</button>
                   <a class="share-btn btn-fb" href="https://www.facebook.com/sharer/sharer.php?u=" onclick="this.href='https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href); return true;" target="_blank">Facebook</a>
                   <a class="share-btn btn-x" href="https://twitter.com/intent/tweet?text=" onclick="this.href='https://twitter.com/intent/tweet?text=' + encodeURIComponent('${rawTitle} - 詐騙觀察筆記') + '&url=' + encodeURIComponent(window.location.href); return true;" target="_blank">X</a>
-                  <a class="share-btn btn-line" href="https://social-plugins.line.me/lineit/share?url=" onclick="this.href='https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(window.location.href); return true;" target="_blank">LINE</a>
+                  <a class="share-btn btn-line" href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer">LINE</a>
                 </div>
               `;
 
