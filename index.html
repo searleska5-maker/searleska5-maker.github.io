@@ -9,10 +9,23 @@
   
   <!-- 引入 Docsify 佈景主題（Vue 風格） -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <!-- 警示框外掛樣式 (Callouts / Alerts) -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts/dist/style.min.css">
 
-  <!-- 部落格風格美化樣式：將標題與內文清楚分開 -->
   <style>
-    /* 獨立部落格文章標頭容器 */
+    /* 閱讀進度條樣式 */
+    .reading-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #42b983, #3182ce);
+      z-index: 9999;
+      transition: width 0.1s ease;
+      width: 0%;
+    }
+
+    /* 獨立部落格文章標頭卡片 */
     .blog-post-header {
       margin-top: 1rem;
       margin-bottom: 2.2rem;
@@ -20,23 +33,24 @@
       border-bottom: 2px solid #eef2f5;
     }
 
-    /* 醒目的獨立文章標題 */
+    /* 醒目的獨立大標題 */
     .blog-post-header h1.blog-post-title {
-      font-size: 2rem !important;
+      font-size: 2.1rem !important;
       font-weight: 700 !important;
       color: #1a202c !important;
-      line-height: 1.4 !important;
+      line-height: 1.35 !important;
       margin: 0 0 0.8rem 0 !important;
       padding: 0 !important;
       border-bottom: none !important;
     }
 
-    /* 標題下方的資訊列（分類標籤、閱讀提示） */
+    /* 標題下方的資訊列（標籤、字數、預估閱讀時間） */
     .blog-post-meta {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 10px;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: #718096;
     }
 
@@ -55,9 +69,18 @@
       color: #2d3748;
       margin-top: 1.2rem;
     }
+
+    .markdown-section h2 {
+      margin-top: 2.2rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #edf2f7;
+    }
   </style>
 </head>
 <body>
+  <!-- 頂部閱讀進度條 -->
+  <div class="reading-progress-bar" id="readingProgress"></div>
+
   <div id="app">載入中，請稍候...</div>
   
   <script>
@@ -66,15 +89,32 @@
       repo: '',
       loadSidebar: true,          // 啟用側邊欄
       auto2top: true,             // 切換頁面時自動捲動到頂部
+      
+      // 徹底解決快取延遲問題：強制前端每次請求最新 Markdown 檔案
+      requestHeaders: {
+        'cache-control': 'no-cache, no-store, must-revalidate',
+        'pragma': 'no-cache'
+      },
+
+      // 搜尋設定
       search: {
-        maxAge: 86400000,
+        maxAge: 3600000,          // 搜尋索引快取縮短至 1 小時，確保文章發布後能迅速被搜到
         paths: 'auto',
         placeholder: '搜尋案例或詐騙關鍵字...',
         noData: '找不到相關結果！',
         depth: 6,
         hideOtherSidebarContent: false
       },
-      // 自訂插件：自動將 Markdown 第一行標題轉換為部落格獨立標頭
+
+      // 上一篇 / 下一篇分頁設定
+      pagination: {
+        previousText: '上一篇',
+        nextText: '下一篇',
+        crossChapter: true,
+        crossChapterText: true
+      },
+
+      // 自訂外掛：獨立標頭、自動計算字數與閱讀時間、閱讀進度條
       plugins: [
         function(hook, vm) {
           hook.afterEach(function(html, next) {
@@ -84,21 +124,40 @@
             if (match) {
               var rawTitle = match[1].replace(/<a[^>]*>.*?<\/a>/g, '').trim();
               
+              // 計算內文字數（排除 HTML 標籤）
+              var plainText = html.replace(/<[^>]+>/g, '').replace(/\s+/g, '');
+              var charCount = plainText.length;
+              var readMinutes = Math.max(1, Math.ceil(charCount / 350)); // 以中文平均每分鐘閱讀 350 字計算
+              
               var blogHeaderHtml = `
                 <div class="blog-post-header">
                   <h1 class="blog-post-title">${rawTitle}</h1>
                   <div class="blog-post-meta">
                     <span class="badge">專題專文</span>
                     <span>•</span>
-                    <span>反詐騙案例觀察</span>
+                    <span>約 ${charCount} 字</span>
+                    <span>•</span>
+                    <span>預計閱讀 ${readMinutes} 分鐘</span>
                   </div>
                 </div>
               `;
               
-              // 替換原先緊貼著的一級標題
               html = html.replace(match[0], blogHeaderHtml);
             }
             next(html);
+          });
+
+          // 綁定頁面滑動進度條
+          hook.doneEach(function() {
+            var progressBar = document.getElementById('readingProgress');
+            window.onscroll = function() {
+              var winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+              var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+              var scrolled = (height > 0) ? (winScroll / height) * 100 : 0;
+              if (progressBar) {
+                progressBar.style.width = scrolled + "%";
+              }
+            };
           });
         }
       ]
@@ -109,9 +168,13 @@
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <!-- 搜尋外掛 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <!-- 圖片縮放外掛 -->
+  <!-- 圖片點擊放大外掛 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
   <!-- 複製程式碼外掛 -->
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <!-- 部落格上一篇 / 下一篇分頁外掛 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <!-- 高亮警示卡片外掛 (Alerts) -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts"></script>
 </body>
 </html>
