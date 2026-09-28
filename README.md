@@ -57,13 +57,7 @@
         <div class="card-svg-icon">
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
         </div>
-        <h3>受害自救與指南</h3>
-      </div>
-      <p>黃金通報時間線、銀行圈存止付、筆錄製作要點與防範二次律師追資詐騙。</p>
-    </div>
-    <div class="card-arrow">查閱指南 ➔</div>
-  </a>
-</div>
+
 
 ---
 
