@@ -24,7 +24,7 @@
   <meta name="twitter:title" content="詐騙觀察筆記 - 最新反詐騙情報">
   <meta name="twitter:description" content="揭露最新黑平台套路，提供受害自救與防詐情境指南。">
 
-  <!-- 🔍 Google 結構化數據（JSON-LD 強化搜尋結果呈現） -->
+  <!-- 🔍 Google 結構化數據（JSON-LD 強化搜尋索引與收錄） -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -71,47 +71,58 @@
       position: fixed;
       top: 0;
       left: 0;
-      height: 3px;
+      height: 3.5px;
       background: linear-gradient(90deg, #2563eb, #06b6d4, #10b981);
       z-index: 9999;
       width: 0%;
       transition: width 0.15s ease-out;
     }
 
-    /* 左側側邊欄現代化美化 */
+    /* 📌 左側側邊欄終極調校：大字體、加寬舒適版型、大點擊區 */
     .sidebar {
       background: #f1f5f9 !important;
       border-right: 1px solid var(--border) !important;
       padding-top: 1.5rem !important;
+      width: 280px !important;
     }
 
     .sidebar .app-name {
-      font-size: 1.3rem !important;
+      font-size: 1.4rem !important;
       font-weight: 800 !important;
       color: var(--text-main) !important;
       letter-spacing: -0.02em;
+      padding: 0 16px !important;
+      margin-bottom: 1.2rem !important;
+    }
+
+    .sidebar .search input {
+      font-size: 1rem !important;
+      padding: 10px 14px !important;
+      border-radius: 8px !important;
+      border: 1px solid var(--border) !important;
     }
 
     .sidebar ul li {
-      margin: 4px 0 !important;
+      margin: 6px 0 !important;
     }
 
     .sidebar ul li a {
-      font-size: 0.98rem !important;
-      font-weight: 500 !important;
-      color: #475569 !important;
-      padding: 9px 16px !important;
-      border-radius: 8px !important;
+      font-size: 1.15rem !important; /* 合適大字體，清晰不費力 */
+      font-weight: 600 !important;
+      color: #334155 !important;
+      padding: 11px 18px !important; /* 擴大手機點擊熱區 */
+      border-radius: 10px !important;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
       display: flex !important;
       align-items: center;
       border-bottom: none !important;
+      letter-spacing: 0.01em;
     }
 
     .sidebar ul li a:hover {
       background: #e2e8f0 !important;
       color: var(--primary) !important;
-      padding-left: 20px !important;
+      padding-left: 22px !important;
     }
 
     .sidebar ul li.active > a {
@@ -121,7 +132,7 @@
       border-right: none !important;
     }
 
-    /* 主內容卡片板塊（閱讀沉浸感優化） */
+    /* 主閱讀區卡片板塊（閱讀沉浸感與質感） */
     .content {
       padding-top: 20px !important;
     }
@@ -136,7 +147,7 @@
       border: 1px solid var(--border);
     }
 
-    /* 終極版：動態高質感英雄橫幅 */
+    /* 純 CSS 動態深藍流光英雄橫幅（0 KB 負載、極速載入） */
     .hero-banner {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
       background-size: 200% 200%;
@@ -170,7 +181,7 @@
       max-width: 600px;
     }
 
-    /* 部落格專題文章標頭 */
+    /* 部落格專題文章標頭卡片 */
     .blog-post-header {
       margin-bottom: 2.2rem;
       padding-bottom: 1.4rem;
@@ -200,7 +211,7 @@
       font-weight: 600;
     }
 
-    /* 網格卡片導覽（無字型依賴，全平臺兼容） */
+    /* 首頁快速分類卡片（SVG 圖標支援） */
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -238,6 +249,7 @@
       align-items: center;
       justify-content: center;
       color: var(--primary);
+      flex-shrink: 0;
     }
     .dashboard-card h3 {
       font-size: 1.22rem !important;
@@ -261,7 +273,7 @@
       gap: 4px;
     }
 
-    /* 📱 手機端極限排版適應 */
+    /* 手機端 RWD 適應 */
     @media (max-width: 768px) {
       .markdown-section {
         padding: 20px 18px !important;
@@ -278,13 +290,16 @@
         grid-template-columns: 1fr !important;
         gap: 14px;
       }
+      .sidebar {
+        width: 260px !important;
+      }
     }
   </style>
 </head>
 <body>
   <div class="reading-progress-bar" id="readingProgress"></div>
   
-  <!-- 🚀 SEO 強制預載入區塊：Google 爬蟲首頁文字來源 -->
+  <!-- 🚀 SEO 強制預載入區塊：Google 爬蟲專用 -->
   <div id="app">
     <noscript>
       <h1>詐騙觀察筆記 - 全方位民間反詐騙情報站</h1>
@@ -303,14 +318,14 @@
       loadSidebar: true,
       auto2top: true,
       
-      // 🚀 徹底告別快取死鎖：每次換頁自動注入防快取時間戳
+      // 🚀 徹底告別快取死鎖：強制每次請求最新內容
       requestHeaders: {
         'cache-control': 'no-cache, no-store, must-revalidate',
         'pragma': 'no-cache'
       },
 
       search: {
-        maxAge: 1800000, // 30 分鐘更新一次搜尋庫
+        maxAge: 1800000,
         paths: 'auto',
         placeholder: '🔍 搜尋案例、平台或防詐關鍵字...',
         noData: '找不到相關案例！建議嘗試其他關鍵字。',
@@ -327,7 +342,6 @@
 
       plugins: [
         function(hook, vm) {
-          // 文章閱讀數據統計與美化標頭
           hook.afterEach(function(html, next) {
             if (vm.route.file !== 'README.md') {
               var headerRegex = /<h1[^>]*>([\s\S]*?)<\/h1>/i;
@@ -357,7 +371,6 @@
             next(html);
           });
 
-          // 頁面滾動進度條
           hook.doneEach(function() {
             var progressBar = document.getElementById('readingProgress');
             window.onscroll = function() {
@@ -374,7 +387,7 @@
     };
   </script>
 
-  <!-- 核心 Docsify JS -->
+  <!-- 核心 Docsify JS 與必要外掛 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
