@@ -6,24 +6,24 @@
 
 **案例名稱：sothebys國際取引所文政小判金詐騙**
 
-👉 <a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" style="color: #2563eb; font-weight: bold; font-size: 1.15rem; text-decoration: underline;">想了解更多sothebys國際取引所文政小判金詐騙假投資的案例，可參考如何追回被sothebys國際取引所文政小判金詐騙詐走的錢</a> 👈
+👉 <a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" style="color: #2563eb; font-weight: 700; font-size: 1.18rem; text-decoration: underline;">想了解更多sothebys國際取引所文政小判金詐騙假投資的案例，可參考如何追回被sothebys國際取引所文政小判金詐騙詐走的錢</a> 👈
 
 **案例圖片：**
 
 <p align="center">
-  <img src="https://pimg.1px.tw/blog/dfhggfhfgjhfhdgfg/post/944866969243499745/944867431246082298.jpg" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
-  <img src="https://pimg.1px.tw/blog/dfhggfhfgjhfhdgfg/post/944866969243499745/944867433473259915.jpg" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+  <img src="https://pimg.1px.tw/blog/dfhggfhfgjhfhdgfg/post/944866969243499745/944867431246082298.jpg" style="max-width: 100%; border-radius: 12px; margin: 12px 0; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);">
+  <img src="https://pimg.1px.tw/blog/dfhggfhfgjhfhdgfg/post/944866969243499745/944867433473259915.jpg" style="max-width: 100%; border-radius: 12px; margin: 12px 0; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);">
 </p>
 
 ### 🟢 最簡單的拿資金回流程
-**被sothebys國際取引所文政小判金詐騙后發現無法出金 → 付款 → 保存憑證 → 付款時間線 → 獨立查證平台 → 聯繫銀行/付款機構 → 向 <a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" style="color: #ef4444; font-weight: bold; text-decoration: underline;">sothebys國際取引所文政小判金詐騙受害人諮詢</a> 請 ⬅️ 點按添加 ⬅**
+**被sothebys國際取引所文政小判金詐騙后發現無法出金 → 付款 → 保存憑證 → 付款時間線 → 獨立查證平台 → 聯繫銀行/付款機構 → 向 <a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" style="color: #ef4444; font-weight: 700; text-decoration: underline;">sothebys國際取引所文政小判金詐騙受害人諮詢</a> 請 ⬅️ 點按添加 ⬅**
 
 ---
 
 ### 🧭 一、遇到無法出金，建議按照此步驟走
 
 * **STEP1 ｜ 查詢**  
-  可向 <a href="https://www.fsc.gov.tw/" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline;">金融監督管理委員會</a> 或向 <a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" style="color: #ef4444; font-weight: bold; text-decoration: underline;">sothebys國際取引所文政小判金詐騙受害人</a> 求真確認。
+  可向 <a href="https://www.fsc.gov.tw/" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline;">金融監督管理委員會</a> 或向 <a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" style="color: #ef4444; font-weight: 700; text-decoration: underline;">sothebys國際取引所文政小判金詐騙受害人</a> 求真確認。
 
 * **STEP 2 ｜ 保存所有與付款對話記錄**  
   保留客服聊天、電子郵件、簡訊、LINE/WhatsApp對話、付款通知、轉帳明細、書頁。不要只儲存最後一次對話。
@@ -44,7 +44,7 @@
   若嫌疑人涉嫌詐騙或其他違法行為，可填寫付款、對話記錄、平台網址與相關記錄截圖，向適當的警方或主管機關詢問。
 
 * **STEP 8 ｜ 停止提供新的敏感訊息**  
-  準備好被騙的投資平台名稱，轉帳金流截圖，聊天截圖記錄，（點按即可添加，點按 ➡ <a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" style="color: #ef4444; font-weight: bold; text-decoration: underline;">加入sothebys國際取引所文政小判金詐騙受害人獲取免費金流調查管道</a>。）
+  準備好被騙的投資平台名稱，轉帳金流截圖，聊天截圖記錄，（點按即可添加，點按 ➡ <a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" style="color: #ef4444; font-weight: 700; text-decoration: underline;">加入sothebys國際取引所文政小判金詐騙受害人獲取免費金流調查管道</a>。）
 
 ---
 
@@ -73,4 +73,4 @@
 
 ---
 
-📢 本文提供一般性的反詐騙與資訊整理。實際處理方式依交易類型、支付機構、相關法規與 <a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" style="color: #ef4444; font-weight: bold; text-decoration: underline;">sothebys國際取引所文政小判金詐騙親身經歷者</a> 爲準。瞭解更多反詐案例，歡迎閱讀：<a href="https://dfhggfhfgjhfhdgfg.pixnet.net/blog/posts/944866969243499745" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline;">別再相信保證獲利！sothebys國際取引所文政小判金詐騙最新受害者爆料：親歷 38,000 美金「能看不能領」的系統後台黑幕</a>
+📢 本文提供一般性的反詐騙與資訊整理。實際處理方式依交易類型、支付機構、相關法規與 <a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" style="color: #ef4444; font-weight: 700; text-decoration: underline;">sothebys國際取引所文政小判金詐騙親身經歷者</a> 爲準。瞭解更多反詐案例，歡迎閱讀：<a href="https://dfhggfhfgjhfhdgfg.pixnet.net/blog/posts/944866969243499745" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline;">別再相信保證獲利！sothebys國際取引所文政小判金詐騙最新受害者爆料：親歷 38,000 美金「能看不能領」的系統後台黑幕</a>
