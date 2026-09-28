@@ -87,19 +87,19 @@
       color: #0f172a !important;
       letter-spacing: -0.02em;
       padding: 0 20px !important;
-      margin-bottom: 1.4rem !important;
+      margin-bottom: 1.2rem !important;
       text-align: left !important;
     }
 
-    /* 🔍 升級版自定義即時搜尋框與下拉清單 */
-    .sidebar .search {
-      padding: 0 16px 18px 16px !important;
-      margin-bottom: 14px !important;
+    /* 🔍 完美手動掛載的搜尋框樣式 */
+    .custom-search-container {
+      padding: 0 16px 16px 16px !important;
+      margin-bottom: 12px !important;
       border-bottom: 1px solid #e2e8f0 !important;
       position: relative !important;
     }
 
-    .sidebar .search input {
+    .custom-search-input {
       font-size: 1.05rem !important;
       height: 48px !important;
       padding: 0 16px 0 44px !important;
@@ -116,16 +116,16 @@
       background-position: 14px center !important;
     }
 
-    .sidebar .search input:focus {
+    .custom-search-input:focus {
       border-color: #2563eb !important;
       box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15) !important;
       outline: none !important;
     }
 
-    /* 自定義搜尋下拉彈出窗 */
+    /* 下拉即時搜尋結果彈出窗 */
     #custom-search-results {
       position: absolute;
-      top: 70px;
+      top: 65px;
       left: 16px;
       right: 16px;
       background: #ffffff;
@@ -546,27 +546,29 @@
         function(hook, vm) {
           hook.ready(function() {
             var sidebar = document.querySelector('.sidebar');
-            if (sidebar && !document.querySelector('.sidebar-helper-card')) {
-              var helperBox = document.createElement('div');
-              helperBox.className = 'sidebar-helper-card';
-              helperBox.innerHTML = `
-                <div class="title">🚨 緊急通報管道</div>
-                <div class="desc">如遇詐騙請立即撥打 <b>165</b> 反詐騙諮詢專線，或至鄰近派出所報案圈存止付。</div>
-              `;
-              sidebar.appendChild(helperBox);
-            }
+            if (sidebar) {
+              // 🚀 強制手動在側邊欄最上方安全插入完美搜尋框與下拉清單
+              if (!document.querySelector('.custom-search-container')) {
+                var searchContainer = document.createElement('div');
+                searchContainer.className = 'custom-search-container';
+                searchContainer.innerHTML = `
+                  <input type="text" class="custom-search-input" placeholder="輸入關鍵字搜尋案例..." autocomplete="off">
+                  <div id="custom-search-results"></div>
+                `;
+                
+                // 插入到標題（app-name）下方、導覽清單上方
+                var appName = sidebar.querySelector('.app-name');
+                if (appName && appName.nextSibling) {
+                  sidebar.insertBefore(searchContainer, appName.nextSibling);
+                } else {
+                  sidebar.appendChild(searchContainer);
+                }
 
-            // 🚀 頂級優化：建立強效中文即時模糊搜尋引擎（支援輸入單個中文字立刻全域檢索）
-            var searchDiv = document.querySelector('.sidebar .search');
-            if (searchDiv && !document.getElementById('custom-search-results')) {
-              var searchInput = searchDiv.querySelector('input');
-              if (searchInput) {
-                // 建立專屬下拉結果容器
-                var resultsBox = document.createElement('div');
-                resultsBox.id = 'custom-search-results';
-                searchDiv.appendChild(resultsBox);
+                // 🚀 超強即時中文模糊搜尋邏輯（輸入第 1 個字立刻彈出結果）
+                var searchInput = searchContainer.querySelector('.custom-search-input');
+                var resultsBox = searchContainer.querySelector('#custom-search-results');
 
-                // 本地文章資料庫索引（預先撈取站內主要案例）
+                // 站內案例與導覽資料庫索引
                 var siteIndex = [
                   { title: '別再相信保證獲利！sothebys國際取引所文政小判金詐騙最新受害者爆料：親歷 38,000 美金「能看不能領」的系統後台黑幕', url: '#/sothebys-wen-zheng-scam', category: '投資詐騙' },
                   { title: '📈 投資詐騙與黑平台專區', url: '#/investment', category: '分類導覽' },
@@ -583,7 +585,6 @@
                     return;
                   }
 
-                  // 進行模糊比對（只要輸入第一個字「別」、「詐」、「s」即可立刻命中）
                   var matched = siteIndex.filter(function(item) {
                     return item.title.toLowerCase().indexOf(keyword) !== -1 || item.category.toLowerCase().indexOf(keyword) !== -1;
                   });
@@ -592,7 +593,7 @@
                     var htmlContent = '';
                     matched.forEach(function(m) {
                       htmlContent += `
-                        <div class="search-result-item" onclick="window.location.hash='${m.url.replace('#', '')}'; document.getElementById('custom-search-results').style.display='none';">
+                        <div class="search-result-item" onclick="window.location.hash='${m.url.replace('#', '')}'; document.getElementById('custom-search-results').style.display='none'; document.querySelector('.custom-search-input').value='';">
                           <div class="search-result-title">${m.title}</div>
                           <div class="search-result-snippet">分類：${m.category}</div>
                         </div>
@@ -606,12 +607,23 @@
                   }
                 });
 
-                // 點擊空白處自動關閉搜尋下拉框
+                // 點擊外部自動隱藏搜尋結果
                 document.addEventListener('click', function(clickEvent) {
-                  if (!searchDiv.contains(clickEvent.target)) {
+                  if (!searchContainer.contains(clickEvent.target)) {
                     resultsBox.style.display = 'none';
                   }
                 });
+              }
+
+              // 同時補上緊急通報卡片
+              if (!document.querySelector('.sidebar-helper-card')) {
+                var helperBox = document.createElement('div');
+                helperBox.className = 'sidebar-helper-card';
+                helperBox.innerHTML = `
+                  <div class="title">🚨 緊急通報管道</div>
+                  <div class="desc">如遇詐騙請立即撥打 <b>165</b> 反詐騙諮詢專線，或至鄰近派出所報案圈存止付。</div>
+                `;
+                sidebar.appendChild(helperBox);
               }
             }
           });
@@ -693,7 +705,6 @@
   </script>
 
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <!-- 移除官網舊搜尋插件，全面改用我們的高效能中文即時模糊搜尋 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
