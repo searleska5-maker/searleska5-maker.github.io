@@ -12,7 +12,7 @@
   <meta name="author" content="詐騙觀察筆記團隊">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   
-  <!-- 📱 社群卡片 Open Graph -->
+  <!-- 📱 社群預覽卡片 Open Graph (FB / LINE / Threads 完美預覽) -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="詐騙觀察筆記 - 全方位民間反詐情報與受害自救指南">
   <meta property="og:description" content="揭露最新黑平台套路，提供受害者真實經歷整理與金流止付要點。">
@@ -25,7 +25,7 @@
   <meta name="twitter:title" content="詐騙觀察筆記 - 最新反詐情報">
   <meta name="twitter:description" content="揭露最新黑平台套路，提供受害者真實經歷整理與金流止付要點。">
 
-  <!-- 🔍 Google 結構化數據 (Schema.org NewsArticle) -->
+  <!-- 🔍 Google 結構化數據 (Schema.org) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -52,12 +52,14 @@
       --text-muted: #64748b;
     }
 
-    /* 全站防盜拷：禁止選取與複製 */
+    /* 頂級字型平滑抗鋸齒渲染與全站防盜拷保護 */
     body {
       background-color: var(--bg-page) !important;
       color: var(--text-main) !important;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-      -webkit-font-smoothing: antialiased;
+      -webkit-font-smoothing: antialiased !important;
+      -moz-osx-font-smoothing: grayscale !important;
+      text-rendering: optimizeLegibility !important;
       -webkit-user-select: none !important;
       -moz-user-select: none !important;
       -ms-user-select: none !important;
@@ -324,9 +326,7 @@
       letter-spacing: 0.03em !important;
     }
 
-    /* =================================================================
-       🚀 分享防詐情報列（已取消 LINE，僅保留複製連結、FB、X，等寬對稱）
-       ================================================================= */
+    /* 分享防詐情報列（僅保留複製連結、FB、X） */
     .article-share-bar {
       display: flex !important;
       align-items: center !important;
@@ -354,7 +354,7 @@
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
-      width: 120px !important;           /* 3個按鈕平均分配寬度 */
+      width: 120px !important;
       height: 40px !important;
       padding: 0 !important;
       border-radius: 20px !important;
@@ -394,12 +394,12 @@
     }
 
     /* =================================================================
-       🚀 右下角常駐隨動懸浮 LINE 諮詢按鈕（完美保留，呼吸燈隨動）
+       🚀 頂級隨動浮動 LINE 諮詢按鈕（完美適配手機與電腦安全視口、安全底距）
        ================================================================= */
     .floating-line-cta {
       position: fixed !important;
       right: 24px !important;
-      bottom: 28px !important;
+      bottom: max(28px, env(safe-area-inset-bottom)) !important;
       background: #06c755 !important;
       color: #ffffff !important;
       padding: 13px 20px !important;
@@ -453,7 +453,7 @@
       }
       .floating-line-cta {
         right: 14px !important;
-        bottom: 18px !important;
+        bottom: max(18px, env(safe-area-inset-bottom)) !important;
         padding: 10px 16px !important;
         font-size: 0.9rem !important;
       }
@@ -478,7 +478,7 @@
   </div>
   
   <script>
-    // 全域防盜拷攔截：禁止右鍵、禁止複製、禁止另存圖片、禁止 F12 開發者工具
+    // 全域防盜拷保護：禁止右鍵、禁止複製、禁止另存圖片、禁止 F12 開發者工具
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
     document.addEventListener('copy', function(e) { e.preventDefault(); alert('⚠️ 為了保護智慧財產權與防止詐騙集團盜圖，本站禁止複製內容！'); });
     document.addEventListener('cut', function(e) { e.preventDefault(); });
@@ -589,7 +589,7 @@
             }
           });
 
-          // 🚀 核心：文章頁渲染與分享防詐情報列調整（已移除內文 LINE 按鈕，僅保留複製連結、FB、X）
+          // 🚀 文章頁面動態渲染與分享列配置（已移除 LINE 按鈕，僅保留複製連結、FB、X）
           hook.afterEach(function(html, next) {
             var isCategoryOrHome = vm.route.file === 'README.md' || 
                                    vm.route.file === 'investment.md' || 
@@ -615,7 +615,6 @@
               var charCount = plainText.length;
               var readMinutes = Math.max(1, Math.ceil(charCount / 350));
               
-              // 🚀 已取消 LINE 按鈕，僅保留 3 個分享按鈕（複製連結、FB、X）
               var shareBarHtml = `
                 <div class="article-share-bar">
                   <span class="share-label">分享防詐情報：</span>
