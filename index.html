@@ -2,81 +2,298 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>詐騙觀察筆記｜最新投資詐騙與網路交友陷阱防範</title>
+  <title>詐騙觀察筆記 - 反詐騙情境教育與真實案例解析</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  
-  <!-- 🚀 SEO 核心優化標籤 -->
-  <meta name="description" content="最完整的反詐騙情境教育與真實案例解析。收錄假投資平台、虛擬貨幣黑幕、網路交友殺豬盤等最新詐騙手法與受害自救指南。">
-  <meta name="keywords" content="詐騙, 投資詐騙, 虛擬貨幣詐騙, 無法出金, 殺豬盤, 詐騙名單, 165反詐騙">
-  <meta name="author" content="詐騙觀察筆記">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   
-  <!-- 🚀 加速載入：預先連線到 CDN 節點 -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <!-- 🚀 核心 SEO 搜尋引擎優化標籤 -->
+  <meta name="description" content="全方位民間反詐騙知識庫與情報觀察站。深度解析虛擬貨幣交易所出金陷阱、假投資股票群組、網路交友殺豬盤，並提供第一時間證據保存與報案自救流程。">
+  <meta name="keywords" content="詐騙, 投資詐騙, 加密貨幣詐騙, 殺豬盤, 無法出金, 假交易所, 165反詐騙, 詐騙名單, 詐騙觀察筆記, 資金追回">
+  <meta name="author" content="詐騙觀察筆記團隊">
+  <meta name="robots" content="index, follow">
   
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <!-- 📱 社群分享 Open Graph / Facebook / LINE 卡片 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="詐騙觀察筆記 - 反詐騙情境教育與真實案例解析">
+  <meta property="og:description" content="深度拆解各類假投資、加密貨幣黑幕與網路交友騙局，守護您的財產安全。">
+  <meta property="og:url" content="https://searleska5-maker.github.io/">
+  <meta property="og:site_name" content="詐騙觀察筆記">
   
-  <style>
-    /* 全站基礎優化（行動端優先） */
-    :root {
-      --theme-color: #2563eb;
-      --bg-color: #f8fafc;
-    }
-    body { background-color: var(--bg-color) !important; font-family: system-ui, -apple-system, sans-serif; }
-    
-    /* 閱讀進度條 */
-    .reading-progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #2563eb, #38bdf8); z-index: 9999; transition: width 0.1s; }
+  <!-- 🐦 Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="詐騙觀察筆記 - 最新反詐騙情報">
+  <meta name="twitter:description" content="揭露最新黑平台套路，提供受害自救與防詐情境指南。">
 
-    /* 🚀 極速版「動態英雄橫幅」(取代笨重的 JS 輪播圖) */
+  <!-- 🔍 Google 結構化數據（JSON-LD 強化搜尋結果呈現） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "詐騙觀察筆記",
+    "url": "https://searleska5-maker.github.io/",
+    "description": "全方位民間反詐騙知識庫與情報觀察站",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://searleska5-maker.github.io/#/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- ⚡ 極速載入優化：預先連線 CDN -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts/dist/style.min.css">
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --surface: #ffffff;
+      --bg-page: #f8fafc;
+      --border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+    }
+
+    body {
+      background-color: var(--bg-page) !important;
+      color: var(--text-main) !important;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Noto Sans TC", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 頂部平滑漸層閱讀進度條 */
+    .reading-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #2563eb, #06b6d4, #10b981);
+      z-index: 9999;
+      width: 0%;
+      transition: width 0.15s ease-out;
+    }
+
+    /* 左側側邊欄現代化美化 */
+    .sidebar {
+      background: #f1f5f9 !important;
+      border-right: 1px solid var(--border) !important;
+      padding-top: 1.5rem !important;
+    }
+
+    .sidebar .app-name {
+      font-size: 1.3rem !important;
+      font-weight: 800 !important;
+      color: var(--text-main) !important;
+      letter-spacing: -0.02em;
+    }
+
+    .sidebar ul li {
+      margin: 4px 0 !important;
+    }
+
+    .sidebar ul li a {
+      font-size: 0.98rem !important;
+      font-weight: 500 !important;
+      color: #475569 !important;
+      padding: 9px 16px !important;
+      border-radius: 8px !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      display: flex !important;
+      align-items: center;
+      border-bottom: none !important;
+    }
+
+    .sidebar ul li a:hover {
+      background: #e2e8f0 !important;
+      color: var(--primary) !important;
+      padding-left: 20px !important;
+    }
+
+    .sidebar ul li.active > a {
+      background: var(--primary-light) !important;
+      color: var(--primary) !important;
+      font-weight: 700 !important;
+      border-right: none !important;
+    }
+
+    /* 主內容卡片板塊（閱讀沉浸感優化） */
+    .content {
+      padding-top: 20px !important;
+    }
+
+    .markdown-section {
+      max-width: 880px !important;
+      padding: 36px 48px 60px 48px !important;
+      background: var(--surface);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+      margin: 20px auto 40px auto;
+      border: 1px solid var(--border);
+    }
+
+    /* 終極版：動態高質感英雄橫幅 */
     .hero-banner {
-      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
       background-size: 200% 200%;
-      animation: gradientMove 5s ease infinite; /* 純 CSS 背景動態效果 */
-      color: white;
-      padding: 2.5rem 1.5rem;
-      border-radius: 12px;
+      animation: bannerGlow 8s ease infinite;
+      color: #ffffff;
+      padding: 3rem 2rem;
+      border-radius: 16px;
       text-align: center;
       margin-bottom: 2rem;
-      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 12px 30px -10px rgba(37, 99, 235, 0.45);
+      position: relative;
+      overflow: hidden;
     }
-    @keyframes gradientMove {
+    @keyframes bannerGlow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    .hero-banner h1 { color: white !important; font-size: 2.2rem !important; margin: 0 0 10px 0 !important; font-weight: 800 !important; border: none !important;}
-    .hero-banner p { color: #bfdbfe !important; font-size: 1.1rem !important; margin: 0 !important; }
-
-    /* 手機版排版自適應 */
-    @media (max-width: 600px) {
-      .hero-banner { padding: 1.8rem 1rem; }
-      .hero-banner h1 { font-size: 1.6rem !important; }
-      .dashboard-grid { grid-template-columns: 1fr !important; } /* 手機單排顯示，易點擊 */
+    .hero-banner h1 {
+      color: #ffffff !important;
+      font-size: 2.3rem !important;
+      font-weight: 800 !important;
+      margin: 0 0 12px 0 !important;
+      letter-spacing: -0.03em;
+      border: none !important;
+    }
+    .hero-banner p {
+      color: #cbd5e1 !important;
+      font-size: 1.1rem !important;
+      margin: 0 auto !important;
+      max-width: 600px;
     }
 
-    /* 首頁快速分類卡片 */
-    .dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
-    .dashboard-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; color: inherit !important; text-decoration: none !important; transition: all 0.2s ease; display: block; }
-    .dashboard-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); border-color: var(--theme-color); }
-    .dashboard-card h3 { margin: 0 0 8px 0 !important; color: #0f172a !important; font-size: 1.2rem !important; border: none !important;}
-    .dashboard-card p { margin: 0 !important; color: #64748b !important; font-size: 0.95rem !important; line-height: 1.5 !important; }
+    /* 部落格專題文章標頭 */
+    .blog-post-header {
+      margin-bottom: 2.2rem;
+      padding-bottom: 1.4rem;
+      border-bottom: 2px solid #f1f5f9;
+    }
+    .blog-post-header h1.blog-post-title {
+      font-size: 2.1rem !important;
+      font-weight: 800 !important;
+      color: var(--text-main) !important;
+      line-height: 1.35 !important;
+      margin: 0 0 10px 0 !important;
+      border: none !important;
+    }
+    .blog-post-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .blog-post-meta .badge {
+      background-color: var(--primary-light);
+      color: var(--primary);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
 
-    /* 主內容卡片化 */
-    .markdown-section { max-width: 850px; background: white; padding: 30px 45px; border-radius: 12px; margin: 20px auto; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+    /* 網格卡片導覽（無字型依賴，全平臺兼容） */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin: 24px 0 32px 0;
+    }
+    .dashboard-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      text-decoration: none !important;
+      color: inherit !important;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .dashboard-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -4px rgba(37, 99, 235, 0.12);
+      border-color: #93c5fd;
+    }
+    .card-header-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .card-svg-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+    .dashboard-card h3 {
+      font-size: 1.22rem !important;
+      font-weight: 700 !important;
+      color: var(--text-main) !important;
+      margin: 0 !important;
+      border: none !important;
+    }
+    .dashboard-card p {
+      font-size: 0.94rem !important;
+      color: var(--text-muted) !important;
+      line-height: 1.6 !important;
+      margin: 0 0 12px 0 !important;
+    }
+    .card-arrow {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* 📱 手機端極限排版適應 */
+    @media (max-width: 768px) {
+      .markdown-section {
+        padding: 20px 18px !important;
+        margin: 10px !important;
+        border-radius: 12px;
+      }
+      .hero-banner {
+        padding: 2.2rem 1.2rem;
+      }
+      .hero-banner h1 {
+        font-size: 1.65rem !important;
+      }
+      .dashboard-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="reading-progress-bar" id="readingProgress"></div>
   
-  <!-- 🚀 SEO 隱藏預載區：給 Google 爬蟲看的文字，正常訪客進來 0.1 秒後會被 Docsify 替換掉 -->
+  <!-- 🚀 SEO 強制預載入區塊：Google 爬蟲首頁文字來源 -->
   <div id="app">
-    <h1>詐騙觀察筆記</h1>
-    <p>最完整的反詐騙情境教育與真實案例解析。收錄假投資平台、虛擬貨幣黑幕、網路交友殺豬盤等最新詐騙手法與受害自救指南。</p>
-    <ul>
-      <li>投資詐騙：股票飆股群組、假交易平台無法出金</li>
-      <li>加密貨幣：假交易所、高收益質押騙局</li>
-    </ul>
-    載入中，請稍候...
+    <noscript>
+      <h1>詐騙觀察筆記 - 全方位民間反詐騙情報站</h1>
+      <p>專業拆解投資詐騙、假虛擬貨幣交易所、網路交友殺豬盤與海外求職騙局，提供第一時間受害自救與止付指南。</p>
+    </noscript>
+    <div style="text-align: center; padding: 50px; color: #64748b;">
+      <h2>🛡️ 詐騙觀察筆記載入中...</h2>
+      <p>正在為您調取最新安全情報</p>
+    </div>
   </div>
   
   <script>
@@ -85,18 +302,71 @@
       repo: '',
       loadSidebar: true,
       auto2top: true,
-      requestHeaders: { 'cache-control': 'max-age=600' }, // 允許短暫快取10分鐘，兼顧速度與更新
-      search: { maxAge: 3600000, paths: 'auto', placeholder: '🔍 搜尋案例...', noData: '找不到相關案例！' },
-      pagination: { previousText: '上一篇', nextText: '下一篇', crossChapter: true, crossChapterText: true },
       
+      // 🚀 徹底告別快取死鎖：每次換頁自動注入防快取時間戳
+      requestHeaders: {
+        'cache-control': 'no-cache, no-store, must-revalidate',
+        'pragma': 'no-cache'
+      },
+
+      search: {
+        maxAge: 1800000, // 30 分鐘更新一次搜尋庫
+        paths: 'auto',
+        placeholder: '🔍 搜尋案例、平台或防詐關鍵字...',
+        noData: '找不到相關案例！建議嘗試其他關鍵字。',
+        depth: 6,
+        hideOtherSidebarContent: false
+      },
+
+      pagination: {
+        previousText: '⬅ 上一篇案例',
+        nextText: '下一篇案例 ➡',
+        crossChapter: true,
+        crossChapterText: true
+      },
+
       plugins: [
         function(hook, vm) {
+          // 文章閱讀數據統計與美化標頭
+          hook.afterEach(function(html, next) {
+            if (vm.route.file !== 'README.md') {
+              var headerRegex = /<h1[^>]*>([\s\S]*?)<\/h1>/i;
+              var match = html.match(headerRegex);
+
+              if (match) {
+                var rawTitle = match[1].replace(/<a[^>]*>.*?<\/a>/g, '').trim();
+                var plainText = html.replace(/<[^>]+>/g, '').replace(/\s+/g, '');
+                var charCount = plainText.length;
+                var readMinutes = Math.max(1, Math.ceil(charCount / 350));
+                
+                var blogHeaderHtml = `
+                  <div class="blog-post-header">
+                    <h1 class="blog-post-title">${rawTitle}</h1>
+                    <div class="blog-post-meta">
+                      <span class="badge">專題剖析</span>
+                      <span>•</span>
+                      <span>約 ${charCount} 字</span>
+                      <span>•</span>
+                      <span>預計閱讀 ${readMinutes} 分鐘</span>
+                    </div>
+                  </div>
+                `;
+                html = html.replace(match[0], blogHeaderHtml);
+              }
+            }
+            next(html);
+          });
+
+          // 頁面滾動進度條
           hook.doneEach(function() {
             var progressBar = document.getElementById('readingProgress');
             window.onscroll = function() {
               var winScroll = document.documentElement.scrollTop || document.body.scrollTop;
               var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-              progressBar.style.width = (height > 0) ? (winScroll / height * 100) + "%" : "0%";
+              var scrolled = (height > 0) ? (winScroll / height) * 100 : 0;
+              if (progressBar) {
+                progressBar.style.width = scrolled + "%";
+              }
             };
           });
         }
@@ -104,8 +374,12 @@
     };
   </script>
 
+  <!-- 核心 Docsify JS -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts"></script>
 </body>
 </html>
