@@ -191,7 +191,7 @@
       color: #1d4ed8 !important;
       padding-left: 28px !important;
     }
-    .sidebar ul li:last-child a[href*="line.me"] {
+    .sidebar-nav > ul > li:last-child > a {
       background: #06c755 !important;
       color: #ffffff !important;
       justify-content: center !important;
@@ -199,7 +199,7 @@
       font-weight: 800 !important;
     }
 
-    .sidebar ul li:last-child a[href*="line.me"]:hover {
+    .sidebar-nav > ul > li:last-child > a:hover {
       background: #05b34c !important;
       color: #ffffff !important;
       padding-left: 20px !important;
@@ -495,6 +495,21 @@
     </div>
   </div>
   
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        var lineLink = document.querySelector('.sidebar a[href*="line.me"]');
+        if (lineLink) {
+          lineLink.style.setProperty('background', '#06c755', 'important');
+          lineLink.style.setProperty('color', '#ffffff', 'important');
+          lineLink.style.setProperty('font-weight', '800', 'important');
+          lineLink.style.setProperty('justify-content', 'center', 'important');
+          lineLink.style.setProperty('border-radius', '12px', 'important');
+          lineLink.style.setProperty('box-shadow', '0 6px 16px rgba(6, 199, 85, 0.25)', 'important');
+        }
+      }, 800);
+    });
+
   <script>
     // 全域防盜拷保護：禁止右鍵、禁止複製、禁止另存圖片、禁止 F12 開發者工具
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
