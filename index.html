@@ -2,216 +2,82 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>詐騙觀察筆記 - Scam Watch Notes</title>
+  <title>詐騙觀察筆記｜最新投資詐騙與網路交友陷阱防範</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="反詐騙情境教育與真實案例解析">
+  
+  <!-- 🚀 SEO 核心優化標籤 -->
+  <meta name="description" content="最完整的反詐騙情境教育與真實案例解析。收錄假投資平台、虛擬貨幣黑幕、網路交友殺豬盤等最新詐騙手法與受害自救指南。">
+  <meta name="keywords" content="詐騙, 投資詐騙, 虛擬貨幣詐騙, 無法出金, 殺豬盤, 詐騙名單, 165反詐騙">
+  <meta name="author" content="詐騙觀察筆記">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   
-  <!-- 引入 Docsify 佈景主題 -->
+  <!-- 🚀 加速載入：預先連線到 CDN 節點 -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts/dist/style.min.css">
-
+  
   <style>
+    /* 全站基礎優化（行動端優先） */
     :root {
-      --primary-color: #2563eb;
-      --primary-hover: #1d4ed8;
-      --bg-light: #f8fafc;
-      --sidebar-bg: #f1f5f9;
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
+      --theme-color: #2563eb;
+      --bg-color: #f8fafc;
     }
+    body { background-color: var(--bg-color) !important; font-family: system-ui, -apple-system, sans-serif; }
+    
+    /* 閱讀進度條 */
+    .reading-progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #2563eb, #38bdf8); z-index: 9999; transition: width 0.1s; }
 
-    /* 全站字體與背景優化 */
-    body {
-      background-color: var(--bg-light) !important;
-      color: var(--text-main) !important;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
-
-    /* 頂部閱讀進度條 */
-    .reading-progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3.5px;
-      background: linear-gradient(90deg, #2563eb, #38bdf8);
-      z-index: 9999;
-      transition: width 0.1s ease;
-      width: 0%;
-    }
-
-    /* 左側側邊欄深度美化：加大字體、微灰背景、膠囊按鈕感 */
-    .sidebar {
-      background-color: var(--sidebar-bg) !important;
-      border-right: 1px solid var(--border-color) !important;
-      padding-top: 1.5rem !important;
-    }
-
-    .sidebar .app-name {
-      font-size: 1.35rem !important;
-      font-weight: 800 !important;
-      color: #0f172a !important;
-      margin-bottom: 1.2rem !important;
-    }
-
-    .sidebar ul li {
-      margin: 6px 0 !important;
-    }
-
-    .sidebar ul li a {
-      font-size: 1.05rem !important;
-      font-weight: 500 !important;
-      color: #475569 !important;
-      padding: 8px 16px !important;
-      border-radius: 8px !important;
-      transition: all 0.2s ease !important;
-      display: block !important;
-      border-bottom: none !important;
-    }
-
-    .sidebar ul li a:hover {
-      background-color: #e2e8f0 !important;
-      color: var(--primary-color) !important;
-      transform: translateX(4px);
-    }
-
-    .sidebar ul li.active > a {
-      background-color: #dbeafe !important;
-      color: var(--primary-color) !important;
-      font-weight: 700 !important;
-      border-right: none !important;
-    }
-
-    /* 右側主閱讀區：獨立卡片底板效果 */
-    .content {
-      padding-top: 25px !important;
-    }
-
-    .markdown-section {
-      max-width: 900px !important;
-      padding: 30px 45px 50px 45px !important;
-      background: #ffffff;
-      border-radius: 14px;
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-      margin: 20px auto 40px auto;
-      border: 1px solid var(--border-color);
-    }
-
-    /* 首頁與內文大標題 */
-    .markdown-section h1 {
-      font-size: 2.2rem !important;
-      font-weight: 800 !important;
-      color: #0f172a !important;
-      margin-bottom: 1.2rem !important;
-    }
-
-    .markdown-section h2 {
-      font-size: 1.5rem !important;
-      font-weight: 700 !important;
-      color: #1e293b !important;
-      margin-top: 2rem !important;
-      border-bottom: 2px solid #f1f5f9;
-      padding-bottom: 0.5rem;
-    }
-
-    .markdown-section p {
-      font-size: 1.08rem !important;
-      line-height: 1.85 !important;
-      color: #334155 !important;
-    }
-
-    /* 部落格專題文章標頭卡片 */
-    .blog-post-header {
-      margin-bottom: 2rem;
-      padding-bottom: 1.2rem;
-      border-bottom: 2px solid #f1f5f9;
-    }
-
-    .blog-post-header h1.blog-post-title {
-      font-size: 2.1rem !important;
-      font-weight: 800 !important;
-      color: #0f172a !important;
-      line-height: 1.35 !important;
-      margin: 0 0 0.8rem 0 !important;
-    }
-
-    .blog-post-meta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .blog-post-meta .badge {
-      background-color: #dbeafe;
-      color: var(--primary-color);
-      padding: 3px 10px;
-      border-radius: 6px;
-      font-weight: 600;
-    }
-
-    /* 首頁快速分類卡片網格 (Dashboard Grid) */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-      margin: 24px 0 32px 0;
-    }
-
-    .dashboard-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
+    /* 🚀 極速版「動態英雄橫幅」(取代笨重的 JS 輪播圖) */
+    .hero-banner {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      background-size: 200% 200%;
+      animation: gradientMove 5s ease infinite; /* 純 CSS 背景動態效果 */
+      color: white;
+      padding: 2.5rem 1.5rem;
       border-radius: 12px;
-      padding: 20px;
-      text-decoration: none !important;
-      color: inherit !important;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-      transition: all 0.25s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      text-align: center;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .hero-banner h1 { color: white !important; font-size: 2.2rem !important; margin: 0 0 10px 0 !important; font-weight: 800 !important; border: none !important;}
+    .hero-banner p { color: #bfdbfe !important; font-size: 1.1rem !important; margin: 0 !important; }
+
+    /* 手機版排版自適應 */
+    @media (max-width: 600px) {
+      .hero-banner { padding: 1.8rem 1rem; }
+      .hero-banner h1 { font-size: 1.6rem !important; }
+      .dashboard-grid { grid-template-columns: 1fr !important; } /* 手機單排顯示，易點擊 */
     }
 
-    .dashboard-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.1);
-      border-color: #93c5fd;
-    }
+    /* 首頁快速分類卡片 */
+    .dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+    .dashboard-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; color: inherit !important; text-decoration: none !important; transition: all 0.2s ease; display: block; }
+    .dashboard-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); border-color: var(--theme-color); }
+    .dashboard-card h3 { margin: 0 0 8px 0 !important; color: #0f172a !important; font-size: 1.2rem !important; border: none !important;}
+    .dashboard-card p { margin: 0 !important; color: #64748b !important; font-size: 0.95rem !important; line-height: 1.5 !important; }
 
-    .dashboard-card .card-icon {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-    }
-
-    .dashboard-card .card-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 6px;
-    }
-
-    .dashboard-card .card-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .dashboard-card .card-arrow {
-      font-size: 0.9rem;
-      color: var(--primary-color);
-      font-weight: 600;
-      margin-top: 14px;
-      display: inline-flex;
-      align-items: center;
-    }
+    /* 主內容卡片化 */
+    .markdown-section { max-width: 850px; background: white; padding: 30px 45px; border-radius: 12px; margin: 20px auto; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
   </style>
 </head>
 <body>
   <div class="reading-progress-bar" id="readingProgress"></div>
-  <div id="app">載入中，請稍候...</div>
+  
+  <!-- 🚀 SEO 隱藏預載區：給 Google 爬蟲看的文字，正常訪客進來 0.1 秒後會被 Docsify 替換掉 -->
+  <div id="app">
+    <h1>詐騙觀察筆記</h1>
+    <p>最完整的反詐騙情境教育與真實案例解析。收錄假投資平台、虛擬貨幣黑幕、網路交友殺豬盤等最新詐騙手法與受害自救指南。</p>
+    <ul>
+      <li>投資詐騙：股票飆股群組、假交易平台無法出金</li>
+      <li>加密貨幣：假交易所、高收益質押騙局</li>
+    </ul>
+    載入中，請稍候...
+  </div>
   
   <script>
     window.$docsify = {
@@ -219,69 +85,18 @@
       repo: '',
       loadSidebar: true,
       auto2top: true,
+      requestHeaders: { 'cache-control': 'max-age=600' }, // 允許短暫快取10分鐘，兼顧速度與更新
+      search: { maxAge: 3600000, paths: 'auto', placeholder: '🔍 搜尋案例...', noData: '找不到相關案例！' },
+      pagination: { previousText: '上一篇', nextText: '下一篇', crossChapter: true, crossChapterText: true },
       
-      requestHeaders: {
-        'cache-control': 'no-cache, no-store, must-revalidate',
-        'pragma': 'no-cache'
-      },
-
-      search: {
-        maxAge: 3600000,
-        paths: 'auto',
-        placeholder: '🔍 搜尋案例、平台或防詐關鍵字...',
-        noData: '找不到相關案例！',
-        depth: 6,
-        hideOtherSidebarContent: false
-      },
-
-      pagination: {
-        previousText: '⬅ 上一篇',
-        nextText: '下一篇 ➡',
-        crossChapter: true,
-        crossChapterText: true
-      },
-
       plugins: [
         function(hook, vm) {
-          hook.afterEach(function(html, next) {
-            // 首頁不重複替換標頭，保留首頁原有大標風格
-            if (vm.route.file !== 'README.md') {
-              var headerRegex = /<h1[^>]*>([\s\S]*?)<\/h1>/i;
-              var match = html.match(headerRegex);
-
-              if (match) {
-                var rawTitle = match[1].replace(/<a[^>]*>.*?<\/a>/g, '').trim();
-                var plainText = html.replace(/<[^>]+>/g, '').replace(/\s+/g, '');
-                var charCount = plainText.length;
-                var readMinutes = Math.max(1, Math.ceil(charCount / 350));
-                
-                var blogHeaderHtml = `
-                  <div class="blog-post-header">
-                    <h1 class="blog-post-title">${rawTitle}</h1>
-                    <div class="blog-post-meta">
-                      <span class="badge">反詐解析</span>
-                      <span>•</span>
-                      <span>約 ${charCount} 字</span>
-                      <span>•</span>
-                      <span>預計閱讀 ${readMinutes} 分鐘</span>
-                    </div>
-                  </div>
-                `;
-                html = html.replace(match[0], blogHeaderHtml);
-              }
-            }
-            next(html);
-          });
-
           hook.doneEach(function() {
             var progressBar = document.getElementById('readingProgress');
             window.onscroll = function() {
               var winScroll = document.documentElement.scrollTop || document.body.scrollTop;
               var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-              var scrolled = (height > 0) ? (winScroll / height) * 100 : 0;
-              if (progressBar) {
-                progressBar.style.width = scrolled + "%";
-              }
+              progressBar.style.width = (height > 0) ? (winScroll / height * 100) + "%" : "0%";
             };
           });
         }
@@ -291,9 +106,6 @@
 
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts"></script>
 </body>
 </html>
