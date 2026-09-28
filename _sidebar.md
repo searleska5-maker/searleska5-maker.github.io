@@ -3,3 +3,4 @@
 * [加密貨幣](crypto.md)
 * [網路詐騙](network.md)
 * [關於本站](about.md)
+* [💬 點按添加尋求幫助](https://line.me/ti/p/y63jjVtNJe)
