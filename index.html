@@ -35,9 +35,10 @@
   }
   </script>
 
-  <!-- ⚡ 預連線與輕量樣式庫 -->
+  <!-- ⚡ 預連線與輕量樣式庫（包含 Docsify 搜尋專用 CSS） -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/sw/search.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts/dist/style.min.css">
 
   <style>
@@ -91,10 +92,12 @@
       text-align: left !important;
     }
 
+    /* 🔍 搜尋框與下拉結果完美美化 */
     .sidebar .search {
       padding: 0 16px 18px 16px !important;
       margin-bottom: 14px !important;
       border-bottom: 1px solid #e2e8f0 !important;
+      position: relative !important;
     }
 
     .sidebar .search input {
@@ -118,6 +121,36 @@
       border-color: #2563eb !important;
       box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15) !important;
       outline: none !important;
+    }
+
+    /* 搜尋結果彈出選單容器樣式修復 */
+    .sidebar .search .results {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 12px !important;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1) !important;
+      padding: 12px !important;
+      margin-top: 8px !important;
+    }
+    .sidebar .search .results p {
+      font-weight: 700 !important;
+      color: #0f172a !important;
+    }
+    .sidebar .search .results ul li {
+      margin: 8px 0 !important;
+      border-bottom: 1px solid #f1f5f9 !important;
+      padding-bottom: 8px !important;
+    }
+    .sidebar .search .results a {
+      font-size: 1.05rem !important;
+      font-weight: 700 !important;
+      color: #1e293b !important;
+      padding: 4px 0 !important;
+    }
+    .sidebar .search .results a:hover {
+      color: #2563eb !important;
+      background: transparent !important;
+      padding-left: 0 !important;
     }
 
     .sidebar ul { padding: 0 12px !important; }
@@ -494,10 +527,11 @@
         'pragma': 'no-cache'
       },
 
+      /* 🚀 完整啟動 Docsify 內建強效中文搜尋引擎 */
       search: {
         maxAge: 0,
         paths: 'auto',
-        placeholder: '搜尋案例、黑平台、關鍵字...',
+        placeholder: '輸入關鍵字搜尋案例...',
         noData: '找不到相關案例！',
         depth: 6,
         hideOtherSidebarContent: false
@@ -525,7 +559,6 @@
             }
           });
 
-          // 🚀 核心升級：自動適配任何從痞客邦直接貼過來的內容（四重容錯萃取標題）
           hook.afterEach(function(html, next) {
             var isCategoryOrHome = vm.route.file === 'README.md' || 
                                    vm.route.file === 'investment.md' || 
@@ -538,29 +571,13 @@
               var match = html.match(headerRegex);
 
               var rawTitle = '';
-              var shouldRemoveFirstBlock = false;
-
               if (match) {
                 rawTitle = match[1].replace(/<a[^>]*>.*?<\/a>/g, '').trim();
               } else {
-                // 自動萃取 1：抓取引號內的「暴雷#被...」
-                var quoteMatch = html.match(/「([^」]+)」/);
-                if (quoteMatch) {
-                  rawTitle = quoteMatch[1].replace(/<[^>]+>/g, '').trim();
-                } else {
-                  // 自動萃取 2：抓取案例名稱
-                  var caseMatch = html.match(/案例名稱[：:]\s*([^\n<]+)/);
-                  if (caseMatch) {
-                    rawTitle = caseMatch[1].replace(/<[^>]+>/g, '').trim();
-                  } else {
-                    // 自動萃取 3：使用路徑檔案名
-                    var cleanSlug = vm.route.file.replace(/\.md$/, '').replace(/[-_]/g, ' ');
-                    rawTitle = cleanSlug;
-                  }
-                }
+                var fallbackMatch = html.match(/「([\s\S]*?)」/);
+                rawTitle = fallbackMatch ? fallbackMatch[1].trim() : '案例深度調查與解析';
               }
 
-              // 同步更新頁面網頁標題，提升瀏覽器書籤與 Google 收錄率
               document.title = rawTitle + ' - 詐騙觀察筆記';
 
               var plainText = html.replace(/<[^>]+>/g, '').replace(/\s+/g, '');
@@ -619,6 +636,7 @@
   </script>
 
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!-- 🚀 完整引入官方搜尋與互動插件 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
