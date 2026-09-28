@@ -2,23 +2,71 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>網路詐騙手法整理曝光與自救指南</title>
+  <title>詐騙觀察筆記 - Scam Watch Notes</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="深入剖析最新網路詐騙、詐騙手法、投資陷阱與非法吸金，提供真實案例與法律自救指南。">
+  <meta name="description" content="民間反詐資訊整理與受害者經驗交流平台，分享真實案例與詐騙手法。">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  <!-- 引入現代簡約主題 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+  
+  <!-- 引入 Google Fonts 思源黑體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --base-font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
+      --base-font-size: 16px;
+      --base-line-height: 1.8;
+      --theme-color: #2563eb; /* 專業民間藍色 */
+      --sidebar-background: #f8fafc;
+      --sidebar-name-color: #0f172a;
+      --sidebar-name-font-weight: 700;
+      --sidebar-nav-link-color: #334155;
+      --sidebar-nav-link-color--active: #2563eb;
+      --sidebar-border-color: #e2e8f0;
+      --content-max-width: 860px;
+      --heading-color: #0f172a;
+      --link-color: #2563eb;
+    }
+    .content h1 {
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    blockquote {
+      background-color: #f1f5f9;
+      border-left: 4px solid #2563eb !important;
+      color: #334155;
+      padding: 12px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+    }
+  </style>
 </head>
 <body>
   <div id="app">載入中，請稍候...</div>
   <script>
     window.$docsify = {
-      name: '反詐經驗筆記',
+      name: '🔎 詐騙觀察筆記 <br><small style="font-size:12px; color:#64748b;">Scam Watch Notes</small>',
       repo: '',
       loadSidebar: true,
       subMaxLevel: 3,
-      auto2top: true
+      auto2top: true,
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: '搜尋案例或詐騙關鍵字...',
+        noData: '查無相關內容',
+        depth: 3
+      }
     }
   </script>
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
 </body>
 </html>
