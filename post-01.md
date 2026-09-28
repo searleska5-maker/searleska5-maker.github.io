@@ -71,4 +71,4 @@
 
 
 
-👉 受害者 LINE 交流：[點此加入](https://www.facebook.com/?locale=zh_TW )  
+👉 受害者 LINE 交流：[點此加入](https://line.me/ti/p/y63jjVtNJe)  
