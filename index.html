@@ -7,147 +7,272 @@
   <meta name="description" content="反詐騙情境教育與真實案例解析">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   
-  <!-- 引入 Docsify 佈景主題（Vue 風格） -->
+  <!-- 引入 Docsify 佈景主題 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-  <!-- 警示框外掛樣式 (Callouts / Alerts) -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts/dist/style.min.css">
 
   <style>
-    /* 閱讀進度條樣式 */
+    :root {
+      --primary-color: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg-light: #f8fafc;
+      --sidebar-bg: #f1f5f9;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+    }
+
+    /* 全站字體與背景優化 */
+    body {
+      background-color: var(--bg-light) !important;
+      color: var(--text-main) !important;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* 頂部閱讀進度條 */
     .reading-progress-bar {
       position: fixed;
       top: 0;
       left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #42b983, #3182ce);
+      height: 3.5px;
+      background: linear-gradient(90deg, #2563eb, #38bdf8);
       z-index: 9999;
       transition: width 0.1s ease;
       width: 0%;
     }
 
-    /* 獨立部落格文章標頭卡片 */
-    .blog-post-header {
-      margin-top: 1rem;
-      margin-bottom: 2.2rem;
-      padding-bottom: 1.2rem;
-      border-bottom: 2px solid #eef2f5;
+    /* 左側側邊欄深度美化：加大字體、微灰背景、膠囊按鈕感 */
+    .sidebar {
+      background-color: var(--sidebar-bg) !important;
+      border-right: 1px solid var(--border-color) !important;
+      padding-top: 1.5rem !important;
     }
 
-    /* 醒目的獨立大標題 */
-    .blog-post-header h1.blog-post-title {
-      font-size: 2.1rem !important;
-      font-weight: 700 !important;
-      color: #1a202c !important;
-      line-height: 1.35 !important;
-      margin: 0 0 0.8rem 0 !important;
-      padding: 0 !important;
+    .sidebar .app-name {
+      font-size: 1.35rem !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+      margin-bottom: 1.2rem !important;
+    }
+
+    .sidebar ul li {
+      margin: 6px 0 !important;
+    }
+
+    .sidebar ul li a {
+      font-size: 1.05rem !important;
+      font-weight: 500 !important;
+      color: #475569 !important;
+      padding: 8px 16px !important;
+      border-radius: 8px !important;
+      transition: all 0.2s ease !important;
+      display: block !important;
       border-bottom: none !important;
     }
 
-    /* 標題下方的資訊列（標籤、字數、預估閱讀時間） */
+    .sidebar ul li a:hover {
+      background-color: #e2e8f0 !important;
+      color: var(--primary-color) !important;
+      transform: translateX(4px);
+    }
+
+    .sidebar ul li.active > a {
+      background-color: #dbeafe !important;
+      color: var(--primary-color) !important;
+      font-weight: 700 !important;
+      border-right: none !important;
+    }
+
+    /* 右側主閱讀區：獨立卡片底板效果 */
+    .content {
+      padding-top: 25px !important;
+    }
+
+    .markdown-section {
+      max-width: 900px !important;
+      padding: 30px 45px 50px 45px !important;
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+      margin: 20px auto 40px auto;
+      border: 1px solid var(--border-color);
+    }
+
+    /* 首頁與內文大標題 */
+    .markdown-section h1 {
+      font-size: 2.2rem !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+      margin-bottom: 1.2rem !important;
+    }
+
+    .markdown-section h2 {
+      font-size: 1.5rem !important;
+      font-weight: 700 !important;
+      color: #1e293b !important;
+      margin-top: 2rem !important;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.5rem;
+    }
+
+    .markdown-section p {
+      font-size: 1.08rem !important;
+      line-height: 1.85 !important;
+      color: #334155 !important;
+    }
+
+    /* 部落格專題文章標頭卡片 */
+    .blog-post-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    .blog-post-header h1.blog-post-title {
+      font-size: 2.1rem !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+      line-height: 1.35 !important;
+      margin: 0 0 0.8rem 0 !important;
+    }
+
     .blog-post-meta {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 10px;
-      font-size: 0.88rem;
-      color: #718096;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
     .blog-post-meta .badge {
-      background-color: #ebf8ff;
-      color: #3182ce;
+      background-color: #dbeafe;
+      color: var(--primary-color);
       padding: 3px 10px;
-      border-radius: 4px;
+      border-radius: 6px;
       font-weight: 600;
     }
 
-    /* 內文正文優化：加大字體與行距，提升閱讀舒適度 */
-    .markdown-section p {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      color: #2d3748;
-      margin-top: 1.2rem;
+    /* 首頁快速分類卡片網格 (Dashboard Grid) */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 24px 0 32px 0;
     }
 
-    .markdown-section h2 {
-      margin-top: 2.2rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 1px solid #edf2f7;
+    .dashboard-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      text-decoration: none !important;
+      color: inherit !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.1);
+      border-color: #93c5fd;
+    }
+
+    .dashboard-card .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .dashboard-card .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .dashboard-card .card-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .dashboard-card .card-arrow {
+      font-size: 0.9rem;
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
     }
   </style>
 </head>
 <body>
-  <!-- 頂部閱讀進度條 -->
   <div class="reading-progress-bar" id="readingProgress"></div>
-
   <div id="app">載入中，請稍候...</div>
   
   <script>
     window.$docsify = {
-      name: '詐騙觀察筆記',
+      name: '🛡️ 詐騙觀察筆記',
       repo: '',
-      loadSidebar: true,          // 啟用側邊欄
-      auto2top: true,             // 切換頁面時自動捲動到頂部
+      loadSidebar: true,
+      auto2top: true,
       
-      // 徹底解決快取延遲問題：強制前端每次請求最新 Markdown 檔案
       requestHeaders: {
         'cache-control': 'no-cache, no-store, must-revalidate',
         'pragma': 'no-cache'
       },
 
-      // 搜尋設定
       search: {
-        maxAge: 3600000,          // 搜尋索引快取縮短至 1 小時，確保文章發布後能迅速被搜到
+        maxAge: 3600000,
         paths: 'auto',
-        placeholder: '搜尋案例或詐騙關鍵字...',
-        noData: '找不到相關結果！',
+        placeholder: '🔍 搜尋案例、平台或防詐關鍵字...',
+        noData: '找不到相關案例！',
         depth: 6,
         hideOtherSidebarContent: false
       },
 
-      // 上一篇 / 下一篇分頁設定
       pagination: {
-        previousText: '上一篇',
-        nextText: '下一篇',
+        previousText: '⬅ 上一篇',
+        nextText: '下一篇 ➡',
         crossChapter: true,
         crossChapterText: true
       },
 
-      // 自訂外掛：獨立標頭、自動計算字數與閱讀時間、閱讀進度條
       plugins: [
         function(hook, vm) {
           hook.afterEach(function(html, next) {
-            var headerRegex = /<h1[^>]*>([\s\S]*?)<\/h1>/i;
-            var match = html.match(headerRegex);
+            // 首頁不重複替換標頭，保留首頁原有大標風格
+            if (vm.route.file !== 'README.md') {
+              var headerRegex = /<h1[^>]*>([\s\S]*?)<\/h1>/i;
+              var match = html.match(headerRegex);
 
-            if (match) {
-              var rawTitle = match[1].replace(/<a[^>]*>.*?<\/a>/g, '').trim();
-              
-              // 計算內文字數（排除 HTML 標籤）
-              var plainText = html.replace(/<[^>]+>/g, '').replace(/\s+/g, '');
-              var charCount = plainText.length;
-              var readMinutes = Math.max(1, Math.ceil(charCount / 350)); // 以中文平均每分鐘閱讀 350 字計算
-              
-              var blogHeaderHtml = `
-                <div class="blog-post-header">
-                  <h1 class="blog-post-title">${rawTitle}</h1>
-                  <div class="blog-post-meta">
-                    <span class="badge">專題專文</span>
-                    <span>•</span>
-                    <span>約 ${charCount} 字</span>
-                    <span>•</span>
-                    <span>預計閱讀 ${readMinutes} 分鐘</span>
+              if (match) {
+                var rawTitle = match[1].replace(/<a[^>]*>.*?<\/a>/g, '').trim();
+                var plainText = html.replace(/<[^>]+>/g, '').replace(/\s+/g, '');
+                var charCount = plainText.length;
+                var readMinutes = Math.max(1, Math.ceil(charCount / 350));
+                
+                var blogHeaderHtml = `
+                  <div class="blog-post-header">
+                    <h1 class="blog-post-title">${rawTitle}</h1>
+                    <div class="blog-post-meta">
+                      <span class="badge">反詐解析</span>
+                      <span>•</span>
+                      <span>約 ${charCount} 字</span>
+                      <span>•</span>
+                      <span>預計閱讀 ${readMinutes} 分鐘</span>
+                    </div>
                   </div>
-                </div>
-              `;
-              
-              html = html.replace(match[0], blogHeaderHtml);
+                `;
+                html = html.replace(match[0], blogHeaderHtml);
+              }
             }
             next(html);
           });
 
-          // 綁定頁面滑動進度條
           hook.doneEach(function() {
             var progressBar = document.getElementById('readingProgress');
             window.onscroll = function() {
@@ -164,17 +289,11 @@
     };
   </script>
 
-  <!-- 核心 Docsify JS -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <!-- 搜尋外掛 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <!-- 圖片點擊放大外掛 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
-  <!-- 複製程式碼外掛 -->
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
-  <!-- 部落格上一篇 / 下一篇分頁外掛 -->
   <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
-  <!-- 高亮警示卡片外掛 (Alerts) -->
   <script src="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts"></script>
 </body>
 </html>
