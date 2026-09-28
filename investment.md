@@ -6,8 +6,4 @@
 
 ### 📌 最新案例與深度解析
 
-* [無法出金與平台失聯案例](withdrawal.md)
 * [別再相信保證獲利！sothebys國際取引所文政小判金詐騙最新受害者爆料：親歷 38,000 美金「能看不能領」的系統後台黑幕](sothebys-wen-zheng-scam.md)
-* [關於詐騙觀察筆記](about.md)
-* [受害者經驗交流與心得](victims.md)
-* [最新案例](latest.md)
