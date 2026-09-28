@@ -2,29 +2,30 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>詐騙觀察筆記 - 反詐騙情境教育與真實案例解析</title>
+  <title>詐騙觀察筆記 - 全方位民間反詐情報與受害自救指南</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   
-  <!-- 🚀 SEO 搜尋引擎優化與關鍵字 -->
+  <!-- 🚀 SEO 搜尋引擎優化與核心權重標籤 -->
   <meta name="description" content="全方位民間反詐騙知識庫與情報觀察站。深度解析虛擬貨幣交易所出金陷阱、假投資股票群組、網路交友殺豬盤，並提供第一時間證據保存與報案自救流程。">
   <meta name="keywords" content="詐騙, 投資詐騙, 加密貨幣詐騙, 殺豬盤, 無法出金, 假交易所, 165反詐騙, 詐騙名單, 詐騙觀察筆記, 資金追回">
   <meta name="author" content="詐騙觀察筆記團隊">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   
   <!-- 📱 社群卡片 Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="詐騙觀察筆記 - 反詐騙情境教育與真實案例解析">
-  <meta property="og:description" content="深度拆解各類假投資、加密貨幣黑幕與網路交友騙局，守護您的財產安全。">
+  <meta property="og:title" content="詐騙觀察筆記 - 全方位民間反詐情報與受害自救指南">
+  <meta property="og:description" content="揭露最新黑平台套路，提供受害者真實經歷整理與金流止付要點。">
   <meta property="og:url" content="https://searleska5-maker.github.io/">
   <meta property="og:site_name" content="詐騙觀察筆記">
+  <meta property="og:locale" content="zh_TW">
 
   <!-- 🐦 Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="詐騙觀察筆記 - 最新反詐騙情報">
-  <meta name="twitter:description" content="揭露最新黑平台套路，提供受害自救與防詐情境指南。">
+  <meta name="twitter:title" content="詐騙觀察筆記 - 最新反詐情報">
+  <meta name="twitter:description" content="揭露最新黑平台套路，提供受害者真實經歷整理與金流止付要點。">
 
-  <!-- 🔍 Google 結構化數據 -->
+  <!-- 🔍 Google 結構化數據 (Schema.org NewsArticle) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -35,7 +36,7 @@
   }
   </script>
 
-  <!-- ⚡ 預連線與輕量樣式庫 -->
+  <!-- ⚡ 高速樣式庫 -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts/dist/style.min.css">
@@ -51,7 +52,7 @@
       --text-muted: #64748b;
     }
 
-    /* 全站禁止選取與複製文字內容 */
+    /* 全站防盜拷：禁止選取與複製 */
     body {
       background-color: var(--bg-page) !important;
       color: var(--text-main) !important;
@@ -75,7 +76,7 @@
       transition: width 0.15s ease-out;
     }
 
-    /* 側邊欄 */
+    /* 側邊欄設計 */
     .sidebar {
       background: #f8fafc !important;
       border-right: 1.5px solid #e2e8f0 !important;
@@ -234,7 +235,7 @@
       box-sizing: border-box;
     }
 
-    /* 醒目大標題 */
+    /* 文章大標題 */
     .blog-post-title,
     .markdown-section h1 {
       font-size: 2.3rem !important;
@@ -246,7 +247,7 @@
       letter-spacing: -0.02em !important;
     }
 
-    /* 內文文字與行距 */
+    /* 內文文字與行距優化 */
     .markdown-section,
     .markdown-section p,
     .markdown-section p *,
@@ -323,7 +324,9 @@
       letter-spacing: 0.03em !important;
     }
 
-    /* 社群分享按鈕 */
+    /* =================================================================
+       🚀 分享防詐情報列（已取消 LINE，僅保留複製連結、FB、X，等寬對稱）
+       ================================================================= */
     .article-share-bar {
       display: flex !important;
       align-items: center !important;
@@ -351,7 +354,7 @@
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
-      width: 105px !important;
+      width: 120px !important;           /* 3個按鈕平均分配寬度 */
       height: 40px !important;
       padding: 0 !important;
       border-radius: 20px !important;
@@ -373,12 +376,25 @@
     }
 
     .article-share-bar .btn-copy { background: #ffffff !important; color: #1e293b !important; border: 1.5px solid #cbd5e1 !important; }
-    .article-share-bar .btn-fb { background: #1877f2 !important; color: #ffffff !important; }
-    .article-share-bar .btn-x { background: #000000 !important; color: #ffffff !important; }
-    .article-share-bar .btn-line { background: #06c755 !important; color: #ffffff !important; }
+    .article-share-bar .btn-fb   { background: #1877f2 !important; color: #ffffff !important; }
+    .article-share-bar .btn-x    { background: #000000 !important; color: #ffffff !important; }
+
+    .copy-toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.9);
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      z-index: 10000;
+    }
 
     /* =================================================================
-       🚀 頂級隨動浮動 LINE 諮詢按鈕（強制視口固定懸浮、完美支援手機觸控隨動、點擊直達）
+       🚀 右下角常駐隨動懸浮 LINE 諮詢按鈕（完美保留，呼吸燈隨動）
        ================================================================= */
     .floating-line-cta {
       position: fixed !important;
@@ -395,8 +411,8 @@
       align-items: center !important;
       gap: 8px !important;
       box-shadow: 0 8px 24px rgba(6, 199, 85, 0.45) !important;
-      z-index: 2147483647 !important; /* 保證在所有圖層最上方，絕對不被遮擋 */
-      pointer-events: auto !important; /* 確保點擊事件 100% 正常觸發 */
+      z-index: 2147483647 !important;
+      pointer-events: auto !important;
       transition: transform 0.2s ease, box-shadow 0.2s ease !important;
       animation: ctaPulse 2.2s infinite !important;
       -webkit-tap-highlight-color: transparent;
@@ -429,7 +445,12 @@
         font-size: 1.15rem !important;
         line-height: 1.9 !important;
       }
-      /* 手機端適應：縮小按鈕體積，避免遮擋手機螢幕閱讀 */
+      .article-share-bar a.share-btn,
+      .article-share-bar button.share-btn {
+        width: 100px !important;
+        height: 36px !important;
+        font-size: 0.88rem !important;
+      }
       .floating-line-cta {
         right: 14px !important;
         bottom: 18px !important;
@@ -443,7 +464,7 @@
 <body>
   <div class="reading-progress-bar" id="readingProgress"></div>
 
-  <!-- 🚀 右下角常駐隨動懸浮 LINE 諮詢按鈕（支援手機與電腦滑動跟隨、點擊直達） -->
+  <!-- 🚀 右下角常駐隨動懸浮 LINE 諮詢按鈕 -->
   <a href="https://line.me/ti/p/y63jjVtNJe" class="floating-line-cta" target="_blank" rel="noopener noreferrer">
     <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349.03.692.09 1.035.182.493-.825 1.037-1.613 1.625-2.353-.614-.85-1.328-1.621-2.128-2.29-.982-.821-2.071-1.487-3.243-1.975-1.206-.502-2.485-.785-3.805-.841-1.455-.062-2.923.161-4.321.666-1.354.49-2.614 1.214-3.731 2.146-1.144.953-2.122 2.102-2.893 3.397-.784 1.32-1.334 2.768-1.63 4.291-.32 1.642-.295 3.328.076 4.935.394 1.71 1.171 3.332 2.28 4.757 1.155 1.488 2.615 2.698 4.298 3.551 1.745.89 3.659 1.385 5.617 1.452 1.916.066 3.811-.334 5.545-1.172 1.681-.812 3.161-1.96 4.354-3.385 1.149-1.365 2.016-2.973 2.56-4.721.464-1.493.639-3.059.516-4.604-.112-1.411-.509-2.784-1.175-4.033-.679-1.272-1.583-2.433-2.673-3.447zm-8.865 5.923h-2.308v-5.83h2.308v5.83zm-1.154-7.072c-.732 0-1.327-.595-1.327-1.327 0-.732.595-1.327 1.327-1.327.732 0 1.327.595 1.327 1.327 0 .732-.595 1.327-1.327 1.327zm8.461 7.072h-2.308v-2.955c0-.704-.013-1.61-.981-1.61-.982 0-1.133.767-1.133 1.559v3.006h-2.308v-5.83h2.215v.796h.032c.308-.584 1.061-1.2 2.183-1.2 2.336 0 2.769 1.538 2.769 3.539v2.695z"/></svg>
     <span>點按添加尋求幫助</span>
@@ -568,6 +589,7 @@
             }
           });
 
+          // 🚀 核心：文章頁渲染與分享防詐情報列調整（已移除內文 LINE 按鈕，僅保留複製連結、FB、X）
           hook.afterEach(function(html, next) {
             var isCategoryOrHome = vm.route.file === 'README.md' || 
                                    vm.route.file === 'investment.md' || 
@@ -593,13 +615,13 @@
               var charCount = plainText.length;
               var readMinutes = Math.max(1, Math.ceil(charCount / 350));
               
+              // 🚀 已取消 LINE 按鈕，僅保留 3 個分享按鈕（複製連結、FB、X）
               var shareBarHtml = `
                 <div class="article-share-bar">
                   <span class="share-label">分享防詐情報：</span>
                   <button class="share-btn btn-copy" onclick="window.copyPostLink()">複製連結</button>
                   <a class="share-btn btn-fb" href="https://www.facebook.com/sharer/sharer.php?u=" onclick="this.href='https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href); return true;" target="_blank">Facebook</a>
                   <a class="share-btn btn-x" href="https://twitter.com/intent/tweet?text=" onclick="this.href='https://twitter.com/intent/tweet?text=' + encodeURIComponent('${rawTitle} - 詐騙觀察筆記') + '&url=' + encodeURIComponent(window.location.href); return true;" target="_blank">X</a>
-                  <a class="share-btn btn-line" href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer">LINE</a>
                 </div>
               `;
 
