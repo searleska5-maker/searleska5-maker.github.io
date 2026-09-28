@@ -42,11 +42,10 @@
 
   <style>
     :root {
-      --primary: #1d4ed8;
-      --primary-hover: #1e40af;
-      --primary-light: #eff6ff;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
       --surface: #ffffff;
-      --bg-page: #f1f5f9;
+      --bg-page: #f8fafc;
       --border: #e2e8f0;
       --text-main: #0f172a;
       --text-muted: #64748b;
@@ -55,7 +54,7 @@
     body {
       background-color: var(--bg-page) !important;
       color: var(--text-main) !important;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Noto Sans TC", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -189,78 +188,77 @@
       padding: 42px 65px 75px 65px !important;
       background: #ffffff;
       border-radius: 20px;
-      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06);
       margin: 20px auto 40px auto;
       border: 1px solid #e2e8f0;
       box-sizing: border-box;
     }
 
-    /* 醒目文章主標題 (單篇文章頂部) */
-    .blog-post-title,
+    /* 專區頂部標題 */
     .markdown-section h1 {
-      font-size: 2.3rem !important;
+      font-size: 2.2rem !important;
       font-weight: 800 !important;
       color: #0f172a !important;
-      line-height: 1.4 !important;
-      margin: 0 0 18px 0 !important;
+      line-height: 1.35 !important;
+      margin: 0 0 16px 0 !important;
       border: none !important;
-      letter-spacing: -0.02em !important;
     }
 
     /* =================================================================
-       🔥 終極核心修復：強制將分類清單項目（`* [標題](連結)`）
-       全面重構為「高質感醒目大標題新聞卡片」，徹底消滅細小綠色文字！
+       ✨ 台灣本土頂級部落格風格：優雅大字、自然非粗體、高質感灰黑
        ================================================================= */
     .markdown-section > ul {
       list-style: none !important;
       padding: 0 !important;
-      margin: 28px 0 !important;
+      margin: 26px 0 !important;
     }
 
     .markdown-section > ul > li {
       list-style: none !important;
-      margin: 20px 0 !important;
+      margin: 18px 0 !important;
       padding: 0 !important;
     }
 
-    /* 真正的大標題實體：卡片外框 + 大粗體 + 箭頭 */
+    /* 文章列表卡片：純白底色、極簡邊框、自然字重（不加粗）、石墨深灰黑 */
     .markdown-section > ul > li > a {
       display: block !important;
-      font-size: 1.45rem !important;       /* 大器震撼的 24px 大字體 */
-      font-weight: 800 !important;        /* 滿級特粗字重 */
-      color: #0f172a !important;          /* 質感深墨黑，不再是刺眼小綠字 */
-      line-height: 1.55 !important;
-      text-decoration: none !important;   /* 去除雜亂底線 */
+      font-size: 1.28rem !important;        /* 舒適大字體 */
+      font-weight: 500 !important;         /* 自然字重，完全不加粗，高雅大器 */
+      color: #1e293b !important;           /* 典雅石墨黑，告別亮藍色 */
+      line-height: 1.7 !important;         /* 呼吸感寬鬆行距 */
+      text-decoration: none !important;
       border-bottom: none !important;
       background: #ffffff !important;
-      border: 2px solid #e2e8f0 !important;
-      padding: 24px 28px 24px 32px !important;
-      border-radius: 16px !important;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04) !important;
-      position: relative !important;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-      border-left: 6px solid #2563eb !important; /* 左側專屬藍色情報條 */
+      border: 1px solid #e2e8f0 !important; /* 簡約細邊框，取消厚重藍色邊條 */
+      padding: 22px 26px !important;
+      border-radius: 14px !important;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+      transition: all 0.25s ease !important;
     }
 
-    /* 滑鼠懸停效果：整張卡片平滑浮起、微藍發光 */
+    /* 滑鼠懸停效果：微光浮起，文字轉為典雅炭灰，底框自然高亮 */
     .markdown-section > ul > li > a:hover {
-      color: #1d4ed8 !important;
-      border-color: #93c5fd !important;
-      border-left-color: #1d4ed8 !important;
-      transform: translateY(-4px) !important;
-      box-shadow: 0 14px 26px -4px rgba(37, 99, 235, 0.14) !important;
+      color: #0f172a !important;
+      border-color: #cbd5e1 !important;
+      transform: translateY(-3px) !important;
+      box-shadow: 0 10px 20px -3px rgba(15, 23, 42, 0.08) !important;
       background: #f8fafc !important;
     }
 
-    /* 卡片末端自動追加精緻提示箭頭 */
+    /* 低調精緻的輔助提示字（小灰字與箭頭，不再是粗暴藍色） */
     .markdown-section > ul > li > a::after {
-      content: " ➔ 點擊閱讀調查詳情" !important;
+      content: "閱讀案例詳情 ➔" !important;
       display: block !important;
-      font-size: 0.92rem !important;
-      font-weight: 700 !important;
-      color: #2563eb !important;
+      font-size: 0.88rem !important;
+      font-weight: 500 !important;
+      color: #64748b !important;           /* 低調質感次要灰字 */
       margin-top: 10px !important;
-      letter-spacing: 0.02em !important;
+      letter-spacing: 0.03em !important;
+      transition: color 0.2s ease !important;
+    }
+
+    .markdown-section > ul > li > a:hover::after {
+      color: #2563eb !important;
     }
 
     /* 內文文字與行距 */
@@ -426,7 +424,6 @@
       gap: 6px;
     }
 
-    /* 手機端極限適應 */
     @media (max-width: 900px) {
       .content { left: 0 !important; padding-top: 10px !important; }
       .markdown-section {
@@ -435,7 +432,7 @@
         margin: 10px auto !important;
       }
       .markdown-section > ul > li > a {
-        font-size: 1.2rem !important;
+        font-size: 1.15rem !important;
         padding: 18px 20px !important;
       }
       .dashboard-grid { grid-template-columns: 1fr !important; gap: 16px; }
@@ -537,7 +534,7 @@
 
               var blogHeaderHtml = `
                 <div style="margin-bottom: 2rem; padding-bottom: 1.2rem; border-bottom: 2px solid #eef2f5;">
-                  <h1 class="blog-post-title">${rawTitle}</h1>
+                  <h1 style="font-size:2.2rem;font-weight:800;color:#0f172a;margin:0 0 10px 0;border:none;">${rawTitle}</h1>
                   <div style="display:flex; align-items:center; gap:12px; font-size:0.95rem; color:#64748b;">
                     <span style="background:#eff6ff; color:#2563eb; padding:4px 12px; border-radius:6px; font-weight:700;">專題剖析</span>
                     <span>•</span>
