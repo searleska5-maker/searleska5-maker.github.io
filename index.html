@@ -1,72 +1,45 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <title>詐騙觀察筆記 - Scam Watch Notes</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="民間反詐資訊整理與受害者經驗交流平台，分享真實案例與詐騙手法。">
+  <meta name="description" content="反詐騙情境教育與真實案例解析">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-
-  <!-- 引入現代簡約主題 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
-  
-  <!-- 引入 Google Fonts 思源黑體 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --base-font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
-      --base-font-size: 16px;
-      --base-line-height: 1.8;
-      --theme-color: #2563eb; /* 專業民間藍色 */
-      --sidebar-background: #f8fafc;
-      --sidebar-name-color: #0f172a;
-      --sidebar-name-font-weight: 700;
-      --sidebar-nav-link-color: #334155;
-      --sidebar-nav-link-color--active: #2563eb;
-      --sidebar-border-color: #e2e8f0;
-      --content-max-width: 860px;
-      --heading-color: #0f172a;
-      --link-color: #2563eb;
-    }
-    .content h1 {
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-    blockquote {
-      background-color: #f1f5f9;
-      border-left: 4px solid #2563eb !important;
-      color: #334155;
-      padding: 12px 20px;
-      border-radius: 0 8px 8px 0;
-      margin: 1.5rem 0;
-    }
-  </style>
+  <!-- 引入 Docsify 佈景主題（Vue 風格） -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
 <body>
   <div id="app">載入中，請稍候...</div>
+  
   <script>
     window.$docsify = {
-      name: '🔎 詐騙觀察筆記 <br><small style="font-size:12px; color:#64748b;">Scam Watch Notes</small>',
+      name: '詐騙觀察筆記',
       repo: '',
-      loadSidebar: true,
-      subMaxLevel: 3,
-      auto2top: true,
+      loadSidebar: true,      // 啟用側邊欄
+      auto2top: true,         // 切換頁面時自動捲動到頂部
       search: {
-        maxAge: 86400000,
+        maxAge: 86400000,     // 過期時間，單位毫秒
         paths: 'auto',
         placeholder: '搜尋案例或詐騙關鍵字...',
-        noData: '查無相關內容',
-        depth: 3
+        noData: '找不到相關結果！',
+        depth: 6,
+        hideOtherSidebarContent: false
+      },
+      // 啟用專屬的部落格分頁與標籤外掛設定
+      blog: {
+        perPage: 5,           // 每頁顯示的文章數
+        recentPosts: 5        // 側邊欄顯示最新文章數量
       }
     }
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <!-- 核心 Docsify JS -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!-- 搜尋外掛 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <!-- 圖片縮放外掛 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <!-- 複製程式碼按鈕外掛 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
 </body>
 </html>
