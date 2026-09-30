@@ -9,82 +9,7 @@
                     this.classList.add('is-loaded');
                 }, false);
             }
-        }</script><div class="line-bottom-right-btn"><a href="https://line.me" target="_blank" rel="noopener noreferrer" title="LINE 快速防詐諮詢"><svg xmlns="http://w3.org" width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.14 2 11.25c0 2.91 1.49 5.51 3.81 7.21L4.5 22l3.87-1.28c1.11.31 2.3.48 3.63.48 5.52 0 10-4.14 10-9.25S17.52 2 12 2z"/></svg> <span class="btn-text-content">LINE 諮詢</span></a></div><div class="line-left-scam-help-btn"><a href="https://line.me" target="_blank" rel="noopener noreferrer" title="遭到詐騙？立刻聯絡自救求助"><div class="alert-badge">🚨 緊急求助</div><span class="help-text-content">被騙求助 LINE</span></a></div><script>document.addEventListener("DOMContentLoaded", function() {
-  const searchBtn = document.querySelector(".search__btn, .js-search-btn");
-  if (searchBtn) {
-    const searchOverlay = document.createElement("div");
-    searchOverlay.id = "live-search-container";
-    
-    // 用最高級別的 CSS 鎖死：平時絕對隱形、浮空，不擠壓任何網頁排版
-    searchOverlay.style.cssText = "position:fixed !important; top:0 !important; left:0 !important; width:100% !important; height:100% !important; z-index:999999 !important; display:none; align-items:center !important; justify-content:center !important; box-sizing:border-box !important;";
-    
-    searchOverlay.innerHTML = `
-      <div class="live-search-mask" style="position:absolute !important; top:0 !important; left:0 !important; width:100% !important; height:100% !important; background:rgba(26,32,44,0.6) !important; backdrop-filter:blur(4px) !important;"></div>
-      <div class="live-search-box" style="position:relative !important; z-index:1000000 !important; width:90% !important; max-width:600px !important; background:#FFFFFF !important; border-radius:12px !important; box-shadow:0 20px 25px -5px rgba(0,0,0,0.3) !important; overflow:hidden !important; border:1px solid #E2E8F0 !important; padding:0 !important; margin:0 !important;">
-        <div class="live-search-input-wrapper" style="display:flex !important; align-items:center !important; padding:16px 20px !important; border-bottom:2px solid #F1F5F9 !important; background:#FFFFFF !important; box-sizing:border-box !important;">
-          <input type="text" id="live-search-input" placeholder="輸入關鍵字搜尋...（例如：被騙、Sothebys）" autocomplete="off" style="flex:1 !important; border:none !important; outline:none !important; font-size:16px !important; color:#2D3748 !important; background:transparent !important; padding:0 !important; margin:0 !important; height:auto !important; width:100% !important; box-shadow:none !important;">
-          <button id="live-search-close" style="background:none !important; border:none !important; font-size:22px !important; color:#A0AEC0 !important; cursor:pointer !important; padding:0 0 0 10px !important; line-height:1 !important;">✕</button>
-        </div>
-        <ul id="live-search-results" style="list-style:none !important; margin:0 !important; padding:0 !important; max-height:300px !important; overflow-y:auto !important; background:#FFFFFF !important; text-align:left !important;"></ul>
-      </div>
-    `;
-    document.body.appendChild(searchOverlay);
-
-    const inputField = document.getElementById("live-search-input");
-    const resultsList = document.getElementById("live-search-results");
-    const closeBtn = document.getElementById("live-search-close");
-    const mask = searchOverlay.querySelector(".live-search-mask");
-
-    const myArticles = [
-      {
-        title: "別再相信保證獲利！sothebys國際取引所文政小判金詐騙最新受害者爆料：親歷 38,000 美金「能看不能領」的系統後台黑幕",
-        url: "https://github.io"
-      },
-      {
-        title: "被騙怎麼辦？2026 受害者求助指南：假投資、虛擬貨幣詐騙報案流程與資金追回管道",
-        url: "https://github.io"
-      }
-    ];
-
-    searchBtn.addEventListener("click", function(e) {
-      e.preventDefault();
-      searchOverlay.style.setProperty("display", "flex", "important");
-      inputField.focus();
-    });
-
-    inputField.addEventListener("input", function() {
-      const query = this.value.trim().toLowerCase();
-      resultsList.innerHTML = "";
-
-      if (query.length === 0) {
-        resultsList.innerHTML = '<li style="padding:20px !important; text-align:center !important; color:#A0AEC0 !important; font-size:14px !important; list-style:none !important;">請輸入關鍵字開始搜尋...</li>';
-        return;
-      }
-
-      const filtered = myArticles.filter(article => article.title.toLowerCase().includes(query));
-
-      if (filtered.length === 0) {
-        resultsList.innerHTML = '<li style="padding:20px !important; text-align:center !important; color:#A0AEC0 !important; font-size:14px !important; list-style:none !important;">❌ 查無相關爆料文章，請換個詞試試</li>';
-      } else {
-        filtered.forEach(article => {
-          const li = document.createElement("li");
-          li.style.cssText = "border-bottom:1px solid #F8FAFC !important; margin:0 !important; padding:0 !important; list-style:none !important;";
-          const highlightedTitle = article.title.replace(new RegExp(query, "gi"), match => `<strong style="color:#E53E3E !important; font-weight:700 !important;">${match}</strong>`);
-          li.innerHTML = `<a href="${article.url}" style="display:block !important; padding:14px 20px !important; color:#4A5568 !important; text-decoration:none !important; font-size:15px !important; text-align:left !important; line-height:1.5 !important; background:none !important;">${highlightedTitle}</a>`;
-          resultsList.appendChild(li);
-        });
-      }
-    });
-
-    function closeSearch() {
-      searchOverlay.style.setProperty("display", "none", "important");
-      inputField.value = "";
-      resultsList.innerHTML = "";
-    }
-    closeBtn.addEventListener("click", closeSearch);
-    mask.addEventListener("click", closeSearch);
-  }
-});</script><style>/* --- 右下角常規諮詢鈕外觀 --- */
+        }</script><div class="line-bottom-right-btn"><a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" title="LINE 快速防詐諮詢"><svg xmlns="http://w3.org" width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.14 2 11.25c0 2.91 1.49 5.51 3.81 7.21L4.5 22l3.87-1.28c1.11.31 2.3.48 3.63.48 5.52 0 10-4.14 10-9.25S17.52 2 12 2z"/></svg> <span class="btn-text-content">LINE 諮詢</span></a></div><div class="line-left-scam-help-btn"><a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" title="遭到詐騙？立刻聯絡自救求助"><div class="alert-badge">🚨 緊急求助</div><span class="help-text-content">被騙求助 LINE</span></a></div><style>/* --- 右下角按鈕外觀 --- */
 div.line-bottom-right-btn {
     position: fixed !important;
     bottom: 25px !important;
@@ -97,7 +22,7 @@ div.line-bottom-right-btn a {
     gap: 8px !important;
     background-color: #06C755 !important;
     color: white !important;
-    padding: 12px 18px !important;
+    padding: 12px 20px !important;
     border-radius: 50px !important;
     text-decoration: none !important;
     font-weight: bold !important;
@@ -105,53 +30,210 @@ div.line-bottom-right-btn a {
     box-shadow: 0 4px 12px rgba(6, 199, 85, 0.3) !important;
     transition: transform 0.2s ease !important;
 }
-div.line-bottom-right-btn a:hover { transform: translateY(-2px) !important; }
-div.line-bottom-right-btn span.btn-text-content { color: white !important; }
+div.line-bottom-right-btn a:hover {
+    transform: translateY(-2px) !important;
+}
+div.line-bottom-right-btn span.btn-text-content {
+    color: white !important;
+}
 
 /* --- 左側橫排求助鈕外觀 --- */
 div.line-left-scam-help-btn {
     position: fixed !important;
-    top: 35% !important; 
+    top: 35% !important;
     left: 0 !important;
     z-index: 99999 !important;
 }
 div.line-left-scam-help-btn a {
     display: flex !important;
-    flex-direction: row !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 10px !important; 
     background-color: #06C755 !important;
     color: white !important;
-    padding: 10px 14px 10px 10px !important;
-    border-radius: 0 30px 30px 0 !important; 
+    padding: 10px 16px 10px 12px !important; 
+    border-radius: 0 30px 30px 0 !important;
     text-decoration: none !important;
     font-weight: bold !important;
     box-shadow: 4px 4px 16px rgba(0,0,0,0.15) !important;
-    border: 2px solid #e53e3e !important; 
+    border: 2px solid #e53e3e !important;
     border-left: none !important;
     transition: transform 0.2s ease !important;
-    width: auto !important; 
+    width: auto !important;
 }
-div.line-left-scam-help-btn a:hover { transform: translateX(4px) !important; }
+div.line-left-scam-help-btn a:hover {
+    transform: translateX(4px) !important;
+}
+
+/* 紅色求助標籤 */
 div.line-left-scam-help-btn .alert-badge {
     background-color: #e53e3e !important;
     color: white !important;
     font-size: 11px !important;
-    padding: 3px 8px !important;
+    padding: 4px 9px !important;
     border-radius: 20px !important;
     white-space: nowrap !important;
 }
+
+/* 橫排文字設定 */
 div.line-left-scam-help-btn span.help-text-content {
     font-size: 14px !important;
     white-space: nowrap !important;
     color: white !important;
-    writing-mode: horizontal-tb !important;
 }
 
-/* 手機版微調 */
+/* 手機版自動微調 */
 @media (max-width: 768px) {
-    div.line-left-scam-help-btn { top: 30% !important; }
-    div.line-left-scam-help-btn a { padding: 8px 10px 8px 8px !important; }
-    div.line-left-scam-help-btn .alert-badge { font-size: 10px !important; padding: 2px 5px !important; }
-    div.line-left-scam-help-btn span.help-text-content { font-size: 12px !important; }
+    div.line-left-scam-help-btn {
+        top: 30% !important;
+    }
+    div.line-left-scam-help-btn a {
+        padding: 8px 12px 8px 8px !important;
+        gap: 6px !important;
+    }
+    div.line-left-scam-help-btn .alert-badge {
+        font-size: 10px !important;
+        padding: 2px 6px !important;
+    }
+    div.line-left-scam-help-btn span.help-text-content {
+        font-size: 12px !important;
+    }
+}
+
+/* --- 4. 全站即時模糊搜尋彈窗外觀 --- */
+#live-search-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000000;
+    display: none;
+}
+#live-search-container.active {
+    display: block;
+}
+.live-search-mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 32, 44, 0.6);
+    backdrop-filter: blur(4px);
+}
+.live-search-box {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 90%;
+    max-width: 600px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    border: 1px solid #E2E8F0;
+    animation: fadeInSearch 0.2s ease-out;
+}
+@keyframes fadeInSearch {
+    from { opacity: 0; transform: translate(-50%, -10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+.live-search-input-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 2px solid #F1F5F9;
+}
+#live-search-input {
+    flex: 1;
+    border: none !important;
+    outline: none !important;
+    font-size: 16px !important;
+    color: #2D3748 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+#live-search-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #A0AEC0;
+    cursor: pointer;
+    padding: 0 4px;
+    transition: color 0.15s ease;
+}
+#live-search-close:hover {
+    color: #E53E3E;
+}
+#live-search-results {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-height: 350px;
+    overflow-y: auto;
+    background-color: #FFFFFF;
+}
+#live-search-results li {
+    border-bottom: 1px solid #F8FAFC;
+}
+#live-search-results li a {
+    display: block;
+    padding: 16px 20px; 
+    color: #4A5568 !important;
+    text-decoration: none !important;
+    font-size: 15px;
+    line-height: 1.6; 
+    transition: all 0.15s ease;
+}
+#live-search-results li a:hover {
+    background-color: #F8FAFC;
+    color: #1A365D !important;
+}
+#live-search-results li a strong {
+    color: #E53E3E !important;
+    font-weight: 700;
+}
+#live-search-results li.no-result {
+    padding: 20px;
+    text-align: center;
+    color: #A0AEC0;
+    font-size: 14px;
+}
+
+/* ========================================== */
+/* 5. 補強：解決 Publii 網站主視覺與標題擁擠問題 */
+/* ========================================== */
+h1.site-title, .hero__title, .main-title {
+    font-size: 40px !important;
+    font-weight: 700 !important;
+    letter-spacing: 5px !important; 
+    margin-top: 35px !important;
+    margin-bottom: 20px !important; 
+    line-height: 1.4 !important;
+    text-align: center !important;
+}
+
+.site-description, .hero__text, .hero__desc {
+    max-width: 800px !important;
+    margin: 0 auto 45px auto !important; 
+    line-height: 1.8 !important; 
+    letter-spacing: 0.8px !important;
+    font-size: 15px !important;
+}
+
+h2.post__title, .entry-title, .card__title {
+    line-height: 1.5 !important; 
+    letter-spacing: 0.5px !important;
+    margin-top: 25px !important;
+}
+
+/* ========================================== */
+/* 6. 強制主頁中文字數摘要 */
+/* ========================================== */
+.post__entry p, .card__description p, .entry-content p {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important; 
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }</style></body></html>
