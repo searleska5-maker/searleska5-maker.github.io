@@ -63,8 +63,6 @@ div.line-left-scam-help-btn a {
 div.line-left-scam-help-btn a:hover {
     transform: translateX(4px) !important;
 }
-
-/* 紅色求助標籤 */
 div.line-left-scam-help-btn .alert-badge {
     background-color: #e53e3e !important;
     color: white !important;
@@ -73,8 +71,6 @@ div.line-left-scam-help-btn .alert-badge {
     border-radius: 20px !important;
     white-space: nowrap !important;
 }
-
-/* 橫排文字設定 */
 div.line-left-scam-help-btn span.help-text-content {
     font-size: 14px !important;
     white-space: nowrap !important;
@@ -99,7 +95,7 @@ div.line-left-scam-help-btn span.help-text-content {
     }
 }
 
-/* --- 4. 全站即時模糊搜尋彈窗外觀 --- */
+/* --- 4. 即時模糊搜尋彈窗外觀 --- */
 #live-search-container {
     position: fixed;
     top: 0;
@@ -200,9 +196,7 @@ div.line-left-scam-help-btn span.help-text-content {
     font-size: 14px;
 }
 
-/* ========================================== */
-/* 5. 補強：解決 Publii 網站主視覺與標題擁擠問題 */
-/* ========================================== */
+/* --- 5. 標題與版面美化 --- */
 h1.site-title, .hero__title, .main-title {
     font-size: 40px !important;
     font-weight: 700 !important;
@@ -212,7 +206,6 @@ h1.site-title, .hero__title, .main-title {
     line-height: 1.4 !important;
     text-align: center !important;
 }
-
 .site-description, .hero__text, .hero__desc {
     max-width: 800px !important;
     margin: 0 auto 45px auto !important; 
@@ -220,16 +213,11 @@ h1.site-title, .hero__title, .main-title {
     letter-spacing: 0.8px !important;
     font-size: 15px !important;
 }
-
 h2.post__title, .entry-title, .card__title {
     line-height: 1.5 !important; 
     letter-spacing: 0.5px !important;
     margin-top: 25px !important;
 }
-
-/* ========================================== */
-/* 6. 強制主頁中文字數摘要 */
-/* ========================================== */
 .post__entry p, .card__description p, .entry-content p {
     display: -webkit-box !important;
     -webkit-line-clamp: 3 !important; 
@@ -238,32 +226,126 @@ h2.post__title, .entry-title, .card__title {
     text-overflow: ellipsis !important;
 }
 
-/* ========================================== */
-/* 7. 首頁文章列表：隱藏英文 Continue reading 換成中文 */
-/* ========================================== */
-.readmore,
-.post__readmore,
-.feed__readmore,
-a.readmore,
-a.post__readmore,
-a[href*="#readmore"] {
-    display: inline-block !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
-    text-decoration: none !important;
+/* --- 6. 數字分頁器 (1 2 3 4 5...) 專屬樣式 --- */
+.custom-pagination-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 40px auto 60px auto;
+    flex-wrap: wrap;
+    user-select: none;
 }
+.custom-page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #4A5568;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.custom-page-btn:hover {
+    border-color: #3182CE;
+    color: #3182CE;
+    transform: translateY(-1px);
+}
+.custom-page-btn.active {
+    background: #3182CE !important;
+    border-color: #3182CE !important;
+    color: #FFFFFF !important;
+    cursor: default;
+}
+.custom-page-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}</style><script>document.addEventListener("DOMContentLoaded", function() {
+    // 1. 替換閱讀全文按鈕文字
+    function replaceReadMore() {
+      const links = document.querySelectorAll('a');
+      links.forEach(link => {
+        const txt = link.textContent.trim().toLowerCase();
+        if (txt.includes('continue reading') || txt.includes('read more')) {
+          link.innerHTML = '閱讀全文 &rarr;';
+        }
+      });
+    }
+    replaceReadMore();
 
-.readmore::after,
-.post__readmore::after,
-.feed__readmore::after,
-a.readmore::after,
-a.post__readmore::after,
-a[href*="#readmore"]::after {
-    content: "閱讀全文 →" !important;
-    font-size: 15px !important;
-    line-height: 1.6 !important;
-    font-weight: 600 !important;
-    color: #1a73e8 !important;
-    text-decoration: underline !important;
-    cursor: pointer !important;
-}</style></body></html>
+    // 2. 首頁純前端分頁器實作
+    const postsPerPage = 6; // 每頁想展示的篇數（可自由修改為 8 或 10）
+    
+    // 鎖定 Simple 主題的文章卡片元素
+    const posts = Array.from(document.querySelectorAll('main article, .feed article, article.card, article.post'));
+    
+    // 如果首頁文章超過單頁數量才啟動分頁
+    if (posts.length > postsPerPage) {
+      const totalPages = Math.ceil(posts.length / postsPerPage);
+      let currentPage = 1;
+
+      // 建立分頁器容器
+      const paginationContainer = document.createElement('div');
+      paginationContainer.className = 'custom-pagination-bar';
+      
+      const parentContainer = posts[0].parentElement;
+      parentContainer.parentElement.appendChild(paginationContainer);
+
+      function renderPage(page) {
+        currentPage = page;
+        const start = (page - 1) * postsPerPage;
+        const end = start + postsPerPage;
+
+        // 顯示當前頁面文章，其餘隱藏
+        posts.forEach((post, index) => {
+          if (index >= start && index < end) {
+            post.style.display = '';
+          } else {
+            post.style.display = 'none';
+          }
+        });
+
+        // 重新繪製 1 2 3... 頁碼按鈕
+        paginationContainer.innerHTML = '';
+
+        // 上一頁按鈕
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'custom-page-btn' + (currentPage === 1 ? ' disabled' : '');
+        prevBtn.innerHTML = '&laquo;';
+        prevBtn.onclick = () => { if (currentPage > 1) { renderPage(currentPage - 1); window.scrollTo({top: 0, behavior: 'smooth'}); } };
+        paginationContainer.appendChild(prevBtn);
+
+        // 數字按鈕
+        for (let i = 1; i <= totalPages; i++) {
+          const numBtn = document.createElement('button');
+          numBtn.className = 'custom-page-btn' + (i === currentPage ? ' active' : '');
+          numBtn.innerText = i;
+          numBtn.onclick = () => {
+            renderPage(i);
+            window.scrollTo({top: 0, behavior: 'smooth'});
+          };
+          paginationContainer.appendChild(numBtn);
+        }
+
+        // 下一頁按鈕
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'custom-page-btn' + (currentPage === totalPages ? ' disabled' : '');
+        nextBtn.innerHTML = '&raquo;';
+        nextBtn.onclick = () => { if (currentPage < totalPages) { renderPage(currentPage + 1); window.scrollTo({top: 0, behavior: 'smooth'}); } };
+        paginationContainer.appendChild(nextBtn);
+
+        replaceReadMore();
+      }
+
+      // 初始化渲染第一頁
+      renderPage(1);
+    }
+  });</script></body></html>
