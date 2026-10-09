@@ -225,8 +225,8 @@ h2.post__title, .entry-title, .card__title {
     text-overflow: ellipsis !important;
 }
 
-/* --- 6. 原生分頁器美化與排版 --- */
-.pagination, .pagination__list, nav[class*="pagination"], div[class*="pagination"] {
+/* --- 6. 分頁器統一樣式 --- */
+.pagination, .pagination__list, nav[class*="pagination"], div[class*="pagination"], .custom-dynamic-pagination {
     display: flex !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
@@ -235,6 +235,34 @@ h2.post__title, .entry-title, .card__title {
     margin: 40px auto 60px auto !important;
     padding: 0 !important;
     list-style: none !important;
+}
+.page-btn-item {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 38px !important;
+    height: 38px !important;
+    padding: 0 10px !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 8px !important;
+    background: #FFFFFF !important;
+    color: #4A5568 !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    box-sizing: border-box !important;
+}
+.page-btn-item:hover {
+    border-color: #3182CE !important;
+    color: #3182CE !important;
+    transform: translateY(-1px) !important;
+}
+.page-btn-item.is-current {
+    background: #007bff !important;
+    border-color: #007bff !important;
+    color: #FFFFFF !important;
+    cursor: default !important;
 }</style><script>document.addEventListener("DOMContentLoaded", function () {
   // 替換閱讀全文按鈕文字
   document.querySelectorAll('a').forEach(link => {
@@ -244,59 +272,101 @@ h2.post__title, .entry-title, .card__title {
     }
   });
 
-  // 取得主題原生分頁器
   const pag = document.querySelector('.pagination, .pagination__list, nav[class*="pagination"], div[class*="pagination"]');
   if (!pag) return;
 
-  const items = Array.from(pag.children);
-  const numberItems = [];
+  // 1. 取得現有分頁按鈕中的數字或既有連結
+  const existingLinks = Array.from(pag.querySelectorAll('a, span, button'));
+  let numberItems = [];
 
-  // 識別出所有頁碼按鈕
-  items.forEach(el => {
+  existingLinks.forEach(el => {
     const raw = el.textContent.trim();
     if (/^\d+$/.test(raw)) {
       numberItems.push({ el: el, page: parseInt(raw, 10) });
     }
   });
 
-  // 頁數若在 10 頁以內則不需縮減
-  if (numberItems.length <= 10) return;
-
-  // 判斷當前所在頁碼
-  let activePage = 1;
-  const activeObj = numberItems.find(item =>
-    item.el.classList.contains('active') ||
-    item.el.classList.contains('current') ||
-    item.el.classList.contains('is-active') ||
-    item.el.tagName.toLowerCase() === 'span' ||
-    (!item.el.querySelector('a') && item.el.tagName.toLowerCase() !== 'a')
-  );
-  if (activeObj) {
-    activePage = activeObj.page;
+  // 取得當前所在頁碼
+  let currentPage = 1;
+  const match = window.location.pathname.match(/\/page\/(\d+)\/?/);
+  if (match) {
+    currentPage = parseInt(match[1], 10);
   } else {
-    const match = window.location.pathname.match(/\/page\/(\d+)\/?/);
-    if (match) activePage = parseInt(match[1], 10);
+    const curEl = numberItems.find(item => 
+      item.el.classList.contains('active') || 
+      item.el.classList.contains('current') || 
+      item.el.classList.contains('is-active') || 
+      item.el.tagName.toLowerCase() === 'span'
+    );
+    if (curEl) currentPage = curEl.page;
   }
 
-  // 計算動態滑動窗口：在第 1~10 頁時固定顯示 1~10；在第 11 頁時向前滑動顯示 2~11
-  const maxPage = numberItems[numberItems.length - 1].page;
-  let startPage = 1;
-
-  if (activePage > 10) {
-    startPage = activePage - 9;
-  }
-  let endPage = startPage + 9;
-  if (endPage > maxPage) {
-    endPage = maxPage;
-    startPage = Math.max(1, endPage - 9);
-  }
-
-  // 嚴格只保留窗口內的 10 個數字，尾端多餘的頁碼（如 51）一律隱藏
-  numberItems.forEach(item => {
-    if (item.page >= startPage && item.page <= endPage) {
-      item.el.style.setProperty('display', 'inline-flex', 'important');
-    } else {
-      item.el.style.setProperty('display', 'none', 'important');
+  // 情況 A：若主題本來就有印出全部數字按鈕（例如原本 51 頁）
+  if (numberItems.length > 10) {
+    const maxPage = numberItems[numberItems.length - 1].page;
+    let startPage = 1;
+    if (currentPage > 10) {
+      startPage = currentPage - 9;
     }
-  });
+    let endPage = startPage + 9;
+    if (endPage > maxPage) {
+      endPage = maxPage;
+      startPage = Math.max(1, endPage - 9);
+    }
+
+    numberItems.forEach(item => {
+      if (item.page >= startPage && item.page <= endPage) {
+        item.el.style.setProperty('display', 'inline-flex', 'important');
+      } else {
+        item.el.style.setProperty('display', 'none', 'important');
+      }
+    });
+    return;
+  }
+
+  // 情況 B：主題只印出上一頁/下一頁按鈕時，自動注入 10 頁滑動窗口
+  const totalPages = 51; // 配合你的站點總頁數
+  let startPage = 1;
+  if (currentPage > 10) {
+    startPage = currentPage - 9;
+  }
+  let endPage = Math.min(startPage + 9, totalPages);
+
+  // 隱藏原生 Previous / Next，改用統一的滑動欄
+  pag.innerHTML = '';
+  pag.classList.add('custom-dynamic-pagination');
+
+  // 上一頁 «
+  if (currentPage > 1) {
+    const prevA = document.createElement('a');
+    prevA.className = 'page-btn-item';
+    prevA.innerHTML = '&laquo;';
+    prevA.href = currentPage === 2 ? '/' : '/page/' + (currentPage - 1) + '/';
+    pag.appendChild(prevA);
+  }
+
+  // 10 頁數字按鈕
+  for (let i = startPage; i <= endPage; i++) {
+    if (i === currentPage) {
+      const span = document.createElement('span');
+      span.className = 'page-btn-item is-current';
+      span.innerText = i;
+      pag.appendChild(span);
+    } else {
+      const a = document.createElement('a');
+      a.className = 'page-btn-item';
+      a.innerText = i;
+      a.href = i === 1 ? '/' : '/page/' + i + '/';
+      pag.appendChild(a);
+    }
+  }
+
+  // 下一頁 »
+  if (currentPage < totalPages) {
+    const nextA = document.createElement('a');
+    nextA.className = 'page-btn-item';
+    nextA.innerHTML = '&raquo;';
+    nextA.href = '/page/' + (currentPage + 1) + '/';
+    pag.appendChild(nextA);
+  }
 });</script></body></html>
