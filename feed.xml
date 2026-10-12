@@ -3,7 +3,7 @@
     <title>詐騙觀察筆記</title>
     <link href="https://scamobserver.org/feed.xml" rel="self" />
     <link href="https://scamobserver.org" />
-    <updated>2026-10-12T21:54:23+08:00</updated>
+    <updated>2026-10-12T22:11:51+08:00</updated>
     <author>
         <name>自救指南小編</name>
     </author>
@@ -68,13 +68,13 @@
 <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 1px solid #cbd5e1; border-radius: 10px; padding: 1.5rem; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
 <h3 style="margin: 0 0 0.8rem 0; font-size: 1.15rem; color: #0f172a; font-weight: bold;">🔗 本案官方完整調查存證與自救指引</h3>
 <p style="margin: 0 0 1.2rem 0; font-size: 0.95rem; color: #475569; line-height: 1.6;">本文由民間反詐研究團隊整理。若您在<strong>「Deadira shop」</strong>遭遇相同狀況或需要調閱完整案件進度，可點擊下方直接前往獨立站專題原文：</p>
-<div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 1.2rem;"><a href="https://scamobserver.org/deadira-shop-scam.html" target="_blank" rel="noopener" style="flex: 1; min-width: 240px; text-align: center; background-color: #2563eb; color: #ffffff; text-decoration: none; padding: 12px 18px; border-radius: 6px; font-weight: bold; font-size: 0.95rem; box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);"> 🌐 點此前往獨立站查看《Deadira shop》專題報告 </a> <a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener" style="flex: 1; min-width: 240px; text-align: center; background-color: #06c755; color: #ffffff; text-decoration: none; padding: 12px 18px; border-radius: 6px; font-weight: bold; font-size: 0.95rem; box-shadow: 0 2px 4px rgba(6, 199, 85, 0.2);"> 💬 加入受害者自救與存證交流 LINE </a></div>
+<div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 1.2rem;"><a href="https://scamobserver.org/deadira-shop-scam-2/" target="_blank" rel="noopener" style="flex: 1; min-width: 240px; text-align: center; background-color: #2563eb; color: #ffffff; text-decoration: none; padding: 12px 18px; border-radius: 6px; font-weight: bold; font-size: 0.95rem; box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);"> 🌐 點此前往獨立站查看《Deadira shop》專題報告 </a> <a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener" style="flex: 1; min-width: 240px; text-align: center; background-color: #06c755; color: #ffffff; text-decoration: none; padding: 12px 18px; border-radius: 6px; font-weight: bold; font-size: 0.95rem; box-shadow: 0 2px 4px rgba(6, 199, 85, 0.2);"> 💬 加入受害者自救與存證交流 LINE </a></div>
 <hr style="border: none; border-top: 1px dashed #cbd5e1; margin: 1rem 0;">
 <p style="margin: 0 0 0.5rem 0; font-size: 0.92rem; font-weight: 600; color: #334155;">📌 同期高風險受害案例查核（點擊查閱獨立站檔案）：</p>
 <ul style="margin: 0; padding-left: 1.2rem; line-height: 2; font-size: 0.9rem; color: #475569;">
-<li><a href="https://scamobserver.org/toobit-scam.html" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【假冒TooBit】冒用名義架設釣魚合約交易所、二次KYC與解鎖保證金陷阱</a></li>
-<li><a href="https://scamobserver.org/rg-shop-scam.html" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【RG SHOP】跨境電商代購刷單、連環任務超時卡單鎖死黑幕</a></li>
-<li><a href="https://scamobserver.org/lanqi-tech-scam.html" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【假冒瀾起科技】假借科技大廠研發分紅、帳號風控強索風險保證金騙局</a></li>
+<li><a href="https://scamobserver.org/toobit-scam/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【假冒TooBit】冒用名義架設釣魚合約交易所、二次KYC與解鎖保證金陷阱</a></li>
+<li><a href="https://scamobserver.org/rg-shop-scam/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【RG SHOP】跨境電商代購刷單、連環任務超時卡單鎖死黑幕</a></li>
+<li><a href="https://scamobserver.org/lanqi-tech-scam/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【假冒瀾起科技】假借科技大廠研發分紅、帳號風控強索風險保證金騙局</a></li>
 </ul>
 </div>
 <!-- ========================================================================= -->
@@ -123,7 +123,7 @@
   "keywords": ["Deadira shop詐騙", "deadira-quality.store", "假投資詐騙", "無法出金", "反詐騙自救"],
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://scamobserver.org/deadira-shop-scam.html"
+    "@id": "https://scamobserver.org/deadira-shop-scam-2/"
   },
   "author": {
     "@type": "Organization",
