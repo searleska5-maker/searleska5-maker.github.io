@@ -3,7 +3,7 @@
     <title>詐騙觀察筆記</title>
     <link href="https://scamobserver.org/feed.xml" rel="self" />
     <link href="https://scamobserver.org" />
-    <updated>2026-10-12T23:24:48+08:00</updated>
+    <updated>2026-10-12T23:44:52+08:00</updated>
     <author>
         <name>自救指南小編</name>
     </author>
@@ -43,7 +43,7 @@
 </div>
 <!-- 案例圖片區塊 -->
 <p style="margin: 1.5rem 0 0.6rem 0; font-size: 1.05rem; font-weight: 600; color: #334155;">📸 涉案平台畫面與異常紀錄（存證參考）：</p>
-<p style="text-align: center; margin: 0 0 1.8rem 0;"><img style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);" title="Deadira shop詐騙手法與蒐證畫面解析" src="https://g.udn.com.tw/upfiles/B_7F/7ff653f6/PSN_PHOTO/627/f_29838627_1.jpg" alt="Deadira shop詐騙平台介面與出金失敗截圖存證" width="800" height="450" loading="lazy" data-is-external-image="true"></p>
+<figure class="post__image"><img loading="lazy"  src="https://scamobserver.org/media/posts/479/49368549-1a7c-4f77-820d-58664ff624d0.jfif" alt="" width="1024" height="572"></figure>
 <!-- 核心內容：標準 H2 結構 -->
 <h2 style="color: #1e40af; font-size: 1.35rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.6rem; margin-top: 2rem; margin-bottom: 1.2rem;">🧭 一、遭遇平台無法出金？受害者黃金自救 8 步驟</h2>
 <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.3rem; margin-bottom: 1.5rem; line-height: 1.8; color: #334155;">
@@ -72,9 +72,9 @@
 <hr style="border: none; border-top: 1px dashed #cbd5e1; margin: 1rem 0;">
 <p style="margin: 0 0 0.5rem 0; font-size: 0.92rem; font-weight: 600; color: #334155;">📌 同期高風險受害案例查核與防範檔案：</p>
 <ul style="margin: 0; padding-left: 1.2rem; line-height: 2; font-size: 0.9rem; color: #475569;">
-<li><a href="https://scamobserver.org/toobit-scam/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【假冒TooBit】冒用名義架設釣魚合約交易所、二次KYC與解鎖保證金陷阱</a></li>
+<li><a href="https://scamobserver.org/toobitt-scam/" target="_blank" rel="noopener noreferrer">【緊急示警】假冒TooBit無法出金！假交易所合約陷阱與自救金流存證</a></li>
 <li><a href="https://scamobserver.org/rg-shop-scam/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【RG SHOP】跨境電商代購刷單、連環任務超時卡單鎖死黑幕</a></li>
-<li><a href="https://scamobserver.org/lanqi-tech-scam/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【假冒瀾起科技】假借科技大廠晶片研發分紅、風控強索解凍金騙局</a></li>
+<li><a href="https://scamobserver.org/lanqikeji-scam/" target="null">【實例拆解】假冒瀾起科技無法出金真相！晶片研發分紅黑幕與存證要點</a></li>
 </ul>
 </div>
 <!-- ========================================================================= -->
@@ -89,6 +89,7 @@
 <!-- 底部客觀聲明 -->
 <div style="background-color: #f1f5f9; border-left: 4px solid #64748b; padding: 1.1rem; margin-top: 2.2rem; font-size: 0.95rem; color: #475569; line-height: 1.7; border-radius: 4px;">📢 <strong>版權與研究聲明：</strong>本文由《詐騙觀察筆記》依據公開受害通報案例、反詐社群反饋與實務經驗客觀整理，旨在提升大眾防詐意識。本站為民間非官方研究平台，非政府司法或警察機關。具體個案之金流查扣與法律追訴，請依循檢警司法與金融監理機關法定程序辦理。</div>
 <!-- ==================== 結構化資料 (Schema Markup) ==================== -->
+<p>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -160,6 +161,7 @@
   ]
 }
 </script>
+</p>
 <!-- 常駐浮動按鈕 -->
 <div style="position: fixed; bottom: 25px; right: 25px; z-index: 9999;"><a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener" style="display: flex; align-items: center; background-color: #06c755; color: #ffffff; text-decoration: none; padding: 11px 20px; border-radius: 30px; font-weight: bold; font-size: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.22); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"> <span style="margin-right: 6px; font-size: 17px;">💬</span> 受害自救 / 交流諮詢 </a></div>
             ]]>
@@ -199,7 +201,7 @@
 </div>
 <!-- 案例圖片區塊 -->
 <p style="margin: 1.5rem 0 0.6rem 0; font-size: 1.05rem; font-weight: 600; color: #334155;">📸 涉案平台畫面與異常紀錄（存證參考）：</p>
-<p style="text-align: center; margin: 0 0 1.8rem 0;"><img style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);" title="假冒瀾起科技詐騙手法與蒐證畫面解析" src="https://g.udn.com.tw/upfiles/B_7F/7ff653f6/PSN_PHOTO/627/f_29838627_1.jpg" alt="假冒瀾起科技詐騙平台介面與出金失敗截圖存證" width="800" height="450" loading="lazy" data-is-external-image="true"></p>
+<figure class="post__image"><img loading="lazy"  src="https://scamobserver.org/media/posts/478/c1352297-bde5-4862-ab84-891f29250188.jfif" alt="" width="1024" height="572"></figure>
 <!-- 核心內容：標準 H2 結構 -->
 <h2 style="color: #1e40af; font-size: 1.35rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.6rem; margin-top: 2rem; margin-bottom: 1.2rem;">🧭 一、遭遇平台無法出金？受害者黃金自救 8 步驟</h2>
 <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.3rem; margin-bottom: 1.5rem; line-height: 1.8; color: #334155;">
@@ -228,7 +230,7 @@
 <hr style="border: none; border-top: 1px dashed #cbd5e1; margin: 1rem 0;">
 <p style="margin: 0 0 0.5rem 0; font-size: 0.92rem; font-weight: 600; color: #334155;">📌 同期高風險受害案例查核與防範檔案：</p>
 <ul style="margin: 0; padding-left: 1.2rem; line-height: 2; font-size: 0.9rem; color: #475569;">
-<li><a href="https://scamobserver.org/toobit-scam/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【假冒TooBit】冒用名義架設釣魚合約交易所、二次KYC與解鎖保證金陷阱</a></li>
+<li><a href="https://scamobserver.org/toobitt-scam/" target="_blank" rel="noopener noreferrer">【緊急示警】假冒TooBit無法出金！假交易所合約陷阱與自救金流存證</a></li>
 <li><a href="https://scamobserver.org/rg-shop-scam/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【RG SHOP】跨境電商代購刷單、連環任務超時卡單鎖死黑幕</a></li>
 <li><a href="https://scamobserver.org/deadira-shop-scam-2/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【Deadira shop】假精品商城批發賺匯差、索要20%稅金拒絕出金始末</a></li>
 </ul>
@@ -245,6 +247,7 @@
 <!-- 底部客觀聲明 -->
 <div style="background-color: #f1f5f9; border-left: 4px solid #64748b; padding: 1.1rem; margin-top: 2.2rem; font-size: 0.95rem; color: #475569; line-height: 1.7; border-radius: 4px;">📢 <strong>版權與研究聲明：</strong>本文由《詐騙觀察筆記》依據公開受害通報案例、反詐社群反饋與實務經驗客觀整理，旨在提升大眾防詐意識。本站為民間非官方研究平台，非政府司法或警察機關。具體個案之金流查扣與法律追訴，請依循檢警司法與金融監理機關法定程序辦理。</div>
 <!-- ==================== 結構化資料 (Schema Markup) ==================== -->
+<p>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -316,6 +319,7 @@
   ]
 }
 </script>
+</p>
 <!-- 常駐浮動按鈕 -->
 <div style="position: fixed; bottom: 25px; right: 25px; z-index: 9999;"><a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener" style="display: flex; align-items: center; background-color: #06c755; color: #ffffff; text-decoration: none; padding: 11px 20px; border-radius: 30px; font-weight: bold; font-size: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.22); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"> <span style="margin-right: 6px; font-size: 17px;">💬</span> 受害自救 / 交流諮詢 </a></div>
             ]]>
@@ -355,7 +359,7 @@
 </div>
 <!-- 案例圖片區塊 -->
 <p style="margin: 1.5rem 0 0.6rem 0; font-size: 1.05rem; font-weight: 600; color: #334155;">📸 涉案平台畫面與異常紀錄（存證參考）：</p>
-<p style="text-align: center; margin: 0 0 1.8rem 0;"><img style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);" title="RG SHOP詐騙手法與蒐證畫面解析" src="https://g.udn.com.tw/upfiles/B_7F/7ff653f6/PSN_PHOTO/627/f_29838627_1.jpg" alt="RG SHOP詐騙平台介面與出金失敗截圖存證" width="800" height="450" loading="lazy" data-is-external-image="true"></p>
+<figure class="post__image"><img loading="lazy"  src="https://scamobserver.org/media/posts/477/794eb981-cf2a-496c-8d3a-9a214e41e349.jfif" alt="" width="1024" height="572"></figure>
 <!-- 核心內容：標準 H2 結構 -->
 <h2 style="color: #1e40af; font-size: 1.35rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.6rem; margin-top: 2rem; margin-bottom: 1.2rem;">🧭 一、遭遇平台無法出金？受害者黃金自救 8 步驟</h2>
 <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.3rem; margin-bottom: 1.5rem; line-height: 1.8; color: #334155;">
@@ -384,8 +388,8 @@
 <hr style="border: none; border-top: 1px dashed #cbd5e1; margin: 1rem 0;">
 <p style="margin: 0 0 0.5rem 0; font-size: 0.92rem; font-weight: 600; color: #334155;">📌 同期高風險受害案例查核與防範檔案：</p>
 <ul style="margin: 0; padding-left: 1.2rem; line-height: 2; font-size: 0.9rem; color: #475569;">
-<li><a href="https://scamobserver.org/toobit-scam/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【假冒TooBit】冒用名義架設釣魚合約交易所、二次KYC與解鎖保證金陷阱</a></li>
-<li><a href="https://scamobserver.org/lanqi-tech-scam/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【假冒瀾起科技】假借科技大廠晶片研發分紅、風控強索解凍金騙局</a></li>
+<li><a href="https://scamobserver.org/toobitt-scam/" target="_blank" rel="noopener noreferrer">【緊急示警】假冒TooBit無法出金！假交易所合約陷阱與自救金流存證</a></li>
+<li><a href="https://scamobserver.org/lanqikeji-scam/" target="_blank" rel="noopener noreferrer">【實例拆解】假冒瀾起科技無法出金真相！晶片研發分紅黑幕與存證要點</a></li>
 <li><a href="https://scamobserver.org/deadira-shop-scam-2/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【Deadira shop】假精品商城批發賺匯差、索要20%稅金拒絕出金始末</a></li>
 </ul>
 </div>
@@ -401,6 +405,7 @@
 <!-- 底部客觀聲明 -->
 <div style="background-color: #f1f5f9; border-left: 4px solid #64748b; padding: 1.1rem; margin-top: 2.2rem; font-size: 0.95rem; color: #475569; line-height: 1.7; border-radius: 4px;">📢 <strong>版權與研究聲明：</strong>本文由《詐騙觀察筆記》依據公開受害通報案例、反詐社群反饋與實務經驗客觀整理，旨在提升大眾防詐意識。本站為民間非官方研究平台，非政府司法或警察機關。具體個案之金流查扣與法律追訴，請依循檢警司法與金融監理機關法定程序辦理。</div>
 <!-- ==================== 結構化資料 (Schema Markup) ==================== -->
+<p>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -472,6 +477,7 @@
   ]
 }
 </script>
+</p>
 <!-- 常駐浮動按鈕 -->
 <div style="position: fixed; bottom: 25px; right: 25px; z-index: 9999;"><a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener" style="display: flex; align-items: center; background-color: #06c755; color: #ffffff; text-decoration: none; padding: 11px 20px; border-radius: 30px; font-weight: bold; font-size: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.22); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"> <span style="margin-right: 6px; font-size: 17px;">💬</span> 受害自救 / 交流諮詢 </a></div>
             ]]>
@@ -511,7 +517,7 @@
 </div>
 <!-- 案例圖片區塊 -->
 <p style="margin: 1.5rem 0 0.6rem 0; font-size: 1.05rem; font-weight: 600; color: #334155;">📸 涉案平台畫面與異常紀錄（存證參考）：</p>
-<p style="text-align: center; margin: 0 0 1.8rem 0;"><img style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);" title="假冒TooBit詐騙手法與蒐證畫面解析" src="https://g.udn.com.tw/upfiles/B_7F/7ff653f6/PSN_PHOTO/627/f_29838627_1.jpg" alt="假冒TooBit詐騙平台介面與出金失敗截圖存證" width="800" height="450" loading="lazy" data-is-external-image="true"></p>
+<figure class="post__image"><img loading="lazy"  src="https://scamobserver.org/media/posts/476/82309fe9-10ce-4345-b454-249fec968c0c.jfif" alt="" width="1024" height="572"></figure>
 <!-- 核心內容：標準 H2 結構 -->
 <h2 style="color: #1e40af; font-size: 1.35rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.6rem; margin-top: 2rem; margin-bottom: 1.2rem;">🧭 一、遭遇平台無法出金？受害者黃金自救 8 步驟</h2>
 <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.3rem; margin-bottom: 1.5rem; line-height: 1.8; color: #334155;">
@@ -541,7 +547,7 @@
 <p style="margin: 0 0 0.5rem 0; font-size: 0.92rem; font-weight: 600; color: #334155;">📌 同期高風險受害案例查核與防範檔案：</p>
 <ul style="margin: 0; padding-left: 1.2rem; line-height: 2; font-size: 0.9rem; color: #475569;">
 <li><a href="https://scamobserver.org/rg-shop-scam/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【RG SHOP】跨境電商代購刷單、連環任務超時卡單鎖死黑幕</a></li>
-<li><a href="https://scamobserver.org/lanqi-tech-scam/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【假冒瀾起科技】假借科技大廠晶片研發分紅、風控強索解凍金騙局</a></li>
+<li><a href="https://scamobserver.org/lanqikeji-scam/" target="_blank" rel="noopener noreferrer">【實例拆解】假冒瀾起科技無法出金真相！晶片研發分紅黑幕與存證要點</a></li>
 <li><a href="https://scamobserver.org/deadira-shop-scam-2/" target="_blank" style="color: #2563eb; text-decoration: underline;" rel="noopener">【Deadira shop】假精品商城批發賺匯差、索要20%稅金拒絕出金始末</a></li>
 </ul>
 </div>
@@ -557,6 +563,7 @@
 <!-- 底部客觀聲明 -->
 <div style="background-color: #f1f5f9; border-left: 4px solid #64748b; padding: 1.1rem; margin-top: 2.2rem; font-size: 0.95rem; color: #475569; line-height: 1.7; border-radius: 4px;">📢 <strong>版權與研究聲明：</strong>本文由《詐騙觀察筆記》依據公開受害通報案例、反詐社群反饋與實務經驗客觀整理，旨在提升大眾防詐意識。本站為民間非官方研究平台，非政府司法或警察機關。具體個案之金流查扣與法律追訴，請依循檢警司法與金融監理機關法定程序辦理。</div>
 <!-- ==================== 結構化資料 (Schema Markup) ==================== -->
+<p>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -628,6 +635,7 @@
   ]
 }
 </script>
+</p>
 <!-- 常駐浮動按鈕 -->
 <div style="position: fixed; bottom: 25px; right: 25px; z-index: 9999;"><a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener" style="display: flex; align-items: center; background-color: #06c755; color: #ffffff; text-decoration: none; padding: 11px 20px; border-radius: 30px; font-weight: bold; font-size: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.22); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"> <span style="margin-right: 6px; font-size: 17px;">💬</span> 受害自救 / 交流諮詢 </a></div>
             ]]>
