@@ -9,7 +9,7 @@
                     this.classList.add('is-loaded');
                 }, false);
             }
-        }</script><div class="line-left-scam-help-btn"><a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" title="遭到詐騙？立刻聯絡自救求助"><div class="alert-badge">🚨 緊急求助</div><span class="help-text-content">被騙求助 LINE</span></a></div><style>/* --- 防盜文基礎選取限制（可由管理員解鎖） --- */
+        }</script><div class="line-left-scam-help-btn"><a href="https://line.me/ti/p/y63jjVtNJe" target="_blank" rel="noopener noreferrer" title="遭到詐騙？立刻聯絡自救求助"><div class="alert-badge">🚨 緊急求助</div><span class="help-text-content">被騙求助 LINE</span></a></div><style>/* --- 防盜文基礎選取限制（管理員自動豁免） --- */
 body.protect-copy {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -23,7 +23,7 @@ input, textarea {
     user-select: auto !important;
 }
 
-/* --- 左側橫排求助鈕外觀 --- */
+/* --- 左側橫排求助鈕 --- */
 div.line-left-scam-help-btn {
     position: fixed !important;
     top: 35% !important;
@@ -80,181 +80,11 @@ div.line-left-scam-help-btn span.help-text-content {
     }
 }
 
-/* --- 頂部繁體中文分享列與私人數據樣式 --- */
-.top-article-tools-box {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 12px !important;
-    background: #f8fafc !important;
-    border: 1px solid #e2e8f0 !important;
-    border-radius: 8px !important;
-    padding: 10px 16px !important;
-    margin: 18px 0 24px 0 !important;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-}
-.top-share-buttons {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    gap: 8px !important;
-}
-.top-share-title {
-    font-size: 13px !important;
-    font-weight: 700 !important;
-    color: #475569 !important;
-    margin-right: 4px !important;
-}
-.top-share-btn {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 4px !important;
-    padding: 6px 12px !important;
-    border-radius: 6px !important;
-    font-size: 13px !important;
-    font-weight: 600 !important;
-    text-decoration: none !important;
-    color: #ffffff !important;
-    transition: opacity 0.2s ease, transform 0.15s ease !important;
-    cursor: pointer !important;
-    border: none !important;
-}
-.top-share-btn:hover {
-    opacity: 0.9 !important;
-    transform: translateY(-1px) !important;
-}
-.top-share-btn.fb { background-color: #1877F2 !important; }
-.top-share-btn.line { background-color: #06C755 !important; }
-.top-share-btn.copy { background-color: #475569 !important; }
-
-/* 🔴 徹底隱藏主題底部的英文 Share It 與所有原生分享元素 */
+/* 徹底隱藏主題原生底部的英文 Share It 區域 */
 .post__share, 
 .post__share-wrapper,
-.post__share-button,
-.c-share,
-[class*="share-button"],
-[class*="post__share"],
-.share, 
-.article-share, 
-.social-share, 
-.post-share {
+.c-share {
     display: none !important;
-}
-
-/* 僅管理員可見的瀏覽計數器 */
-.admin-view-count-badge {
-    display: none;
-    align-items: center;
-    gap: 5px;
-    background-color: #fef3c7;
-    border: 1px solid #f59e0b;
-    color: #92400e;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 4px 10px;
-    border-radius: 6px;
-}
-
-/* --- 即時模糊搜尋彈窗外觀 --- */
-#live-search-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000000;
-    display: none;
-}
-#live-search-container.active {
-    display: block;
-}
-.live-search-mask {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(26, 32, 44, 0.6);
-    backdrop-filter: blur(4px);
-}
-.live-search-box {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 90%;
-    max-width: 600px;
-    background-color: #FFFFFF;
-    border-radius: 12px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    overflow: hidden;
-    border: 1px solid #E2E8F0;
-    animation: fadeInSearch 0.2s ease-out;
-}
-@keyframes fadeInSearch {
-    from { opacity: 0; transform: translate(-50%, -10px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
-}
-.live-search-input-wrapper {
-    display: flex;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 2px solid #F1F5F9;
-}
-#live-search-input {
-    flex: 1;
-    border: none !important;
-    outline: none !important;
-    font-size: 16px !important;
-    color: #2D3748 !important;
-    background: transparent !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-#live-search-close {
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: #A0AEC0;
-    cursor: pointer;
-    padding: 0 4px;
-    transition: color 0.15s ease;
-}
-#live-search-close:hover {
-    color: #E53E3E;
-}
-#live-search-results {
-    list-style: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    max-height: 350px;
-    overflow-y: auto;
-    background-color: #FFFFFF;
-}
-#live-search-results li {
-    border-bottom: 1px solid #F8FAFC;
-}
-#live-search-results li a {
-    display: block;
-    padding: 16px 20px;
-    color: #4A5568 !important;
-    text-decoration: none !important;
-    font-size: 15px;
-    line-height: 1.6;
-    transition: all 0.15s ease;
-}
-#live-search-results li a:hover {
-    background-color: #F8FAFC;
-    color: #1A365D !important;
-}
-#live-search-results li a strong {
-    color: #E53E3E !important;
-    font-weight: 700;
-}
-#live-search-results li.no-result {
-    padding: 20px;
-    text-align: center;
-    color: #A0AEC0;
-    font-size: 14px;
 }
 
 /* --- 標題與版面美化 --- */
@@ -325,7 +155,7 @@ h2.post__title, .entry-title, .card__title {
     border-color: #007bff !important;
     color: #FFFFFF !important;
     cursor: default !important;
-}</style><script>// 1. 防 iframe 鏡像克隆
+}</style><script>// 1. 防 iframe 惡意鏡像克隆
 if (window.top !== window.self) {
   window.top.location.replace(window.self.location.href);
 }
@@ -337,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   const isAdmin = localStorage.getItem('scam_admin_view_auth') === 'true';
 
-  // 2. 防盜文限制（管理員自動豁免）
+  // 2. 防盜文機制（管理員自動豁免）
   if (!isAdmin) {
     document.body.classList.add('protect-copy');
     document.addEventListener('contextmenu', function (e) {
@@ -365,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // 3. 替換閱讀全文按鈕
+  // 3. 替換英文閱讀全文按鈕
   document.querySelectorAll('a').forEach(link => {
     const txt = link.textContent.trim().toLowerCase();
     if (txt.includes('continue reading') || txt.includes('read more')) {
@@ -373,85 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // 4. 強制清理底部所有殘留的「Share It」按鈕及其父容器
-  document.querySelectorAll('button, a, div, span').forEach(el => {
-    if (el.textContent && el.textContent.trim().toLowerCase() === 'share it') {
-      const container = el.closest('.post__share-wrapper, .post__share, [class*="share"]') || el;
-      container.remove();
-    }
-  });
-
-  // 5. 單篇文章頁：頂部中文分享工具列
-  const targetContent = document.querySelector('.post__entry, .entry-content, .post-content, .c-content, article .content, main article');
-  const isNotListPage = !window.location.pathname.includes('/page/') && window.location.pathname.length > 2;
-
-  if (targetContent && isNotListPage) {
-    const currentUrl = encodeURIComponent(window.location.href);
-    const rawUrl = window.location.href;
-    const postSlug = window.location.pathname.replace(/^\/|\/$/g, '').replace(/\//g, '-');
-
-    const topBar = document.createElement('div');
-    topBar.className = 'top-article-tools-box';
-    topBar.innerHTML = `
-      <div class="top-share-buttons">
-        <span class="top-share-title">📢 分享此案：</span>
-        <a class="top-share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u=${currentUrl}" target="_blank" rel="noopener" title="分享到 Facebook">
-          Facebook
-        </a>
-        <a class="top-share-btn line" href="https://social-plugins.line.me/lineit/share?url=${currentUrl}" target="_blank" rel="noopener" title="分享到 LINE">
-          LINE
-        </a>
-        <button type="button" class="top-share-btn copy" id="copyShareBtn">
-          📋 複製文案與標籤
-        </button>
-      </div>
-      <div class="admin-view-count-badge" id="adminViewBadge">
-        🔒 站長專屬觀看量：<span id="adminViewNumber">載入中...</span> 次
-      </div>
-    `;
-
-    // 插入在正文最開頭之前
-    targetContent.insertAdjacentElement('beforebegin', topBar);
-
-    const copyBtn = document.getElementById('copyShareBtn');
-    if (copyBtn) {
-      copyBtn.addEventListener('click', function () {
-        const textToCopy = `${document.title}\n${rawUrl}\n#防詐騙 #反詐自救 #投資詐騙 #虛擬貨幣 #殺豬盤 #詐騙觀察筆記`;
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          alert("✅ 標題、網址與主題標籤已成功複製！前往社群貼文直接按 Ctrl+V 貼上即可！");
-        }).catch(() => {
-          alert("已複製網址：" + rawUrl);
-        });
-      });
-    }
-
-    // 私人計數器
-    const namespace = "scamobserver_tw";
-    fetch(`https://api.counterapi.dev/v1/${namespace}/${postSlug}/up`)
-      .then(res => res.json())
-      .then(data => {
-        if (isAdmin) {
-          const badge = document.getElementById('adminViewBadge');
-          const numSpan = document.getElementById('adminViewNumber');
-          if (badge && numSpan) {
-            badge.style.display = 'inline-flex';
-            numSpan.innerText = (data.count || data.up || 1).toLocaleString();
-          }
-        }
-      })
-      .catch(() => {
-        if (isAdmin) {
-          const badge = document.getElementById('adminViewBadge');
-          const numSpan = document.getElementById('adminViewNumber');
-          if (badge && numSpan) {
-            badge.style.display = 'inline-flex';
-            numSpan.innerText = "統計中";
-          }
-        }
-      });
-  }
-
-  // 6. 分頁滑動器
+  // 4. 智慧滑動分頁器 (維持 10 頁滑動)
   const pag = document.querySelector('.pagination, .pagination__list, nav[class*="pagination"], div[class*="pagination"]');
   if (!pag) return;
 
