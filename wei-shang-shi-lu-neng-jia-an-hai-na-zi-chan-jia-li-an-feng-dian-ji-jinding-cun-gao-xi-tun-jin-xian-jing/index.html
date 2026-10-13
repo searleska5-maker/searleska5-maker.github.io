@@ -178,7 +178,7 @@ if (window.top !== window.self) {
   window.top.location.replace(window.self.location.href);
 }
 
-// 降級複製備援函數（防止無效引用報錯）
+// 降級複製備援函數
 function fallbackCopyText(text, successMsg) {
   var textArea = document.createElement("textarea");
   textArea.value = text;
@@ -239,17 +239,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // 4. 動態掛載分享列與通報表單至「自救指南小編」正下方
+  // 4. 文章頁專用元素掛載（嚴格判定 post-template 確保首頁不被干擾）
+  var isPostPage = document.body.classList.contains('post-template');
+  var heroMeta = document.querySelector('.hero__content .wrapper');
   var authorBio = document.querySelector('.content__bio');
-  if (authorBio) {
-    var toolsContainer = document.createElement('div');
-    toolsContainer.className = 'custom-relocated-tools';
-    toolsContainer.style.margin = "25px 0 35px 0";
 
+  if (isPostPage && (heroMeta || authorBio)) {
     var curUrl = encodeURIComponent(window.location.href);
     var rawUrl = window.location.href;
 
-    // 智慧提取主要標題關鍵詞
+    // 智慧提取標題核心平台關鍵詞
     var rawTitle = document.title.split(' - ')[0].trim();
     var mainKeyword = '';
     var bracketMatch = rawTitle.match(/【(.*?)】|\[(.*?)\]/);
@@ -262,95 +261,114 @@ document.addEventListener("DOMContentLoaded", function () {
         mainKeyword = scamMatch[1].trim();
       }
     }
-    var fbHashtagParam = mainKeyword ? '&hashtag=' + encodeURIComponent('#' + mainKeyword.replace(/\s+/g, '')) : '&hashtag=%23防詐騙';
-
-    // 採用字串安全拼接，杜絕解析錯誤
-    toolsContainer.innerHTML = 
-      '<div class="custom-article-tools-box" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif;">' +
-        '<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">' +
-          '<span style="font-size: 13px; font-weight: 700; color: #475569;">📢 分享此案：</span>' +
-          '<a class="custom-btn-fb" href="https://www.facebook.com/sharer/sharer.php?u=' + curUrl + fbHashtagParam + '" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #1877F2;">Facebook</a>' +
-          '<a class="custom-btn-line" href="https://social-plugins.line.me/lineit/share?url=' + curUrl + '" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #06C755;">LINE</a>' +
-          '<button type="button" class="custom-btn-copy" style="display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #475569; border: none; cursor: pointer;">📋 複製文案與標籤</button>' +
-        '</div>' +
-        '<div class="custom-admin-view-badge" style="display: none; align-items: center; gap: 5px; background-color: #fef3c7; border: 1px solid #f59e0b; color: #92400e; font-size: 12px; font-weight: bold; padding: 4px 10px; border-radius: 6px;">' +
-          '🔒 站長專屬觀看量：<span class="custom-admin-view-number">載入中...</span> 次' +
-        '</div>' +
-      '</div>' +
-      '<div style="background-color: #e7f1ff; border: 1px solid #b6d4fe; border-radius: 8px; padding: 22px; text-align: center; max-width: 100%; box-sizing: border-box;">' +
-        '<h3 style="margin-top: 0; color: #084298; font-size: 1.2rem;">📢 遭遇相同平台或類似詐騙手法？</h3>' +
-        '<p style="color: #052c65; margin-bottom: 18px; line-height: 1.6;">本站為公益性質記錄，通報內容將由站長去識別化後整理公開，提醒更多民眾提早避開陷阱。<br><strong>（完全匿名、不收集 Email、免登入 Google 帳號）</strong></p>' +
-        '<a href="https://docs.google.com/forms/d/e/1FAIpQLSdvZ-Q2QFCJNaklwmYFhhHOXslRJFQk0btbyeKNHI_h1Gxqg/viewform" target="_blank" rel="noopener noreferrer" style="background-color: #dc3545; color: #ffffff; padding: 12px 26px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 1.05rem; display: inline-block;">👉 前往填寫匿名通報表單</a>' +
-      '</div>';
-
-    // 插入至自救小編下方
-    authorBio.parentNode.insertBefore(toolsContainer, authorBio.nextSibling);
-
-    // 複製按鈕功能綁定（智慧抓取核心平台名 + 衍生標籤）
-    var copyBtn = toolsContainer.querySelector('.custom-btn-copy');
-    if (copyBtn) {
-      copyBtn.onclick = function() {
-        var brandTags = [];
-        if (mainKeyword) {
-          var cleanTag = mainKeyword.replace(/\s+/g, '');
-          brandTags.push('#' + cleanTag);
-          brandTags.push('#' + cleanTag + '詐騙');
-        }
-
-        // 自動讀取本頁文章分類標籤
-        var pageTags = [];
-        document.querySelectorAll('.content__tag a, .post__tag a').forEach(function(tagEl) {
-          var tText = tagEl.innerText.trim().replace(/\s+/g, '');
-          if (tText) pageTags.push('#' + tText);
-        });
-
-        // 核心長效防詐受害搜尋詞庫
-        var baseTags = [
-          '#防詐騙',
-          '#反詐自救',
-          '#假投資平台',
-          '#無法出金',
-          '#投資詐騙',
-          '#殺豬盤',
-          '#受害者自救',
-          '#165全民防騙',
-          '#詐騙觀察筆記'
-        ];
-
-        // 平台精準關鍵詞排在最前頭，提升社群搜尋命中率
-        var allTags = Array.from(new Set(brandTags.concat(pageTags, baseTags))).join(' ');
-        var copyContent = rawTitle + '\n' + rawUrl + '\n\n' + allTags;
-        var successMessage = '✅ 已複製精準平台標籤與自救文案！前往社群貼文按 Ctrl+V 貼上即可！';
-
-        if (navigator.clipboard && window.isSecureContext) {
-          navigator.clipboard.writeText(copyContent).then(function() {
-            alert(successMessage);
-          }).catch(function() {
-            fallbackCopyText(copyContent, successMessage);
-          });
-        } else {
-          fallbackCopyText(copyContent, successMessage);
-        }
-      };
+    // 防禦機制：若上述結構未命中，直接提取第一組核心詞
+    if (!mainKeyword && rawTitle) {
+      var fallbackMatch = rawTitle.split(/[\s，,、]/)[0];
+      if (fallbackMatch && fallbackMatch.length <= 15) {
+        mainKeyword = fallbackMatch;
+      }
     }
 
-    // 站長後台計數器顯示
-    if (isAdmin) {
-      var slug = window.location.pathname.replace(/^\/|\/$/g, '').replace(/\//g, '-');
-      toolsContainer.querySelectorAll('.custom-admin-view-badge').forEach(function(badge) {
-        badge.style.display = 'inline-flex';
-      });
-      fetch('https://api.counterapi.dev/v1/scamobserver_tw/' + slug + '/up')
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-          toolsContainer.querySelectorAll('.custom-admin-view-number').forEach(function(numSpan) {
-            numSpan.innerText = (data.count || data.up || 1).toLocaleString();
+    var fbHashtagParam = mainKeyword ? '&hashtag=' + encodeURIComponent('#' + mainKeyword.replace(/\s+/g, '')) : '&hashtag=%23防詐騙';
+
+    // (A) 將「📢 分享此案工具列」精準掛載到主標題與日期下方
+    if (heroMeta) {
+      var topTools = document.createElement('div');
+      topTools.className = 'custom-top-share-container';
+      topTools.style.cssText = "margin: 20px 0 10px 0; width: 100%; box-sizing: border-box;";
+      topTools.innerHTML = 
+        '<div class="custom-article-tools-box" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 16px; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif;">' +
+          '<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">' +
+            '<span style="font-size: 13px; font-weight: 700; color: #475569;">📢 分享此案：</span>' +
+            '<a class="custom-btn-fb" href="https://www.facebook.com/sharer/sharer.php?u=' + curUrl + fbHashtagParam + '" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #1877F2;">Facebook</a>' +
+            '<a class="custom-btn-line" href="https://social-plugins.line.me/lineit/share?url=' + curUrl + '" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #06C755;">LINE</a>' +
+            '<button type="button" class="custom-btn-copy" style="display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #475569; border: none; cursor: pointer;">📋 複製文案與標籤</button>' +
+          '</div>' +
+          '<div class="custom-admin-view-badge" style="display: none; align-items: center; gap: 5px; background-color: #fef3c7; border: 1px solid #f59e0b; color: #92400e; font-size: 12px; font-weight: bold; padding: 4px 10px; border-radius: 6px;">' +
+            '🔒 站長專屬觀看量：<span class="custom-admin-view-number">載入中...</span> 次' +
+          '</div>' +
+        '</div>';
+
+      heroMeta.appendChild(topTools);
+
+      // 複製按鈕功能綁定
+      var copyBtn = topTools.querySelector('.custom-btn-copy');
+      if (copyBtn) {
+        copyBtn.onclick = function() {
+          var brandTags = [];
+          if (mainKeyword) {
+            var cleanTag = mainKeyword.replace(/\s+/g, '');
+            brandTags.push('#' + cleanTag);
+            brandTags.push('#' + cleanTag + '詐騙');
+          }
+
+          var pageTags = [];
+          document.querySelectorAll('.content__tag a, .post__tag a').forEach(function(tagEl) {
+            var tText = tagEl.innerText.trim().replace(/\s+/g, '');
+            if (tText) pageTags.push('#' + tText);
           });
-        }).catch(function() {
-          toolsContainer.querySelectorAll('.custom-admin-view-number').forEach(function(numSpan) {
-            numSpan.innerText = '統計中';
-          });
+
+          var baseTags = [
+            '#防詐騙',
+            '#反詐自救',
+            '#假投資平台',
+            '#無法出金',
+            '#投資詐騙',
+            '#殺豬盤',
+            '#受害者自救',
+            '#165全民防騙',
+            '#詐騙觀察筆記'
+          ];
+
+          var allTags = Array.from(new Set(brandTags.concat(pageTags, baseTags))).join(' ');
+          var copyContent = rawTitle + '\n' + rawUrl + '\n\n' + allTags;
+          var successMessage = '✅ 已複製精準平台標籤與自救文案！前往社群貼文按 Ctrl+V 貼上即可！';
+
+          if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(copyContent).then(function() {
+              alert(successMessage);
+            }).catch(function() {
+              fallbackCopyText(copyContent, successMessage);
+            });
+          } else {
+            fallbackCopyText(copyContent, successMessage);
+          }
+        };
+      }
+
+      // 站長後台計數器顯示
+      if (isAdmin) {
+        var slug = window.location.pathname.replace(/^\/|\/$/g, '').replace(/\//g, '-');
+        topTools.querySelectorAll('.custom-admin-view-badge').forEach(function(badge) {
+          badge.style.display = 'inline-flex';
         });
+        fetch('https://api.counterapi.dev/v1/scamobserver_tw/' + slug + '/up')
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            topTools.querySelectorAll('.custom-admin-view-number').forEach(function(numSpan) {
+              numSpan.innerText = (data.count || data.up || 1).toLocaleString();
+            });
+          }).catch(function() {
+            topTools.querySelectorAll('.custom-admin-view-number').forEach(function(numSpan) {
+              numSpan.innerText = '統計中';
+            });
+          });
+      }
+    }
+
+    // (B) 將「🚨 匿名通報表單」掛載到文章底部「自救小編」正下方
+    if (authorBio) {
+      var bottomReportBox = document.createElement('div');
+      bottomReportBox.className = 'custom-bottom-report-container';
+      bottomReportBox.style.margin = "25px 0 35px 0";
+      bottomReportBox.innerHTML = 
+        '<div style="background-color: #e7f1ff; border: 1px solid #b6d4fe; border-radius: 8px; padding: 22px; text-align: center; max-width: 100%; box-sizing: border-box;">' +
+          '<h3 style="margin-top: 0; color: #084298; font-size: 1.2rem;">📢 遭遇相同平台或類似詐騙手法？</h3>' +
+          '<p style="color: #052c65; margin-bottom: 18px; line-height: 1.6;">本站為公益性質記錄，通報內容將由站長去識別化後整理公開，提醒更多民眾提早避開陷阱。<br><strong>（完全匿名、不收集 Email、免登入 Google 帳號）</strong></p>' +
+          '<a href="https://docs.google.com/forms/d/e/1FAIpQLSdvZ-Q2QFCJNaklwmYFhhHOXslRJFQk0btbyeKNHI_h1Gxqg/viewform" target="_blank" rel="noopener noreferrer" style="background-color: #dc3545; color: #ffffff; padding: 12px 26px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 1.05rem; display: inline-block;">👉 前往填寫匿名通報表單</a>' +
+        '</div>';
+
+      authorBio.parentNode.insertBefore(bottomReportBox, authorBio.nextSibling);
     }
   }
 
