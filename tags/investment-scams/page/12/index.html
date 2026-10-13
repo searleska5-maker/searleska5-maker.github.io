@@ -178,12 +178,30 @@ if (window.top !== window.self) {
   window.top.location.replace(window.self.location.href);
 }
 
+// 降級複製備援函數（防止無效引用報錯）
+function fallbackCopyText(text, successMsg) {
+  var textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.style.position = "fixed";
+  textArea.style.left = "-9999px";
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  try {
+    document.execCommand('copy');
+    alert(successMsg || '✅ 已成功複製至剪貼簿！');
+  } catch (err) {
+    alert('複製失敗，請手動複製網址：' + window.location.href);
+  }
+  document.body.removeChild(textArea);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-  const urlParams = new URLSearchParams(window.location.search);
+  var urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('admin') === '1') {
     localStorage.setItem('scam_admin_view_auth', 'true');
   }
-  const isAdmin = localStorage.getItem('scam_admin_view_auth') === 'true';
+  var isAdmin = localStorage.getItem('scam_admin_view_auth') === 'true';
 
   // 2. 防盜文機制（管理員自動豁免）
   if (!isAdmin) {
@@ -193,15 +211,15 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
       }
     });
-    document.querySelectorAll('img').forEach(img => {
+    document.querySelectorAll('img').forEach(function(img) {
       img.setAttribute('draggable', 'false');
-      img.addEventListener('dragstart', e => e.preventDefault());
+      img.addEventListener('dragstart', function(e) { e.preventDefault(); });
     });
     document.addEventListener('copy', function (e) {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      const selection = window.getSelection();
+      var selection = window.getSelection();
       if (selection.toString().length > 30) {
-        const copyText = selection.toString() + 
+        var copyText = selection.toString() + 
           "\n\n--------------------------------------------\n" +
           "【本文版權聲明】轉載自《詐騙觀察筆記》\n" +
           "完整案例存證與自救追查指引原文連結：" + window.location.href + "\n" +
@@ -214,8 +232,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // 3. 替換英文閱讀全文按鈕
-  document.querySelectorAll('a').forEach(link => {
-    const txt = link.textContent.trim().toLowerCase();
+  document.querySelectorAll('a').forEach(function(link) {
+    var txt = link.textContent.trim().toLowerCase();
     if (txt.includes('continue reading') || txt.includes('read more')) {
       link.innerHTML = '閱讀全文 &rarr;';
     }
@@ -231,38 +249,87 @@ document.addEventListener("DOMContentLoaded", function () {
     var curUrl = encodeURIComponent(window.location.href);
     var rawUrl = window.location.href;
 
-    toolsContainer.innerHTML = `
-      <div class="custom-article-tools-box" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
-          <span style="font-size: 13px; font-weight: 700; color: #475569;">📢 分享此案：</span>
-          <a class="custom-btn-fb" href="https://www.facebook.com/sharer/sharer.php?u=${curUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #1877F2;">Facebook</a>
-          <a class="custom-btn-line" href="https://social-plugins.line.me/lineit/share?url=${curUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #06C755;">LINE</a>
-          <button type="button" class="custom-btn-copy" style="display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #475569; border: none; cursor: pointer;">📋 複製文案與標籤</button>
-        </div>
-        <div class="custom-admin-view-badge" style="display: none; align-items: center; gap: 5px; background-color: #fef3c7; border: 1px solid #f59e0b; color: #92400e; font-size: 12px; font-weight: bold; padding: 4px 10px; border-radius: 6px;">
-          🔒 站長專屬觀看量：<span class="custom-admin-view-number">載入中...</span> 次
-        </div>
-      </div>
+    // 智慧提取主要標題關鍵詞
+    var rawTitle = document.title.split(' - ')[0].trim();
+    var mainKeyword = '';
+    var bracketMatch = rawTitle.match(/【(.*?)】|\[(.*?)\]/);
+    if (bracketMatch) {
+      mainKeyword = (bracketMatch[1] || bracketMatch[2]).replace(/假冒|實例拆解|緊急示警/g, '').trim();
+    }
+    if (!mainKeyword) {
+      var scamMatch = rawTitle.match(/(?:假冒)?([A-Za-z0-9\u4e00-\u9fa5\s_-]+?)(?:是詐騙嗎|詐騙|無法出金|精品批發|代購)/i);
+      if (scamMatch && scamMatch[1]) {
+        mainKeyword = scamMatch[1].trim();
+      }
+    }
+    var fbHashtagParam = mainKeyword ? '&hashtag=' + encodeURIComponent('#' + mainKeyword.replace(/\s+/g, '')) : '&hashtag=%23防詐騙';
 
-      <div style="background-color: #e7f1ff; border: 1px solid #b6d4fe; border-radius: 8px; padding: 22px; text-align: center; max-width: 100%; box-sizing: border-box;">
-        <h3 style="margin-top: 0; color: #084298; font-size: 1.2rem;">📢 遭遇相同平台或類似詐騙手法？</h3>
-        <p style="color: #052c65; margin-bottom: 18px; line-height: 1.6;">本站為公益性質記錄，通報內容將由站長去識別化後整理公開，提醒更多民眾提早避開陷阱。<br><strong>（完全匿名、不收集 Email、免登入 Google 帳號）</strong></p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvZ-Q2QFCJNaklwmYFhhHOXslRJFQk0btbyeKNHI_h1Gxqg/viewform" target="_blank" rel="noopener noreferrer" style="background-color: #dc3545; color: #ffffff; padding: 12px 26px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 1.05rem; display: inline-block;">👉 前往填寫匿名通報表單</a>
-      </div>
-    `;
+    // 採用字串安全拼接，杜絕解析錯誤
+    toolsContainer.innerHTML = 
+      '<div class="custom-article-tools-box" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif;">' +
+        '<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">' +
+          '<span style="font-size: 13px; font-weight: 700; color: #475569;">📢 分享此案：</span>' +
+          '<a class="custom-btn-fb" href="https://www.facebook.com/sharer/sharer.php?u=' + curUrl + fbHashtagParam + '" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #1877F2;">Facebook</a>' +
+          '<a class="custom-btn-line" href="https://social-plugins.line.me/lineit/share?url=' + curUrl + '" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #06C755;">LINE</a>' +
+          '<button type="button" class="custom-btn-copy" style="display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; color: #ffffff; background-color: #475569; border: none; cursor: pointer;">📋 複製文案與標籤</button>' +
+        '</div>' +
+        '<div class="custom-admin-view-badge" style="display: none; align-items: center; gap: 5px; background-color: #fef3c7; border: 1px solid #f59e0b; color: #92400e; font-size: 12px; font-weight: bold; padding: 4px 10px; border-radius: 6px;">' +
+          '🔒 站長專屬觀看量：<span class="custom-admin-view-number">載入中...</span> 次' +
+        '</div>' +
+      '</div>' +
+      '<div style="background-color: #e7f1ff; border: 1px solid #b6d4fe; border-radius: 8px; padding: 22px; text-align: center; max-width: 100%; box-sizing: border-box;">' +
+        '<h3 style="margin-top: 0; color: #084298; font-size: 1.2rem;">📢 遭遇相同平台或類似詐騙手法？</h3>' +
+        '<p style="color: #052c65; margin-bottom: 18px; line-height: 1.6;">本站為公益性質記錄，通報內容將由站長去識別化後整理公開，提醒更多民眾提早避開陷阱。<br><strong>（完全匿名、不收集 Email、免登入 Google 帳號）</strong></p>' +
+        '<a href="https://docs.google.com/forms/d/e/1FAIpQLSdvZ-Q2QFCJNaklwmYFhhHOXslRJFQk0btbyeKNHI_h1Gxqg/viewform" target="_blank" rel="noopener noreferrer" style="background-color: #dc3545; color: #ffffff; padding: 12px 26px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 1.05rem; display: inline-block;">👉 前往填寫匿名通報表單</a>' +
+      '</div>';
 
     // 插入至自救小編下方
     authorBio.parentNode.insertBefore(toolsContainer, authorBio.nextSibling);
 
-    // 複製按鈕功能綁定
+    // 複製按鈕功能綁定（智慧抓取核心平台名 + 衍生標籤）
     var copyBtn = toolsContainer.querySelector('.custom-btn-copy');
     if (copyBtn) {
       copyBtn.onclick = function() {
-        var copyText = document.title + '\n' + rawUrl + '\n#防詐騙 #反詐自救 #投資詐騙 #虛擬貨幣 #殺豬盤 #詐騙觀察筆記';
+        var brandTags = [];
+        if (mainKeyword) {
+          var cleanTag = mainKeyword.replace(/\s+/g, '');
+          brandTags.push('#' + cleanTag);
+          brandTags.push('#' + cleanTag + '詐騙');
+        }
+
+        // 自動讀取本頁文章分類標籤
+        var pageTags = [];
+        document.querySelectorAll('.content__tag a, .post__tag a').forEach(function(tagEl) {
+          var tText = tagEl.innerText.trim().replace(/\s+/g, '');
+          if (tText) pageTags.push('#' + tText);
+        });
+
+        // 核心長效防詐受害搜尋詞庫
+        var baseTags = [
+          '#防詐騙',
+          '#反詐自救',
+          '#假投資平台',
+          '#無法出金',
+          '#投資詐騙',
+          '#殺豬盤',
+          '#受害者自救',
+          '#165全民防騙',
+          '#詐騙觀察筆記'
+        ];
+
+        // 平台精準關鍵詞排在最前頭，提升社群搜尋命中率
+        var allTags = Array.from(new Set(brandTags.concat(pageTags, baseTags))).join(' ');
+        var copyContent = rawTitle + '\n' + rawUrl + '\n\n' + allTags;
+        var successMessage = '✅ 已複製精準平台標籤與自救文案！前往社群貼文按 Ctrl+V 貼上即可！';
+
         if (navigator.clipboard && window.isSecureContext) {
-          navigator.clipboard.writeText(copyText).then(function() {
-            alert('✅ 標題、網址與主題標籤已成功複製！前往社群貼文直接按 Ctrl+V 貼上即可！');
+          navigator.clipboard.writeText(copyContent).then(function() {
+            alert(successMessage);
+          }).catch(function() {
+            fallbackCopyText(copyContent, successMessage);
           });
+        } else {
+          fallbackCopyText(copyContent, successMessage);
         }
       };
     }
@@ -288,46 +355,46 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // 5. 智慧滑動分頁器 (維持 10 頁滑動)
-  const pag = document.querySelector('.pagination, .pagination__list, nav[class*="pagination"], div[class*="pagination"]');
+  var pag = document.querySelector('.pagination, .pagination__list, nav[class*="pagination"], div[class*="pagination"]');
   if (!pag) return;
 
-  const existingLinks = Array.from(pag.querySelectorAll('a, span, button'));
-  let numberItems = [];
+  var existingLinks = Array.from(pag.querySelectorAll('a, span, button'));
+  var numberItems = [];
 
-  existingLinks.forEach(el => {
-    const raw = el.textContent.trim();
+  existingLinks.forEach(function(el) {
+    var raw = el.textContent.trim();
     if (/^\d+$/.test(raw)) {
       numberItems.push({ el: el, page: parseInt(raw, 10) });
     }
   });
 
-  let currentPage = 1;
-  const match = window.location.pathname.match(/\/page\/(\d+)\/?/);
+  var currentPage = 1;
+  var match = window.location.pathname.match(/\/page\/(\d+)\/?/);
   if (match) {
     currentPage = parseInt(match[1], 10);
   } else {
-    const curEl = numberItems.find(item => 
-      item.el.classList.contains('active') || 
-      item.el.classList.contains('current') || 
-      item.el.classList.contains('is-active') || 
-      item.el.tagName.toLowerCase() === 'span'
-    );
+    var curEl = numberItems.find(function(item) {
+      return item.el.classList.contains('active') || 
+             item.el.classList.contains('current') || 
+             item.el.classList.contains('is-active') || 
+             item.el.tagName.toLowerCase() === 'span';
+    });
     if (curEl) currentPage = curEl.page;
   }
 
   if (numberItems.length > 10) {
-    const maxPage = numberItems[numberItems.length - 1].page;
-    let startPage = 1;
+    var maxPage = numberItems[numberItems.length - 1].page;
+    var startPage = 1;
     if (currentPage > 10) {
       startPage = currentPage - 9;
     }
-    let endPage = startPage + 9;
+    var endPage = startPage + 9;
     if (endPage > maxPage) {
       endPage = maxPage;
       startPage = Math.max(1, endPage - 9);
     }
 
-    numberItems.forEach(item => {
+    numberItems.forEach(function(item) {
       if (item.page >= startPage && item.page <= endPage) {
         item.el.style.setProperty('display', 'inline-flex', 'important');
       } else {
@@ -337,32 +404,32 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  const totalPages = 51;
-  let startPage = 1;
+  var totalPages = 51;
+  var sPage = 1;
   if (currentPage > 10) {
-    startPage = currentPage - 9;
+    sPage = currentPage - 9;
   }
-  let endPage = Math.min(startPage + 9, totalPages);
+  var ePage = Math.min(sPage + 9, totalPages);
 
   pag.innerHTML = '';
   pag.classList.add('custom-dynamic-pagination');
 
   if (currentPage > 1) {
-    const prevA = document.createElement('a');
+    var prevA = document.createElement('a');
     prevA.className = 'page-btn-item';
     prevA.innerHTML = '&laquo;';
     prevA.href = currentPage === 2 ? '/' : '/page/' + (currentPage - 1) + '/';
     pag.appendChild(prevA);
   }
 
-  for (let i = startPage; i <= endPage; i++) {
+  for (var i = sPage; i <= ePage; i++) {
     if (i === currentPage) {
-      const span = document.createElement('span');
+      var span = document.createElement('span');
       span.className = 'page-btn-item is-current';
       span.innerText = i;
       pag.appendChild(span);
     } else {
-      const a = document.createElement('a');
+      var a = document.createElement('a');
       a.className = 'page-btn-item';
       a.innerText = i;
       a.href = i === 1 ? '/' : '/page/' + i + '/';
@@ -371,7 +438,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (currentPage < totalPages) {
-    const nextA = document.createElement('a');
+    var nextA = document.createElement('a');
     nextA.className = 'page-btn-item';
     nextA.innerHTML = '&raquo;';
     nextA.href = '/page/' + (currentPage + 1) + '/';
